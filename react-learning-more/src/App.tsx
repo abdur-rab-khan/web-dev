@@ -1,4 +1,5 @@
-import MarkdownEditor from './components/code-splitting/MarkdownEditor'
+import MarkdownEditor from './components/code-splitting/Example-1/MarkdownEditor'
+import ArtistPage from './components/code-splitting/Example-2/ArtistPage'
 
 interface FullScreenProps {
   children: React.ReactNode
@@ -17,7 +18,9 @@ function App() {
   return (
     <FullScreen>
       {/* Code-Splitting by Lazy-Load */}
-      <MarkdownEditor />
+      {/* <MarkdownEditor /> */}
+
+      <ArtistPage />
     </FullScreen>
   )
 }
