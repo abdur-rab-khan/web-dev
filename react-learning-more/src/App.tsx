@@ -1,5 +1,6 @@
-import MarkdownEditor from './components/code-splitting/Example-1/MarkdownEditor'
-import ArtistPage from './components/code-splitting/Example-2/ArtistPage'
+import { useState } from 'react'
+import Use from './components/apis/use/Use'
+import ThemeContext from './contexts/Contexts'
 
 interface FullScreenProps {
   children: React.ReactNode
@@ -14,14 +15,21 @@ const FullScreen: React.FC<FullScreenProps> = ({ children }) => {
 }
 
 function App() {
+  const [theme, setTheme] = useState<"light" | "dark">('light');
 
   return (
-    <FullScreen>
-      {/* Code-Splitting by Lazy-Load */}
-      {/* <MarkdownEditor /> */}
+    <ThemeContext value={{ theme: theme, setTheme }}>
+      <FullScreen>
+        {/* Code-Splitting by Lazy-Load */}
+        {/* <MarkdownEditor /> */}
 
-      <ArtistPage />
-    </FullScreen>
+        {/* Showing all artist albums */}
+        {/* <ArtistPage /> */}
+
+        {/* Implementation of use */}
+        <Use />
+      </FullScreen>
+    </ThemeContext>
   )
 }
 

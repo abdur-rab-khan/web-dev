@@ -16,3 +16,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+button {
+  border-radius: 8px;
+  padding-block: 6px;
+  padding-inline: 16px;
+  color: #242424;
+  background-color: goldenrod;
+}
+
+button:hover {
+  background-color: rgba(218, 165, 32, 0.849);
+}
