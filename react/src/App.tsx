@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Use from './components/apis/use/Use'
 import ThemeContext from './contexts/Contexts'
+import Example1 from './components/hooks/useTransition/examples/Example1'
+import Example2 from './components/hooks/useTransition/examples/Example2'
 
 interface FullScreenProps {
   children: React.ReactNode
@@ -27,7 +29,11 @@ function App() {
         {/* <ArtistPage /> */}
 
         {/* Implementation of use */}
-        <Use />
+        {/* <Use /> */}
+
+        {/* Implementing useTransition */}
+        {/* <Example1 /> */}
+        <Example2 />
       </FullScreen>
     </ThemeContext>
   )
