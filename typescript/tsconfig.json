@@ -32,6 +32,8 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
+    "incremental": true,
+
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
@@ -39,6 +41,17 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "watchOptions": {
+    "excludeDirectories": ["node_modules", "dist"],
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority",
+    "synchronousWatchDirectory": true
+  },
+  "include": ["docs/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "compileOnSave": true
 }
