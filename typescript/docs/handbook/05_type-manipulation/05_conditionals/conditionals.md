@@ -91,7 +91,7 @@ type IsString<T> = T extends string ? true : false;
 
 ## Inferring Within Conditional Types
 
-- `infer` in `TypeScript` is used to declare a type variable that can be used within a conditional type.
+- `infer` in `TypeScript` is used to declare a **_type variable_** that can be used within a conditional type.
 - We can use `infer` to extract types from other types.
 
   ```ts
