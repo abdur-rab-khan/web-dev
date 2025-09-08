@@ -89,6 +89,9 @@ type IsString<T> = T extends string ? true : false;
   type Bool = Flatten<boolean>; // boolean
   ```
 
+  - In this example, we define a conditional type `Flatten` that takes a type parameter `T`.
+  - If `T` extends `any[]` (i.e. if `T` is an array type), then the type resolves to `T[number]` (`T[number]` is used to get the type of the elements in the array), otherwise it resolves to `T` itself.
+
 ## Inferring Within Conditional Types
 
 - `infer` in `TypeScript` is used to declare a **_type variable_** that can be used within a conditional type.
