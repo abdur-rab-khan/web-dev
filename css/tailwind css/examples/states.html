@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>States in Tailwind CSS</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="p-4 dark:text-white dark:bg-gray-800">
+    <h1 class="text-3xl">Different States in Tailwind CSS</h1>
+
+    <!-- ALL EXAMPLES OF STATES -->
+    <div class="flex flex-col mt-4 gap-8">
+      <div class="w-full">
+        <p>1. Hover, active and focus example</p>
+
+        <div name="example" class="mt-4">
+          <label class="text-white *:focus-within:text-gray-500">
+            <p class="font-semibold">Submit your form</p>
+            <button
+              class="mt-2 bg-blue-500 px-8 py-2 rounded-full outline-white font-semibold hover:bg-blue-600 active:bg-blue-800 focus:outline-2 focus:outline-offset-2 focus-visible:outline-red-500"
+            >
+              Submit
+            </button>
+          </label>
+        </div>
+      </div>
+
+      <!-- INPUT STATES -->
+      <div class="w-full">
+        <p>2. disabled, enabled, required, placeholder-shown example</p>
+
+        <div name="example" class="mt-4">
+          <input
+            readonly
+            value="Abdur Rab Khan"
+            class="bg-gray-300 outline-none px-4 py-1.5 rounded-full placeholder:text-gray-600 read-only:bg-gray-900 border-white border"
+            placeholder="Enter your name"
+          />
+          <input
+            value="lredhosf"
+            type="email"
+            class="bg-gray-300 peer px-4 py-1.5 rounded-full placeholder:text-gray-600 read-only:bg-gray-900 invalid:bg-red-500 invalid:outline-2 invalid:outline-offset-2 invalid:outline-red-700 border-white border"
+            placeholder="Enter your name"
+          />
+          <p class="text-red-500 hidden peer-invalid:block">Invalid Email</p>
+        </div>
+      </div>
+
+      <!-- Has -->
+      <div class="w-full">
+        <p>3. has, group example</p>
+
+        <div name="example" class="mt-4 select-none flex flex-col gap-2">
+          <label
+            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
+          >
+            <p>Google Pay</p>
+            <input name="pay" type="radio" class="checked:border-indigo-500" />
+          </label>
+          <label
+            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
+          >
+            <p>Amazon Pay</p>
+            <input name="pay" type="radio" class="checked:border-indigo-500" />
+          </label>
+          <label
+            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
+          >
+            <p>Apple Pay</p>
+            <input name="pay" type="radio" class="checked:border-indigo-500" />
+          </label>
+        </div>
+      </div>
+
+      <!-- HAS PARENT HAS CERTAIN ELEMENTS -->
+      <div class="w-full">
+        <p>3. group has example</p>
+
+        <div name="example" class="mt-4 select-none flex flex-col gap-2">
+          <div class="group">
+            <p>Hello world</p>
+            <p class="hidden group-has-[a]:block">Div have A tag</p>
+            <p class="block group-has-[a]:hidden">Div does not have A tag</p>
+            <a href="www.google.com">Google</a>
+          </div>
+          <div class="group">
+            <p>Hello world</p>
+            <p class="hidden group-has-[a]:block">Div have A tag</p>
+            <p class="block group-has-[a]:hidden">Div does not have A tag</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEADING -->
+      <blockquote
+        class="group text-center text-2xl font-semibold text-white italic"
+      >
+        When you look
+        <span
+          class="relative inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-pink-500 before:rounded-sm group-hover:before:bg-pink-600 before:transition-all hover:before:rounded-xl select-none"
+        >
+          <span class="relative text-white">annoyed</span>
+        </span>
+        all the time, people think that you're busy.
+      </blockquote>
+    </div>
+  </body>
+</html>
