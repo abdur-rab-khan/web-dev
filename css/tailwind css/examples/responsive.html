@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive design</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-blue-400 dark:bg-slate-700 text-white">
+    <div class="bg-blue-500 md:bg-green-500 lg:bg-red-500 p-4">
+      Responsive Box
+    </div>
+
+    <div class="bg-blue-500 mt-6 p-4 md:max-lg:bg-red-500">
+      Targeting a single breakpoint
+    </div>
+
+    <div
+      class="@container mt-4 p-6 bg-red-500 flex justify-center items-center"
+    >
+      <div
+        class="h-14 w-14 bg-yellow-500 @sm:max-md:bg-pink-500 @md:w-28 @lg:w-[80cqw] @lg:bg-blue-500"
+      ></div>
+    </div>
+  </body>
+</html>

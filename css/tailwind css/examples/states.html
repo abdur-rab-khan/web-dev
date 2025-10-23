@@ -53,19 +53,19 @@
 
         <div name="example" class="mt-4 select-none flex flex-col gap-2">
           <label
-            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
+            class="flex gap-20 has-checked:bg-blue-600 focus-within:outline-4 focus-within:outline-offset-2 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
           >
             <p>Google Pay</p>
             <input name="pay" type="radio" class="checked:border-indigo-500" />
           </label>
           <label
-            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
+            class="flex gap-20 has-checked:bg-blue-600 focus-within:outline-4 focus-within:outline-offset-2 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
           >
             <p>Amazon Pay</p>
             <input name="pay" type="radio" class="checked:border-indigo-500" />
           </label>
           <label
-            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
+            class="flex gap-20 has-checked:bg-blue-600 has-checked:outline-2 has-checked:outline-offset-2 focus-within:outline-4 focus-within:outline-offset-2 has-checked:text-gray-200 items-center bg-blue-400 w-max px-4 py-3 rounded-xl focus:outline-2 focus:outline-offset-2"
           >
             <p>Apple Pay</p>
             <input name="pay" type="radio" class="checked:border-indigo-500" />
@@ -104,6 +104,48 @@
         </span>
         all the time, people think that you're busy.
       </blockquote>
+
+      <!-- nth:child odd, even -->
+      <div class="w-full">
+        <p>3. nth:child, odd, even</p>
+
+        <div name="example" class="mt-4 select-none flex flex-col gap-2">
+          <ul class="flex flex-col gap-6">
+            <li
+              class="h-10 w-full even:bg-blue-500 odd:bg-yellow-400 rounded-md border border-white"
+            ></li>
+            <li
+              class="h-10 w-full even:bg-blue-500 odd:bg-yellow-400 rounded-md border border-white"
+            ></li>
+            <li
+              class="h-10 w-full even:bg-blue-500 odd:bg-yellow-400 rounded-md border border-white"
+            ></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- First and Last -->
+      <div class="w-full">
+        <p>first and last</p>
+
+        <div name="example" class="mt-4 select-none flex flex-col gap-2">
+          <div
+            class="w-full group flex justify-center items-center h-14 bg-gray-600 rounded-md"
+          >
+            <p class="hidden group-first:block">First Child</p>
+          </div>
+          <div
+            class="w-full group flex justify-center items-center h-14 bg-gray-600 rounded-md"
+          >
+            <p class="hidden group-first:block">First Child</p>
+          </div>
+          <div
+            class="w-full group flex justify-center items-center h-14 bg-gray-600 rounded-md"
+          >
+            <p class="hidden group-last:block">Last Child</p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
