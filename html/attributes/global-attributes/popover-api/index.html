@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PopOver API</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-black p-4">
+    <!-- 
+    ================== POPOVER API ===============
+
+    🔵 Popover attribute is used to build a mechanism for displaying popover content on the top of content.
+    🔵 It can control via HTML attribute, or via Javascript.
+    
+
+    ================== ATTRIBUTES/CSS/JS ===============
+
+    🟡 Popover elements are hidden via "display: none".
+    1️⃣ "popover" -> that turn element into popover container.
+                  1. "auto" -> Popover light dismissble: "click outside", "Esc", opening other popovers. 
+                  2. "manual" -> Only open/closed using "clicking" on control (btn/input).
+                  3. "hint" ->  
+    2️⃣ "popovertarget" -> indicate which popover controls usually add on btn/input.
+    3️⃣ "popovertargetaction" -> to specify "show/hide/toggle" control
+
+    ================== USAGE ======================
+
+    ==> HTML
+
+    1. commandfor="popover-id" -> to link popover with it's control element.
+    2. command="show-popover/hide-popover/toggle-popover" -> to specify action for control element.
+
+    - commandfor and command usually works with popover, tooltip, dialog, menu.
+
+    ===> CSS
+    1. ":popover-open" -> pseudo-class that matches whether popovers are currently being show or not.
+    2. "::backdrop" -> to style the backdrop when popover is open.
+
+    -> "::backdrop" only works with ".showModal()" method in dialog, ".showPopover()" in popover, "Element.requestFullscreen()" in fullscreen API.
+
+
+    ===> JAVASCRIPT
+    1. "popoverTargetElement" -> it similar to "popovertarget" but use in JS.
+    2. "popoverTargetAction" -> it similar to "popovertargetaction" but use in JS.
+
+    1. "HTMLElement.showPopover()" -> to show popover.
+    2. "HTMLElement.hidePopover()" -> to hide popover.
+    3. "HTMLElement.togglePopover()" -> to toggle popover.
+
+    ================================================
+
+    -->
+    <div class="relative p-5">
+      <button
+        popovertarget="btn-hint"
+        popovertargetaction="toggle"
+        class="text-white peer bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-500 focus:outline-2 focus:outline-offset-2 transition-colors duration-100"
+      >
+        Click Me
+      </button>
+
+      <span
+        id="btn-hint"
+        popover="hint"
+        class="text-white bg-gray-800 p-2 rounded-md"
+      >
+        Click to create account
+      </span>
+    </div>
+
+    <div popover="auto" id="my-popover" class="h-10 w-20 bg-yellow-500"></div>
+
+    <div class="mt-4">
+      <!-- OPEN -->
+      <button
+        commandFor="pop"
+        command="show-popover"
+        title="Open PopOver"
+        class="text-white peer bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-500 focus:outline-2 focus:outline-offset-2 transition-colors duration-100"
+      >
+        Show
+      </button>
+
+      <!-- CLOSE -->
+      <button
+        commandFor="pop"
+        command="hide-popover"
+        title="Close PopOver"
+        class="text-white pl-4 peer bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-500 focus:outline-2 focus:outline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors duration-100"
+      >
+        Hide
+      </button>
+
+      <div
+        popover="manual"
+        id="pop"
+        class="h-8 w-max px-4 absolute -translate-x-1/2 left-1/2 translate-y-1/2 top-1/2 text-center bg-yellow-500"
+      >
+        This is a popover content
+      </div>
+    </div>
+
+    <!-- Nested POPOVER -->
+    <div class="mt-4">
+      <button
+        popovertarget="menu-bar"
+        title="Menu"
+        class="text-white pl-4 peer bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-500 focus:outline-2 focus:outline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors duration-100"
+      >
+        Menu
+      </button>
+
+      <div popover="auto" id="menu-bar" class="top-0">
+        <nav class="listContainer">
+          <a href="#">Home</a>
+          <div class="subContainer sub">
+            <a href="#">Pizza ></a>
+            <div popover class="listContainer hidden pop">
+              <a href="#">Pepperoni</a>
+              <a href="#">Mushroom</a>
+              <a href="#">Cheese</a>
+            </div>
+          </div>
+          <a href="#">Music</a>
+          <a href="#">Wombats</a>
+          <a href="#">Finland</a>
+        </nav>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

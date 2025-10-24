@@ -189,182 +189,182 @@ Apply same styles to all direct children using `*:` variant.
 
 ### Link States
 
-| Variant    | CSS Equivalent | Description                     |
-| ---------- | -------------- | ------------------------------- |
-| `visited:` | `&:visited`    | For visited links               |
-| `target:`  | `&:target`     | When URL points to this element |
+| Variant    | CSS Equivalent | Description                                 |
+| ---------- | -------------- | ------------------------------------------- |
+| `visited:` | `&:visited`    | For links that user has already visited     |
+| `target:`  | `&:target`     | When URL hash (#) matches this element's ID |
 
 ### Child Selectors
 
-| Variant                   | CSS Equivalent            | Description                |
-| ------------------------- | ------------------------- | -------------------------- |
-| `*:`                      | `:is(& > *)`              | Direct children            |
-| `**:`                     | `:is(& *)`                | All descendants            |
-| `first:`                  | `&:first-child`           | First child element        |
-| `last:`                   | `&:last-child`            | Last child element         |
-| `only:`                   | `&:only-child`            | Only child of parent       |
-| `odd:`                    | `&:nth-child(odd)`        | Odd positioned children    |
-| `even:`                   | `&:nth-child(even)`       | Even positioned children   |
-| `first-of-type:`          | `&:first-of-type`         | First of specific type     |
-| `last-of-type:`           | `&:last-of-type`          | Last of specific type      |
-| `only-of-type:`           | `&:only-of-type`          | Only one of specific type  |
-| `nth-[...]:`              | `&:nth-child(...)`        | Specific child by position |
-| `nth-last-[...]:`         | `&:nth-last-child(...)`   | Specific child from end    |
-| `nth-of-type-[...]:`      | `&:nth-of-type(...)`      | Specific type by position  |
-| `nth-last-of-type-[...]:` | `&:nth-last-of-type(...)` | Specific type from end     |
-| `empty:`                  | `&:empty`                 | Element with no content    |
+| Variant                   | CSS Equivalent            | Description                        | Example                                         |
+| ------------------------- | ------------------------- | ---------------------------------- | ----------------------------------------------- |
+| `*:`                      | `:is(& > *)`              | All immediate children             | `<div class="*:p-4">`                           |
+| `**:`                     | `:is(& *)`                | All nested children (at any level) | `<div class="**:p-4">`                          |
+| `first:`                  | `&:first-child`           | First child element                | `<li class="first:mt-0">`                       |
+| `last:`                   | `&:last-child`            | Last child element                 | `<li class="last:mb-0">`                        |
+| `only:`                   | `&:only-child`            | Element with no siblings           | `<div class="only:bg-red-500">`                 |
+| `odd:`                    | `&:nth-child(odd)`        | 1st, 3rd, 5th children, etc.       | `<li class="odd:bg-gray-100">`                  |
+| `even:`                   | `&:nth-child(even)`       | 2nd, 4th, 6th children, etc.       | `<li class="even:bg-white">`                    |
+| `first-of-type:`          | `&:first-of-type`         | First element of its tag type      | `<li class="first-of-type:mt-0">`               |
+| `last-of-type:`           | `&:last-of-type`          | Last element of its tag type       | `<li class="last-of-type:mb-0">`                |
+| `only-of-type:`           | `&:only-of-type`          | Only element of its tag type       | `<div class="only-of-type:bg-red-500">`         |
+| `nth-[...]:`              | `&:nth-child(...)`        | Target child at specific position  | `<div class="nth-3:underline">`                 |
+| `nth-last-[...]:`         | `&:nth-last-child(...)`   | Target child counting from the end | `<div class="nth-last-2:mt-4">`                 |
+| `nth-of-type-[...]:`      | `&:nth-of-type(...)`      | Target specific type at position   | `<div class="nth-of-type-2:text-red-500">`      |
+| `nth-last-of-type-[...]:` | `&:nth-last-of-type(...)` | Target specific type from the end  | `<div class="nth-last-of-type-2:text-red-500">` |
+| `empty:`                  | `&:empty`                 | Element with no children or text   | `<div class="empty:h-4">`                       |
 
 ### Relational Selectors
 
-| Variant        | CSS Equivalent               | Description                 |
-| -------------- | ---------------------------- | --------------------------- |
-| `has-[...]:`   | `&:has(...)`                 | Has specific descendant     |
-| `group-[...]:` | `&:is(:where(.group)... *)`  | Descendant of group element |
-| `peer-[...]:`  | `&:is(:where(.peer)... ~ *)` | Sibling of peer element     |
-| `in-[...]:`    | `:where(...) &`              | Within specific context     |
-| `not-[...]:`   | `&:not(...)`                 | Does not match selector     |
+| Variant        | CSS Equivalent               | Description                                       | Example                                     |
+| -------------- | ---------------------------- | ------------------------------------------------- | ------------------------------------------- |
+| `has-[...]:`   | `&:has(...)`                 | Element contains specific child or element inside | `<label class="has-checked:bg-indigo-50">`  |
+| `group-[...]:` | `&:is(:where(.group)... *)`  | Child of an element with 'group' class            | `<svg class="group-has-[a]:block hidden">`  |
+| `peer-[...]:`  | `&:is(:where(.peer)... ~ *)` | Next sibling of element with 'peer' class         | `<svg class="peer-has-checked:hidden">`     |
+| `in-[...]:`    | `:where(...) &`              | Element is inside a specific parent or context    | `<div class="in-article:text-lg">`          |
+| `not-[...]:`   | `&:not(...)`                 | Element that doesn't match the condition          | `<div class="not-disabled:cursor-pointer">` |
 
 ### Form Input States
 
-| Variant              | CSS Equivalent             | Description                 |
-| -------------------- | -------------------------- | --------------------------- |
-| `disabled:`          | `&:disabled`               | Disabled form inputs        |
-| `enabled:`           | `&:enabled`                | Enabled form inputs         |
-| `checked:`           | `&:checked`                | Checked checkbox/radio      |
-| `indeterminate:`     | `&:indeterminate`          | Partially checked checkbox  |
-| `default:`           | `&:default`                | Default option in form      |
-| `required:`          | `&:required`               | Required form field         |
-| `optional:`          | `&:optional`               | Optional form field         |
-| `read-only:`         | `&:read-only`              | Non-editable input          |
-| `placeholder-shown:` | `&:placeholder-shown`      | When placeholder is visible |
-| `autofill:`          | `&:autofill`               | When input is autofilled    |
-| `inert:`             | `&:is([inert], [inert] *)` | Inert element               |
-| `details-content:`   | `&:details-content`        | Details element content     |
+| Variant              | CSS Equivalent             | Description                                             | Example                                                                |
+| -------------------- | -------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `disabled:`          | `&:disabled`               | Input that cannot be used                               | `<input class="disabled:opacity-50" disabled />`                       |
+| `enabled:`           | `&:enabled`                | Input that can be used                                  | `<input class="enabled:border-blue-500" />`                            |
+| `checked:`           | `&:checked`                | Checkbox or radio button that is selected               | `<input type="checkbox" class="checked:border-green-500" />`           |
+| `indeterminate:`     | `&:indeterminate`          | Checkbox in mixed state (neither checked nor unchecked) | `<input type="checkbox" class="indeterminate:border-yellow-500" />`    |
+| `default:`           | `&:default`                | Default selected option in a form                       | `<option class="default:bg-gray-200" selected>Choose...</option>`      |
+| `required:`          | `&:required`               | Input that must be filled out                           | `<input class="required:border-red-500" required />`                   |
+| `optional:`          | `&:optional`               | Input that can be left empty                            | `<input class="optional:border-green-500" />`                          |
+| `read-only:`         | `&:read-only`              | Input that can be seen but not changed                  | `<input class="read-only:bg-gray-100" readonly />`                     |
+| `placeholder-shown:` | `&:placeholder-shown`      | Input showing placeholder text (not yet filled)         | `<input class="placeholder-shown:text-gray-400" placeholder="Name" />` |
+| `autofill:`          | `&:autofill`               | Input automatically filled by browser                   | `<input class="autofill:bg-yellow-100" />`                             |
+| `inert:`             | `&:is([inert], [inert] *)` | Element that cannot be interacted with                  | `<div class="inert:opacity-50" inert>...</div>`                        |
+| `details-content:`   | `&:details-content`        | Content inside a details/summary element                | `<div class="details-content:p-4">...</div>`                           |
 
 ### Form Validation
 
-| Variant         | CSS Equivalent   | Description                |
-| --------------- | ---------------- | -------------------------- |
-| `valid:`        | `&:valid`        | Valid form input           |
-| `invalid:`      | `&:invalid`      | Invalid form input         |
-| `user-valid:`   | `&:user-valid`   | User-validated input       |
-| `user-invalid:` | `&:user-invalid` | User-invalidated input     |
-| `in-range:`     | `&:in-range`     | Input value within limits  |
-| `out-of-range:` | `&:out-of-range` | Input value outside limits |
+| Variant         | CSS Equivalent   | Description                              |
+| --------------- | ---------------- | ---------------------------------------- |
+| `valid:`        | `&:valid`        | Input with correct/valid data            |
+| `invalid:`      | `&:invalid`      | Input with incorrect/invalid data        |
+| `user-valid:`   | `&:user-valid`   | Input validated after user interaction   |
+| `user-invalid:` | `&:user-invalid` | Input invalidated after user interaction |
+| `in-range:`     | `&:in-range`     | Number input within min/max range        |
+| `out-of-range:` | `&:out-of-range` | Number input outside min/max range       |
 
 ### Pseudo-elements
 
-| Variant         | CSS Equivalent            | Description             |
-| --------------- | ------------------------- | ----------------------- |
-| `before:`       | `&::before`               | Before element content  |
-| `after:`        | `&::after`                | After element content   |
-| `first-letter:` | `&::first-letter`         | First letter of element |
-| `first-line:`   | `&::first-line`           | First line of element   |
-| `marker:`       | `&::marker, & *::marker`  | List item marker        |
-| `selection:`    | `&::selection`            | Selected text           |
-| `file:`         | `&::file-selector-button` | File input button       |
-| `backdrop:`     | `&::backdrop`             | Dialog/modal backdrop   |
-| `placeholder:`  | `&::placeholder`          | Input placeholder text  |
+| Variant         | CSS Equivalent            | Description                          |
+| --------------- | ------------------------- | ------------------------------------ |
+| `before:`       | `&::before`               | Insert content before element        |
+| `after:`        | `&::after`                | Insert content after element         |
+| `first-letter:` | `&::first-letter`         | Style the first letter               |
+| `first-line:`   | `&::first-line`           | Style the first line                 |
+| `marker:`       | `&::marker, & *::marker`  | Style list bullets or numbers        |
+| `selection:`    | `&::selection`            | Style highlighted/selected text      |
+| `file:`         | `&::file-selector-button` | Style the "Choose File" button       |
+| `backdrop:`     | `&::backdrop`             | Style background behind modal/dialog |
+| `placeholder:`  | `&::placeholder`          | Style placeholder text in inputs     |
 
 ### Responsive (Breakpoints)
 
-| Variant      | CSS Equivalent            | Description                   |
-| ------------ | ------------------------- | ----------------------------- |
-| `sm:`        | `@media (width >= 40rem)` | Small screens (640px+)        |
-| `md:`        | `@media (width >= 48rem)` | Medium screens (768px+)       |
-| `lg:`        | `@media (width >= 64rem)` | Large screens (1024px+)       |
-| `xl:`        | `@media (width >= 80rem)` | Extra large screens (1280px+) |
-| `2xl:`       | `@media (width >= 96rem)` | 2X large screens (1536px+)    |
-| `min-[...]:` | `@media (width >= ...)`   | Custom minimum width          |
-| `max-sm:`    | `@media (width < 40rem)`  | Below small (< 640px)         |
-| `max-md:`    | `@media (width < 48rem)`  | Below medium (< 768px)        |
-| `max-lg:`    | `@media (width < 64rem)`  | Below large (< 1024px)        |
-| `max-xl:`    | `@media (width < 80rem)`  | Below XL (< 1280px)           |
-| `max-2xl:`   | `@media (width < 96rem)`  | Below 2XL (< 1536px)          |
-| `max-[...]:` | `@media (width < ...)`    | Custom maximum width          |
+| Variant      | CSS Equivalent            | Description                         |
+| ------------ | ------------------------- | ----------------------------------- |
+| `sm:`        | `@media (width >= 40rem)` | Small screens (640px and up)        |
+| `md:`        | `@media (width >= 48rem)` | Medium screens (768px and up)       |
+| `lg:`        | `@media (width >= 64rem)` | Large screens (1024px and up)       |
+| `xl:`        | `@media (width >= 80rem)` | Extra large screens (1280px and up) |
+| `2xl:`       | `@media (width >= 96rem)` | 2X large screens (1536px and up)    |
+| `min-[...]:` | `@media (width >= ...)`   | Custom minimum screen width         |
+| `max-sm:`    | `@media (width < 40rem)`  | Smaller than 640px                  |
+| `max-md:`    | `@media (width < 48rem)`  | Smaller than 768px                  |
+| `max-lg:`    | `@media (width < 64rem)`  | Smaller than 1024px                 |
+| `max-xl:`    | `@media (width < 80rem)`  | Smaller than 1280px                 |
+| `max-2xl:`   | `@media (width < 96rem)`  | Smaller than 1536px                 |
+| `max-[...]:` | `@media (width < ...)`    | Custom maximum screen width         |
 
 ### Container Queries
 
-| Variant       | CSS Equivalent                | Description                    |
-| ------------- | ----------------------------- | ------------------------------ |
-| `@3xs:`       | `@container (width >= 16rem)` | 3XS container (256px+)         |
-| `@2xs:`       | `@container (width >= 18rem)` | 2XS container (288px+)         |
-| `@xs:`        | `@container (width >= 20rem)` | XS container (320px+)          |
-| `@sm:`        | `@container (width >= 24rem)` | Small container (384px+)       |
-| `@md:`        | `@container (width >= 28rem)` | Medium container (448px+)      |
-| `@lg:`        | `@container (width >= 32rem)` | Large container (512px+)       |
-| `@xl:`        | `@container (width >= 36rem)` | XL container (576px+)          |
-| `@2xl:`       | `@container (width >= 42rem)` | 2XL container (672px+)         |
-| `@3xl:`       | `@container (width >= 48rem)` | 3XL container (768px+)         |
-| `@4xl:`       | `@container (width >= 56rem)` | 4XL container (896px+)         |
-| `@5xl:`       | `@container (width >= 64rem)` | 5XL container (1024px+)        |
-| `@6xl:`       | `@container (width >= 72rem)` | 6XL container (1152px+)        |
-| `@7xl:`       | `@container (width >= 80rem)` | 7XL container (1280px+)        |
-| `@min-[...]:` | `@container (width >= ...)`   | Custom minimum container width |
-| `@max-3xs:`   | `@container (width < 16rem)`  | Below 3XS (< 256px)            |
-| `@max-2xs:`   | `@container (width < 18rem)`  | Below 2XS (< 288px)            |
-| `@max-xs:`    | `@container (width < 20rem)`  | Below XS (< 320px)             |
-| `@max-sm:`    | `@container (width < 24rem)`  | Below small (< 384px)          |
-| `@max-md:`    | `@container (width < 28rem)`  | Below medium (< 448px)         |
-| `@max-lg:`    | `@container (width < 32rem)`  | Below large (< 512px)          |
-| `@max-xl:`    | `@container (width < 36rem)`  | Below XL (< 576px)             |
-| `@max-2xl:`   | `@container (width < 42rem)`  | Below 2XL (< 672px)            |
-| `@max-3xl:`   | `@container (width < 48rem)`  | Below 3XL (< 768px)            |
-| `@max-4xl:`   | `@container (width < 56rem)`  | Below 4XL (< 896px)            |
-| `@max-5xl:`   | `@container (width < 64rem)`  | Below 5XL (< 1024px)           |
-| `@max-6xl:`   | `@container (width < 72rem)`  | Below 6XL (< 1152px)           |
-| `@max-7xl:`   | `@container (width < 80rem)`  | Below 7XL (< 1280px)           |
-| `@max-[...]:` | `@container (width < ...)`    | Custom maximum container width |
+| Variant       | CSS Equivalent                | Description                   |
+| ------------- | ----------------------------- | ----------------------------- |
+| `@3xs:`       | `@container (width >= 16rem)` | Container 256px and larger    |
+| `@2xs:`       | `@container (width >= 18rem)` | Container 288px and larger    |
+| `@xs:`        | `@container (width >= 20rem)` | Container 320px and larger    |
+| `@sm:`        | `@container (width >= 24rem)` | Container 384px and larger    |
+| `@md:`        | `@container (width >= 28rem)` | Container 448px and larger    |
+| `@lg:`        | `@container (width >= 32rem)` | Container 512px and larger    |
+| `@xl:`        | `@container (width >= 36rem)` | Container 576px and larger    |
+| `@2xl:`       | `@container (width >= 42rem)` | Container 672px and larger    |
+| `@3xl:`       | `@container (width >= 48rem)` | Container 768px and larger    |
+| `@4xl:`       | `@container (width >= 56rem)` | Container 896px and larger    |
+| `@5xl:`       | `@container (width >= 64rem)` | Container 1024px and larger   |
+| `@6xl:`       | `@container (width >= 72rem)` | Container 1152px and larger   |
+| `@7xl:`       | `@container (width >= 80rem)` | Container 1280px and larger   |
+| `@min-[...]:` | `@container (width >= ...)`   | Custom minimum container size |
+| `@max-3xs:`   | `@container (width < 16rem)`  | Container smaller than 256px  |
+| `@max-2xs:`   | `@container (width < 18rem)`  | Container smaller than 288px  |
+| `@max-xs:`    | `@container (width < 20rem)`  | Container smaller than 320px  |
+| `@max-sm:`    | `@container (width < 24rem)`  | Container smaller than 384px  |
+| `@max-md:`    | `@container (width < 28rem)`  | Container smaller than 448px  |
+| `@max-lg:`    | `@container (width < 32rem)`  | Container smaller than 512px  |
+| `@max-xl:`    | `@container (width < 36rem)`  | Container smaller than 576px  |
+| `@max-2xl:`   | `@container (width < 42rem)`  | Container smaller than 672px  |
+| `@max-3xl:`   | `@container (width < 48rem)`  | Container smaller than 768px  |
+| `@max-4xl:`   | `@container (width < 56rem)`  | Container smaller than 896px  |
+| `@max-5xl:`   | `@container (width < 64rem)`  | Container smaller than 1024px |
+| `@max-6xl:`   | `@container (width < 72rem)`  | Container smaller than 1152px |
+| `@max-7xl:`   | `@container (width < 80rem)`  | Container smaller than 1280px |
+| `@max-[...]:` | `@container (width < ...)`    | Custom maximum container size |
 
 ### Media & Feature Queries
 
-| Variant               | CSS Equivalent                                   | Description                  |
-| --------------------- | ------------------------------------------------ | ---------------------------- |
-| `dark:`               | `@media (prefers-color-scheme: dark)`            | Dark color scheme            |
-| `motion-safe:`        | `@media (prefers-reduced-motion: no-preference)` | Motion allowed               |
-| `motion-reduce:`      | `@media (prefers-reduced-motion: reduce)`        | Reduced motion preferred     |
-| `contrast-more:`      | `@media (prefers-contrast: more)`                | High contrast preferred      |
-| `contrast-less:`      | `@media (prefers-contrast: less)`                | Low contrast preferred       |
-| `forced-colors:`      | `@media (forced-colors: active)`                 | Forced colors mode active    |
-| `inverted-colors:`    | `@media (inverted-colors: inverted)`             | Inverted colors              |
-| `pointer-fine:`       | `@media (pointer: fine)`                         | Fine pointer (mouse)         |
-| `pointer-coarse:`     | `@media (pointer: coarse)`                       | Coarse pointer (touch)       |
-| `pointer-none:`       | `@media (pointer: none)`                         | No pointer                   |
-| `any-pointer-fine:`   | `@media (any-pointer: fine)`                     | Any fine pointer available   |
-| `any-pointer-coarse:` | `@media (any-pointer: coarse)`                   | Any coarse pointer available |
-| `any-pointer-none:`   | `@media (any-pointer: none)`                     | No pointer available         |
-| `portrait:`           | `@media (orientation: portrait)`                 | Portrait orientation         |
-| `landscape:`          | `@media (orientation: landscape)`                | Landscape orientation        |
-| `noscript:`           | `@media (scripting: none)`                       | JavaScript disabled          |
-| `print:`              | `@media print`                                   | Print media                  |
-| `supports-[…]:`       | `@supports (…)`                                  | Feature support query        |
+| Variant               | CSS Equivalent                                   | Description                                        |
+| --------------------- | ------------------------------------------------ | -------------------------------------------------- |
+| `dark:`               | `@media (prefers-color-scheme: dark)`            | User prefers dark mode                             |
+| `motion-safe:`        | `@media (prefers-reduced-motion: no-preference)` | User is okay with animations                       |
+| `motion-reduce:`      | `@media (prefers-reduced-motion: reduce)`        | User prefers less animation                        |
+| `contrast-more:`      | `@media (prefers-contrast: more)`                | User prefers higher contrast                       |
+| `contrast-less:`      | `@media (prefers-contrast: less)`                | User prefers lower contrast                        |
+| `forced-colors:`      | `@media (forced-colors: active)`                 | System is using forced colors (accessibility mode) |
+| `inverted-colors:`    | `@media (inverted-colors: inverted)`             | System colors are inverted                         |
+| `pointer-fine:`       | `@media (pointer: fine)`                         | User has a mouse or precise pointer                |
+| `pointer-coarse:`     | `@media (pointer: coarse)`                       | User has touchscreen                               |
+| `pointer-none:`       | `@media (pointer: none)`                         | No pointing device available                       |
+| `any-pointer-fine:`   | `@media (any-pointer: fine)`                     | At least one precise pointer available (mouse)     |
+| `any-pointer-coarse:` | `@media (any-pointer: coarse)`                   | At least one touch pointer available               |
+| `any-pointer-none:`   | `@media (any-pointer: none)`                     | No pointing device at all                          |
+| `portrait:`           | `@media (orientation: portrait)`                 | Screen is taller than wide (phone held upright)    |
+| `landscape:`          | `@media (orientation: landscape)`                | Screen is wider than tall (phone held sideways)    |
+| `noscript:`           | `@media (scripting: none)`                       | JavaScript is turned off                           |
+| `print:`              | `@media print`                                   | Page is being printed                              |
+| `supports-[…]:`       | `@supports (…)`                                  | Browser supports a specific CSS feature            |
 
 ### ARIA Attributes
 
-| Variant          | CSS Equivalent            | Description           |
-| ---------------- | ------------------------- | --------------------- |
-| `aria-busy:`     | `&[aria-busy="true"]`     | Element is busy       |
-| `aria-checked:`  | `&[aria-checked="true"]`  | Element is checked    |
-| `aria-disabled:` | `&[aria-disabled="true"]` | Element is disabled   |
-| `aria-expanded:` | `&[aria-expanded="true"]` | Element is expanded   |
-| `aria-hidden:`   | `&[aria-hidden="true"]`   | Element is hidden     |
-| `aria-pressed:`  | `&[aria-pressed="true"]`  | Element is pressed    |
-| `aria-readonly:` | `&[aria-readonly="true"]` | Element is read-only  |
-| `aria-required:` | `&[aria-required="true"]` | Element is required   |
-| `aria-selected:` | `&[aria-selected="true"]` | Element is selected   |
-| `aria-[…]:`      | `&[aria-…]`               | Custom ARIA attribute |
+| Variant          | CSS Equivalent            | Description                              |
+| ---------------- | ------------------------- | ---------------------------------------- |
+| `aria-busy:`     | `&[aria-busy="true"]`     | Element is loading or processing         |
+| `aria-checked:`  | `&[aria-checked="true"]`  | Element is checked (accessibility)       |
+| `aria-disabled:` | `&[aria-disabled="true"]` | Element is disabled (accessibility)      |
+| `aria-expanded:` | `&[aria-expanded="true"]` | Element is expanded/open (like dropdown) |
+| `aria-hidden:`   | `&[aria-hidden="true"]`   | Element is hidden from screen readers    |
+| `aria-pressed:`  | `&[aria-pressed="true"]`  | Button is in pressed state               |
+| `aria-readonly:` | `&[aria-readonly="true"]` | Element is read-only (accessibility)     |
+| `aria-required:` | `&[aria-required="true"]` | Element is required (accessibility)      |
+| `aria-selected:` | `&[aria-selected="true"]` | Element is selected (like in a list)     |
+| `aria-[…]:`      | `&[aria-…]`               | Custom accessibility attribute           |
 
 ### Data Attributes & Directionality
 
-| Variant     | CSS Equivalent                                   | Description           |
-| ----------- | ------------------------------------------------ | --------------------- |
-| `data-[…]:` | `&[data-…]`                                      | Custom data attribute |
-| `rtl:`      | `&:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *)` | Right-to-left text    |
-| `ltr:`      | `&:where(:dir(ltr), [dir="ltr"], [dir="ltr"] *)` | Left-to-right text    |
+| Variant     | CSS Equivalent                                   | Description                                    |
+| ----------- | ------------------------------------------------ | ---------------------------------------------- |
+| `data-[…]:` | `&[data-…]`                                      | Custom data attribute (like data-state="open") |
+| `rtl:`      | `&:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *)` | Text flows right-to-left (Arabic, Hebrew)      |
+| `ltr:`      | `&:where(:dir(ltr), [dir="ltr"], [dir="ltr"] *)` | Text flows left-to-right (English, Spanish)    |
 
 ### Special States
 
-| Variant     | CSS Equivalent                       | Description                 |
-| ----------- | ------------------------------------ | --------------------------- |
-| `open:`     | `&:is([open], :popover-open, :open)` | Open state (details/dialog) |
-| `starting:` | `@starting-style`                    | Starting style animation    |
+| Variant     | CSS Equivalent                       | Description                                               |
+| ----------- | ------------------------------------ | --------------------------------------------------------- |
+| `open:`     | `&:is([open], :popover-open, :open)` | Element is open (details, dialog, popover)                |
+| `starting:` | `@starting-style`                    | Initial style for animations (when element first appears) |

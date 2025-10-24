@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind CSS</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-black text-white p-4">
+    <!-- Row -->
+
+    <div
+      tabindex="0"
+      class="w-full flex justify-center *:text-blue-300 has-[div[list-visible=true]]:bg-red-500 items-center even:bg-gray-300 group/main odd:bg-gray-500 mt-4 first:mt-0 h-14 bg-gray-500 rounded-md hover:bg-gray-600 transition-colors active:bg-gray-500 focus-within:outline-2 focus-within:outline-offset-2 focus:outline-2 focus:outline-offset-2 focus:outline-white focus-visible:bg-gray-400"
+      onkeydown="if(event.key === 'Enter' || event.key === '') clicked()"
+      onclick="clicked()"
+    >
+      <div list-visible="true" class="flex gap-2">
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+      </div>
+    </div>
+
+    <div
+      tabindex="0"
+      class="w-full flex justify-center *:text-blue-300 has-[div[list-visible=true]]:bg-red-500 items-center even:bg-gray-300 group/main odd:bg-gray-500 mt-4 first:mt-0 h-14 bg-gray-500 rounded-md hover:bg-gray-600 transition-colors active:bg-gray-500 focus-within:outline-2 focus-within:outline-offset-2 focus:outline-2 focus:outline-offset-2 focus:outline-white focus-visible:bg-gray-400"
+    ></div>
+
+    <div
+      tabindex="0"
+      class="w-full flex justify-center *:text-blue-300 has-[div[list-visible=true]]:bg-red-500 items-center even:bg-gray-300 group/main odd:bg-gray-500 mt-4 first:mt-0 h-14 bg-gray-500 rounded-md hover:bg-gray-600 transition-colors active:bg-gray-500 focus-within:outline-2 focus-within:outline-offset-2 focus:outline-2 focus:outline-offset-2 focus:outline-white focus-visible:bg-gray-400"
+    ></div>
+
+    <div
+      tabindex="0"
+      class="w-full flex justify-center *:text-blue-300 has-[div[list-visible=true]]:bg-red-500 items-center even:bg-gray-300 group/main odd:bg-gray-500 mt-4 first:mt-0 h-14 bg-gray-500 rounded-md hover:bg-gray-600 transition-colors active:bg-gray-500 focus-within:outline-2 focus-within:outline-offset-2 focus:outline-2 focus:outline-offset-2 focus:outline-white focus-visible:bg-gray-400"
+    >
+      <div list-visible="true" class="flex gap-2">
+        <p class="first-letter:text-3xl first-letter:italic">Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <label for="email" class="flex items-center gap-2">
+        <span
+          class="select-none after:ml-0.5 after:text-red-500 peer-valid:after:text-green-600 after:content-['*']"
+        >
+          Email
+        </span>
+        <input
+          id="email"
+          type="email"
+          required
+          placeholder="Enter you thought"
+          class="peer ring placeholder:text-sm placeholder:text-gray-300 placeholder:italic ring-yellow-500 ring-offset-2 ring-offset-orange-500 bg-gray-500 invalid:focus:outline-red-500 valid:focus:outline-white px-2 py-1.5 rounded-md focus:outline-2 focus:outline-white focus:outline-offset-4"
+        />
+      </label>
+    </div>
+
+    <div
+      tabindex="0"
+      class="mt-4 h-16 w-16 hover:bg-blue-600 active:outline active:outline-2 active:outline-offset-2 active:bg-blue-400 transition-all hover:rounded-md hover:skew-y-[16deg] bg-blue-500"
+    ></div>
+
+    <div class="mt-4">
+      <div>
+        <div>RAM</div>
+      </div>
+      <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-8">
+        <label
+          tabindex="0"
+          class="p-2 focus-within:outline-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-within:outline-offset-2 has-checked:hover:bg-blue-600 hover:bg-gray-950 has-checked:active:bg-blue-800 active:bg-grey-700 select-none has-checked:bg-blue-500 bg-gray-900 border border-white rounded-md text-center"
+          onkeydown="if(event.key === 'Enter') check(event)"
+        >
+          <input
+            checked
+            type="radio"
+            name="memory-option"
+            class="peer sr-only"
+          />
+          <span>4 GB</span>
+        </label>
+
+        <label
+          tabindex="0"
+          class="p-2 focus-within:outline-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-within:outline-offset-2 has-checked:hover:bg-blue-600 hover:bg-gray-950 has-checked:active:bg-blue-800 active:bg-grey-700 select-none has-checked:bg-blue-500 bg-gray-900 border border-white rounded-md text-center"
+          onkeydown="if(event.key === 'Enter') check(event)"
+        >
+          <input
+            checked
+            type="radio"
+            name="memory-option"
+            class="peer sr-only"
+          />
+          <span>6 GB</span>
+        </label>
+
+        <label
+          tabindex="0"
+          class="p-2 focus-within:outline-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-within:outline-offset-2 has-checked:hover:bg-blue-600 hover:bg-gray-950 has-checked:active:bg-blue-800 active:bg-grey-700 select-none has-checked:bg-blue-500 bg-gray-900 border border-white rounded-md text-center"
+          onkeydown="if(event.key === 'Enter') check(event)"
+        >
+          <input
+            checked
+            type="radio"
+            name="memory-option"
+            class="peer sr-only"
+          />
+          <span>8 GB</span>
+        </label>
+
+        <label
+          tabindex="0"
+          class="p-2 focus-within:outline-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-within:outline-offset-2 has-checked:hover:bg-blue-600 hover:bg-gray-950 has-checked:active:bg-blue-800 active:bg-grey-700 select-none has-checked:bg-blue-500 bg-gray-900 border border-white rounded-md text-center"
+          onkeydown="if(event.key === 'Enter') check(event)"
+        >
+          <input
+            checked
+            type="radio"
+            name="memory-option"
+            class="peer sr-only"
+          />
+          <span>12 GB</span>
+        </label>
+
+        <label
+          tabindex="0"
+          class="p-2 focus-within:outline-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-within:outline-offset-2 has-checked:hover:bg-blue-600 hover:bg-gray-950 has-checked:active:bg-blue-800 active:bg-grey-700 select-none has-checked:bg-blue-500 bg-gray-900 border border-white rounded-md text-center"
+          onkeydown="if(event.key === 'Enter') check(event)"
+        >
+          <input
+            checked
+            type="radio"
+            name="memory-option"
+            class="peer sr-only"
+          />
+          <span>16 GB</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-4 container">
+      <button
+        popovertarget="my-popover"
+        class="bg-orange-500 px-4 py-2 rounded-md text-amber-950 hover:bg-orange-600 active:bg-orange-400"
+      >
+        Check for updates
+      </button>
+      <div
+        popover="hint"
+        id="my-popover"
+        class="relative inset-y-0 mx-auto my-auto transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left opacity-0 shadow-xl transition-all [transition-behavior:allow-discrete] duration-500 sm:w-full sm:max-w-96 sm:p-6 dark:bg-gray-800 [&:is([open],:popover-open)]:opacity-100 [@starting-style]:[&:is([open],:popover-open)]:opacity-0"
+      ></div>
+    </div>
+
+    <script>
+      function clicked() {
+        console.log("Clicked");
+      }
+
+      function check(e) {
+        console.log("Event is: ", e);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+/* :popover-open -> pseudo-class that matches whether popovers are currently being show or not. */
+/* [popover]::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+} */
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+}

@@ -4,7 +4,7 @@
 
 ## Overview
 
-- Every tailwind utility class can be appliend conditionally based on the screen size using responsive variants.
+- Every tailwind utility class can be applied conditionally based on the screen size using responsive variants.
 - First, make sure you've added the viewport meta tag to your HTML document's `<head>` section:
 
 ```html
