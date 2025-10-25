@@ -103,26 +103,28 @@
     </div>
 
     <!-- Nested POPOVER -->
-    <div class="mt-4">
+    <div class="mt-4 relative">
       <button
+        id="menu-button"
         popovertarget="menu-bar"
         title="Menu"
         class="text-white pl-4 peer bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-500 focus:outline-2 focus:outline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors duration-100"
       >
         Menu
       </button>
-
-      <div popover="auto" id="menu-bar" class="top-0">
-        <nav class="listContainer">
+      <div
+        id="menu-bar"
+        popover="auto"
+        anchor="menu-button"
+        class="bg-white shadow-lg rounded-md"
+        style="
+          position-anchor: --menu-button;
+          position-area: bottom;
+          margin-top: 0.5rem;
+        "
+      >
+        <nav class="listContainer px-4 py-2 flex flex-col space-y-1">
           <a href="#">Home</a>
-          <div class="subContainer sub">
-            <a href="#">Pizza ></a>
-            <div popover class="listContainer hidden pop">
-              <a href="#">Pepperoni</a>
-              <a href="#">Mushroom</a>
-              <a href="#">Cheese</a>
-            </div>
-          </div>
           <a href="#">Music</a>
           <a href="#">Wombats</a>
           <a href="#">Finland</a>

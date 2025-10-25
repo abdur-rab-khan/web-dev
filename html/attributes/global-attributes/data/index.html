@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PopOver API</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-black p-4">
+    <!-- 
+    data-* attributes allow us to store extra information on standard, semantic HTML elements.
+    This information than can be used in JavaScript easily.
+
+    ================== JAVASCRIPT ==================
+   
+    1. HTMLElement.dataset 
+        - The dataset property can be used to access all the data-* attributes on an element.
+        - HTMLElement.dataset returns a DOMStringMap object.
+        - The names of the data attributes are converted from kebab-case to camelCase.
+        - Example: data-user-id becomes HTMLElement.dataset.userId
+    
+    -->
+
+    <div class="text-white relative">
+      <h1 class="text-3xl mb-4">PopOver API Example</h1>
+      <button
+        id="infoBtn"
+        class="bg-blue-600 px-4 py-2 rounded"
+        data-popover-content="This is some additional information in the popover!"
+      >
+        Click me for info
+      </button>
+
+      <div
+        id="popover"
+        name="infoPopover"
+        popover="auto"
+        class="h-20 bg-white text-black p-4 rounded shadow-lg"
+      ></div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

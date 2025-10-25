@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PopOver API</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-black p-4">
+    <!-- 
+    HTML Draggable is an global attribute that indicates whether an element is draggable or not, or native drag-and-drop behavior.
+
+    "draggable" can have the following values:
+      - true: The element is draggable.
+      - false: The element is not draggable.
+
+    - It is enumerate not a boolean attribute.
+
+    - By using this user may select draggable elements with a mouse, drag those elements and drop by releasing it.
+
+    ================== CONCEPTS ==================
+
+    - Drag and drop has three distinct use cases:
+      1. Drag and drop within a web page (e.g., rearranging items in a list).
+      2. Drag and drop between web pages (e.g., dragging an image from one page to another).
+      3. Drag and drop between a web page and the desktop (e.g., dragging a file from the desktop into a web application).
+
+    ================= JAVASCRIPT ==================
+
+    1. Drag and Drop Events
+        - dragstart: Fired when the user starts dragging an element.
+        - drag: Fired when the element is being dragged.
+        - dragend: Fired when the user releases the mouse button to drop the element.
+        - dragenter: Fired when a draggable element enters a drop target.
+        - dragover: Fired when a draggable element is being dragged over a drop target.
+        - dragleave: Fired when a draggable element leaves a drop target.
+        - drop: Fired when a draggable element is dropped on a drop target.
+
+    ============== DRAGGABLE ITEMS ==============
+
+    - Default default, "images", "links" and "selections" are draggable.
+    - To make element draggable set "draggable='true'".
+    - Once text or other element become draggable it no longer be selected, use "Alt" to select.
+    
+
+    ============== DRAG DATA STORE ==============
+
+    - We can't transfer JavaScript objects directly, So to transfer data in and out of thee webpages we use "DataTransfer" object.
+    - It provide object which use during "drag and drop" and "clipboard" operations to hold the data being moved.
+    - It's temporary carriers the data for drag and drop actions.
+
+    <=====> METHODS <=====>
+
+    1. clearData(format)
+        - It used to clear the data stored in the "DataTransfer" object.
+        - If no format is specified, all data is cleared.
+
+    2. getData(format)
+        - It used to retrieve the data of the specified format from the "DataTransfer" object.
+
+    3. setData(format, data)
+        - It used to add data of the specified format to the "DataTransfer" object.
+
+    4. setDragImage(image, x, y)
+        - It used to set a custom image to be used during the drag operation. like default drag image. which shows during dragging.
+
+    5. addElement(element)
+        - It used to add an element to the drag operation.
+        - Using this method, we can add multiple elements to be dragged together.
+        - Example: dragging multiple files from desktop.
+
+    <=====> Properties <=====>
+
+    1. dropEffect
+        - It tell the browser what kind of operation is performed when a dragged item is dropped.
+        - It does not perform the action; it's just a hint to the browser. which helps to show appropriate cursor.
+        - Possible values are "none", "copy", "link", and "move".
+
+    2. effectAllowed
+        - It is similar to "dropEffect", but it specifies the allowed operations for the drag source.
+        - It tells the browser what operations are allowed for the dragged data.
+        - Possible values are "none", "copy", "link", "move", "copy link", "copyMove", "linkMove", and "all" and combine them with space.
+        - Drag won't works if "effectAllowed" and "dropEffect" are not compatible.
+        - Suppose if "effectAllowed" is set to "copy" and "dropEffect" is set to "move", drag won't works.
+
+    3. files
+        - It used to get a list of files being dragged.
+        - It returns a "FileList" object containing the files.
+
+    4. items
+        - It used to get a list of items being dragged.
+        - It returns a "DataTransferItemList" object containing the items.
+        - It is a new way to retrieve, add, and remove the data being dragged.
+
+        5. types
+        - It used to get a list of the formats of the data that is stored in the
+        "DataTransfer" object.
+        - It returns a "DOMStringList" object containing the formats.
+
+    ============== DROP TARGET ==============
+
+    - A drop target is an element where user can drop a draggable item.
+    - By default, most elements are not drop targets, to make them drop targets we have to cancel the default behavior of "dragover" event by using "event.preventDefault()" method.
+    - Than it will allow the element to accept drop.
+    - "drop" event only fires on drop targets.
+
+    -->
+    <div class="text-white">
+      <h1 class="mb-4 text-2xl">Drag and Drop Implementation</h1>
+      <!-- Drag and Drop TEXT -->
+      <div>
+        <div>
+          <p id="content" draggable="true">Hello world</p>
+        </div>
+        <div
+          id="target"
+          class="w-full text-white text-xl mt-2 rounded-md p-4 bg-gray-500"
+        ></div>
+      </div>
+
+      <!-- FILE DRAG AND DROP -->
+      <div class="mt-4">
+        <h1 class="mb-3 text-xl italic">Drag and Drop File Upload</h1>
+        <label
+          tabindex="0"
+          id="drop-zone"
+          class="w-full cursor-pointer h-32 border-4 border-dashed border-gray-400 rounded-md flex items-center justify-center text-gray-400"
+        >
+          Drop files here
+          <input
+            type="file"
+            id="file-input"
+            multiple
+            accept="image/*"
+            class="hidden"
+          />
+        </label>
+        <ul
+          id="preview"
+          class="mt-4 max-w-lg flex gap-2 before:hidden empty:before:block before:content-['No_Image_Found'] text-lg font-semibold before:text-center rounded-md bg-gray-500 list-none p-2 flex-col *:flex *:gap-3 *:m-0 *:w-full *:h-28 **:h-28 **:w-28 **:object-cover overflow-x-auto"
+        ></ul>
+        <button
+          id="clear-btn"
+          class="mt-2 px-4 py-2 hover:bg-red-600 active:bg-red-400 focus:outline-2 focus-within:outline-2 focus-within:bg-red-600 outline-white outline-offset-2 bg-red-500 text-white rounded-md"
+        >
+          Clear Previews
+        </button>
+      </div>
+
+      <!-- Kanban board -->
+      <div>
+        <h1 class="mt-3 text-xl w-full italic">Kanban board</h1>
+        <div class="mt-2 grid grid-cols-3 gap-4">
+          <!-- Boards Todo -->
+          <div
+            class="task-column text-black min-h-72 py-4 px-2 w-48 rounded-md border-gray-500 border bg-white task-column"
+          >
+            <h1 class="text-xl text-center font-bold">To Do</h1>
+            <div class="mt-2 min-h-60 flex flex-col gap-2" id="todo">
+              <div
+                draggable="true"
+                class="bg-gray-300 cursor-grab px-2 py-1 rounded-md border border-gray-800 task"
+              >
+                <p>Find out where Soul Stone is</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Boards In Progress -->
+          <div
+            class="text-black min-h-72 py-4 px-2 w-48 rounded-md border-gray-500 border bg-white task-column"
+          >
+            <h1 class="text-xl text-center font-bold">In Progress</h1>
+            <div class="mt-2 min-h-60 flex flex-col gap-2" id="todo">
+              <div
+                draggable="true"
+                class="bg-gray-300 cursor-grab px-2 py-1 rounded-md border border-gray-800 task"
+              >
+                <p>Collect Reality Stone from the Collector</p>
+              </div>
+
+              <div
+                draggable="true"
+                class="bg-gray-300 cursor-grab px-2 py-1 rounded-md border border-gray-800 task"
+              >
+                <p>Collect Time Stone from Dr. Strange</p>
+              </div>
+
+              <div
+                draggable="true"
+                class="bg-gray-300 cursor-grab px-2 py-1 rounded-md border border-gray-800 task"
+              >
+                <p>Collect Min Stone from Vision</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Boards Done -->
+          <div
+            class="text-black min-h-72 py-4 px-2 w-48 rounded-md border-gray-500 border bg-white task-column"
+          >
+            <h1 class="text-xl text-center font-bold">Done</h1>
+            <div class="mt-2 min-h-60 flex flex-col gap-2" id="todo">
+              <div
+                draggable="true"
+                class="bg-gray-300 cursor-grab px-2 py-1 rounded-md border border-gray-800 task"
+              >
+                <p>Collect Power Stone from Xandar</p>
+              </div>
+
+              <div
+                draggable="true"
+                class="bg-gray-300 cursor-grab px-2 py-1 rounded-md border border-gray-800 task"
+              >
+                <p>Collect Space Stone from Asgard</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
