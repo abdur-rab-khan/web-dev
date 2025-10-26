@@ -1,0 +1,35 @@
+a[href="https://www.google.com"]
+{
+  color: yellow;
+  font-weight: bold;
+}
+
+button[data-state="false"] {
+  background-color: red;
+  color: white;
+}
+
+button[id="toggleTheme"] {
+  border: 0.1px solid white;
+  border-radius: 9px;
+  transition: opacity 0.2s, transform 0.2s, background-color 0.2s;
+
+  &:hover {
+    background-color: rgb(192, 18, 18);
+  }
+
+  &:active {
+    transform: scale(0.93);
+  }
+
+  &[data-state="true"] {
+    background-color: green;
+  }
+
+  &:focus {
+    outline-width: 2px;
+    outline-offset: 4px;
+    outline-color: white;
+    outline-style: solid;
+  }
+}

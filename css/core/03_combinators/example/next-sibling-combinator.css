@@ -1,0 +1,23 @@
+div[data-name="next-sibling-combo"] img[data-type="visual-image"] + p {
+  color: orange;
+  font-weight: bold;
+  padding-inline: 8px;
+  padding-block: 4px;
+  border-radius: 6px;
+  background-color: darkgreen;
+  transition: background-color 0.3s ease;
+  user-select: none;
+
+  &:hover {
+    background-color: green;
+    border-radius: 8px;
+  }
+}
+
+h3:has(> ul) li:first-child {
+  color: red;
+}
+
+h3:has(ul) li:last-child {
+  color: blue;
+}

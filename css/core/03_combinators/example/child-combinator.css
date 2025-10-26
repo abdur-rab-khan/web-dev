@@ -1,0 +1,7 @@
+div[data-name="child-combo"] > .child {
+  color: yellow;
+}
+
+div[data-name="child-combo"] > p {
+  color: red;
+}

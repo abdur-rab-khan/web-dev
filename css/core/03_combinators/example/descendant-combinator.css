@@ -1,0 +1,34 @@
+div[data-name="descendant-combo"] {
+  padding-inline: 12px;
+  padding-block: 6px;
+  border-radius: 8px;
+  border: 2px solid orange;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    padding-block: 8px;
+    padding-inline: 18px;
+    border-radius: 16px;
+    border: 4px dotted white;
+  }
+}
+
+div[data-name="descendant-combo"] p {
+  color: orange;
+}
+
+div[data-name="descendant-combo"] > p {
+  color: white;
+}
+
+div[data-name="descendant-combo"] p {
+  font-weight: 800;
+}
+
+li {
+  list-style-type: circle;
+}
+
+li li {
+  list-style-type: disc;
+}

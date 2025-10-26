@@ -1,0 +1,55 @@
+.parent {
+  height: 200px;
+  width: 100%;
+  background-color: limegreen;
+  border-radius: 8px;
+  padding: 8px;
+  transition: all 0.3s ease;
+
+  & .child {
+    font-size: xx-large;
+  }
+
+  &:hover {
+    background-color: green;
+  }
+}
+
+/* 
+
+THE BROWSER WILL PARSE INTO 
+
+.parent {
+  height: 200px;
+  width: 100%;
+  background-color: limegreen;
+  border-radius: 8px;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+.parent .child {
+  font-size: xx-large;
+}
+
+.parent:hover {
+  background-color: green;
+}
+*/
+
+.example {
+  font-size: 18px;
+
+  & > a {
+    font-weight: 700;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+  }
+
+  & > a:hover {
+    background-color: tomato;
+    border-radius: 12px;
+    padding-inline: 8px;
+    padding-block: 4px;
+  }
+}

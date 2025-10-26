@@ -1,0 +1,27 @@
+div[data-name="subsequent-sibling-combo"] h3 ~ p {
+  color: lightcoral;
+}
+
+div[data-name="subsequent-sibling-combo"] .foo p ~ span {
+  color: blue;
+  font-weight: bold;
+
+  &:after {
+    content: " (subsequent sibling of p in .foo)";
+    font-weight: normal;
+    font-size: 0.9em;
+    color: lightgray;
+  }
+}
+
+div[data-name="subsequent-sibling-combo"] .foo p ~ .foo span {
+  color: green;
+  font-weight: bold;
+
+  &:after {
+    content: " (subsequent sibling of p in .foo followed by span in .foo)";
+    font-weight: normal;
+    font-size: 0.9em;
+    color: lightgray;
+  }
+}

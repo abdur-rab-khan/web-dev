@@ -1,0 +1,21 @@
+div[data-name="selector-list-combo"] {
+  & p,
+  & span,
+  & div,
+  & h1,
+  & h2,
+  & h3 {
+    color: lightseagreen;
+    font-weight: bold;
+    user-select: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: orange;
+    }
+
+    &:has(+ div):hover {
+      color: crimson;
+    }
+  }
+}
