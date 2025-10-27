@@ -1,0 +1,213 @@
+:root {
+  background-color: darkolivegreen;
+}
+
+:heading {
+  font-weight: bolder;
+}
+
+button#user-action {
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(29 78 216);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    background-color: rgb(30 64 175);
+  }
+
+  &:focus {
+    outline: 2px solid rgb(37 99 235);
+    outline-offset: 2px;
+  }
+}
+
+label#user-action > span {
+  font-style: italic;
+}
+
+label#user-action:focus-within {
+  color: yellow;
+}
+
+div:empty {
+  user-select: none;
+
+  &::before {
+    content: "This div is empty";
+    font-size: 0.875rem;
+    color: gray;
+  }
+}
+
+div.tree-structural > ul {
+  /* Getting based on element position */
+  & :first-child {
+    color: red;
+
+    &::after {
+      content: " first item";
+      font-size: 0.75rem;
+      color: gray;
+    }
+  }
+
+  & :last-child {
+    color: blue;
+
+    &::after {
+      content: " last item";
+      font-size: 0.75rem;
+      color: gray;
+    }
+  }
+}
+
+div.nth-class > ul {
+  & :nth-child(1) {
+    color: yellow;
+
+    &::after {
+      content: ":first child";
+      font-size: 0.75rem;
+      margin-left: 8px;
+      color: gray;
+    }
+  }
+
+  & :nth-child(n + 7) {
+    color: orange;
+
+    &::after {
+      content: ":last two child";
+      font-size: 0.75rem;
+      margin-left: 8px;
+      color: gray;
+    }
+  }
+
+  & :nth-child(n + 2):nth-child(-n + 3) {
+    color: crimson;
+
+    &::after {
+      content: ":elements from 2 to 3";
+      font-size: 0.75rem;
+      margin-left: 8px;
+      color: gray;
+    }
+  }
+
+  & :nth-child(n + 4):nth-child(-2n + 6) {
+    color: blue;
+    &::after {
+      content: ":starts from 4 to 6 with 2 gaps";
+      font-size: 0.75rem;
+      margin-left: 8px;
+      color: gray;
+    }
+  }
+}
+
+div.nth-of-types ul {
+  & li:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    color: yellow;
+    &::after {
+      content: "first three";
+      font-size: 0.75rem;
+      margin-left: 8px;
+      color: gray;
+    }
+  }
+
+  & li:nth-of-type(n + 4):nth-of-type(-2n + 7) {
+    color: blue;
+    &::after {
+      content: "From 4 to 7 with 2 gaps";
+      font-size: 0.75rem;
+      margin-left: 8px;
+      color: gray;
+    }
+  }
+}
+
+#is-func :is(button:focus, button:hover, input:focus, p):not(input:invalid) {
+  color: yellow;
+  transition: all 0.3s ease;
+
+  &:is(button) {
+    background-color: brown;
+  }
+}
+
+#where-func :is(section.is-styling, aside.is-styling, footer.is-styling) a {
+  color: red;
+}
+
+#where-func
+  :where(section.where-styling, aside.where-styling, footer.where-styling)
+  a {
+  color: orange;
+}
+
+#where-func footer a {
+  color: blue;
+}
+
+/* HAS FUNCTION */
+
+#form:has(:invalid) {
+  border: 2px solid red;
+}
+
+section:has(.featured) {
+  border: 1px solid blue;
+  padding-inline: 8px;
+  padding-block: 4px;
+
+  &::after {
+    content: " :section has featured class";
+    font-size: 0.75rem;
+    color: gray;
+  }
+}
+
+#sibling-selector h1:has(+ h2) {
+  color: yellow;
+  margin-top: 12px;
+}
+
+/* LOCATION PSEUDO CLASSES */
+
+.location-psuedo a {
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration-color: yellow;
+    text-decoration-thickness: 2px;
+  }
+
+  &:visited {
+    color: lightblue;
+  }
+}
+
+div:target {
+  position: relative;
+  background-color: red;
+  color: white;
+
+  &::after {
+    content: " :this div has targeted";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    translate: 0% -50%;
+    margin-left: 2px;
+    font-size: 0.75rem;
+    color: gray;
+    width: max-content;
+  }
+}

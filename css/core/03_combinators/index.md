@@ -4,14 +4,29 @@
 
 ## Types of Combinator
 
-| Combinator    | Symbol | Description                     |
-| ------------- | ------ | ------------------------------- |
-| Descendant    | space  | Selects all nested elements     |
-| Child         | `>`    | Selects direct children only    |
-| Next Sibling  | `+`    | Selects immediate next sibling  |
-| All Siblings  | `~`    | Selects all following siblings  |
-| Selector List | `,`    | Groups multiple selectors       |
-| Namespace     | `\|`   | Selects elements in a namespace |
+| Combinator                                 | Symbol | Description                     |
+| ------------------------------------------ | ------ | ------------------------------- |
+| [Descendant](#descendant-combinator)       | space  | Selects all nested elements     |
+| [Child](#child-combinator)                 | `>`    | Selects direct children only    |
+| [Next Sibling](#next-sibling-combinator)   | `+`    | Selects immediate next sibling  |
+| [All Siblings](#descendant-combinator)     | `~`    | Selects all following siblings  |
+| [Selector List](#selector-list-combinator) | `,`    | Groups multiple selectors       |
+| [Namespace](#namespace-combinator)         | `\|`   | Selects elements in a namespace |
+
+## [Descendant Combinator](./example/descendant-combinator.css)
+
+- ` ` (space) placed between two selectors to select all nested elements.
+- `div p` selects all `<p>` elements that are descendants of a `<div>`.
+
+  ```css
+  div p {
+    color: blue;
+  }
+
+  div[data-name="descendant-combo"] p {
+    color: blue;
+  }
+  ```
 
 ## [Child Combinator](./example/child-combinator.css)
 
@@ -31,23 +46,6 @@
     color: red;
   }
   ```
-
-## [Descendant Combinator](./example/descendant-combinator.css)
-
-- ` ` (space) placed between two selectors to select all nested elements.
-- `div p` selects all `<p>` elements that are descendants of a `<div>`.
-
-  ```css
-  div p {
-    color: blue;
-  }
-
-  div[data-name="descendant-combo"] p {
-    color: blue;
-  }
-  ```
-
-## [Namespace Combinator](./example/namespace-combinator.css)
 
 ## [Next Sibling Combinator](./example/next-sibling-combinator.css)
 
@@ -77,6 +75,52 @@
   ```
 
 - We can also combine it with any pseudo-class selectors like `:first-child`, `:last-child`, etc.
+
+## [Subsequent Sibling Combinator](./example/subsequent-sibling-combinator.css)
+
+- `~` placed between two selectors and selects all immediate siblings that come after a specified element.
+- `h2 ~ p` selects all `<p>` elements that are siblings of an `<h2>` and come after it.
+
+  ```css
+  h2 ~ p {
+    color: purple;
+  }
+
+  div[data-name="subsequent-sibling-combo"] h2 ~ p {
+    color: purple;
+  }
+  ```
+
+- Here is some complex one.
+
+  ```css
+  div[data-name="subsequent-sibling-combo"] .foo p ~ span {
+    color: blue;
+    font-weight: bold;
+
+    &:after {
+      content: " (subsequent sibling of p in .foo)";
+      font-weight: normal;
+      font-size: 0.9em;
+      color: lightgray;
+    }
+  }
+
+  div[data-name="subsequent-sibling-combo"] .foo p ~ .foo span {
+    color: green;
+    font-weight: bold;
+
+    &:after {
+      content: " (subsequent sibling of p in .foo followed by span in .foo)";
+      font-weight: normal;
+      font-size: 0.9em;
+      color: lightgray;
+    }
+  }
+  ```
+
+- `.foo p ~ span` selects `<span>` siblings that come after `<p>` inside `.foo`.
+- `.foo p ~ .foo span` selects `<span>` inside a `.foo` element that comes after `<p>` in the parent `.foo`.
 
 ## [Selector List Combinator](./example/selector-list-combinator.css)
 
@@ -124,48 +168,4 @@
   }
   ```
 
-## [Subsequent Sibling Combinator](./example/subsequent-sibling-combinator.css)
-
-- `~` placed between two selectors and selects all immediate siblings that come after a specified element.
-- `h2 ~ p` selects all `<p>` elements that are siblings of an `<h2>` and come after it.
-
-  ```css
-  h2 ~ p {
-    color: purple;
-  }
-
-  div[data-name="subsequent-sibling-combo"] h2 ~ p {
-    color: purple;
-  }
-  ```
-
-- Here is some complex one.
-
-  ```css
-  div[data-name="subsequent-sibling-combo"] .foo p ~ span {
-    color: blue;
-    font-weight: bold;
-
-    &:after {
-      content: " (subsequent sibling of p in .foo)";
-      font-weight: normal;
-      font-size: 0.9em;
-      color: lightgray;
-    }
-  }
-
-  div[data-name="subsequent-sibling-combo"] .foo p ~ .foo span {
-    color: green;
-    font-weight: bold;
-
-    &:after {
-      content: " (subsequent sibling of p in .foo followed by span in .foo)";
-      font-weight: normal;
-      font-size: 0.9em;
-      color: lightgray;
-    }
-  }
-  ```
-
-- `.foo p ~ span` selects `<span>` siblings that come after `<p>` inside `.foo`.
-- `.foo p ~ .foo span` selects `<span>` inside a `.foo` element that comes after `<p>` in the parent `.foo`.
+## [Namespace Combinator](./example/namespace-combinator.css)

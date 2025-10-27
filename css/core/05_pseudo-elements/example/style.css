@@ -1,0 +1,189 @@
+/* TYPOGRAPHIC PSEUDO ELEMENTS */
+
+div#typo p:first-of-type {
+  color: lightblue;
+
+  &::first-line {
+    color: blueviolet;
+    text-decoration: underline;
+    text-decoration-color: white;
+  }
+
+  &::first-letter {
+    user-select: none;
+    font-size: 32px;
+    color: black;
+    padding: 6px 12px;
+    margin-right: 6px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0 red;
+    background-color: yellow;
+  }
+
+  &::selection {
+    color: red;
+    background-color: yellow;
+    text-decoration-thickness: 8px;
+    text-decoration: dashed;
+    text-decoration-color: blue;
+  }
+}
+
+/* HIGHLIGHT PSEUDO ELEMENTS */
+div#typo p:last-of-type {
+  color: orange;
+
+  &::first-letter {
+    font-size: 32px;
+  }
+
+  &::selection {
+    background-color: green;
+  }
+}
+
+/* FORM RELATED PSEUDO ELEMENTS */
+form input::placeholder {
+  color: gray;
+  font-weight: 500;
+  font-style: italic;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select {
+  background: #eeeeee;
+  padding: 10px;
+  color: black;
+  border: 2px solid #dddddd;
+  border-radius: 8px;
+  transition: 0.4s;
+}
+
+select:hover,
+select:focus {
+  background: #dddddd;
+}
+
+select::picker-icon {
+  color: #999999;
+  transition: 0.4s rotate;
+}
+
+select:open::picker-icon {
+  rotate: 180deg;
+}
+
+option {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+
+  border: 2px solid #dddddd;
+  background: #eeeeee;
+  padding: 10px;
+  transition: 0.4s;
+}
+
+option:first-of-type {
+  border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+  border-radius: 0 0 8px 8px;
+}
+
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+
+option:nth-of-type(odd) {
+  background: white;
+}
+
+option:hover,
+option:focus {
+  background: plum;
+}
+
+option:checked {
+  font-weight: bold;
+}
+
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  content: "☑️";
+}
+
+::picker(select) {
+  opacity: 0;
+  border: none;
+  border-radius: 8px;
+  top: calc(anchor(bottom) + 4px);
+  transition: all 0.4s allow-discrete;
+}
+
+::picker(select):popover-open {
+  opacity: 1;
+}
+
+@starting-style {
+  ::picker(select):popover-open {
+    opacity: 0;
+  }
+}
+
+/* TREE ABIDING PSEUDO ELEMENTS  */
+
+#tree {
+  & p:first-of-type::before {
+    content: "🌲";
+  }
+
+  & p:first-of-type code:first-of-type::before {
+    content: "💻";
+  }
+
+  & p:first-of-type code:last-child::after {
+    content: "💻";
+  }
+}
+
+#dia {
+  margin: auto;
+  padding-inline: 16px;
+  padding-block: 12px;
+  border-radius: 8px;
+  background-color: saddlebrown;
+  color: white;
+
+  & button {
+    background-color: limegreen;
+    padding-inline: 12px;
+    padding-block: 6px;
+    border-radius: 8px;
+    margin-top: 12px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: black;
+      background-color: greenyellow;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: white;
+      outline-offset: 2px;
+    }
+  }
+}
+
+::backdrop {
+  background: rgba(0, 0, 0, 0.699);
+}
