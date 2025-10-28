@@ -1,0 +1,87 @@
+div.calc {
+  width: calc(100% - 30px);
+  margin: auto;
+  padding: 8px 12px;
+  user-select: none;
+  border-radius: 12px;
+  box-shadow: 5px 5px red;
+  background-color: yellow;
+
+  & > p {
+    color: brown;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  & div {
+    color: white;
+    display: flex;
+    margin: 12px auto;
+    width: calc(100% - 10%);
+    align-items: center;
+    justify-content: space-between;
+
+    & div {
+      height: 200px;
+      width: 200px;
+      padding: 12px;
+      font-size: 18px;
+      background-color: crimson;
+    }
+  }
+}
+
+div.calc-size section.example-1 {
+  height: 2.4rem;
+  overflow: hidden;
+  background-color: aqua;
+  color: black;
+  padding: 9px 3px;
+  width: max-content;
+  border-radius: 6px;
+  transition: height ease 1s;
+
+  &:hover {
+    height: calc-size(max-content, size + 2rem);
+  }
+}
+
+section.easy-reader {
+  width: fit-content;
+  padding: 12px 8px;
+  border-radius: 10px;
+  border: 1px solid aqua;
+  background-color: brown;
+}
+
+@keyframes narrower {
+  from {
+    width: fit-content;
+  }
+
+  to {
+    width: calc-size(fit-content, size * 0.5);
+  }
+}
+
+@keyframes wider {
+  from {
+    width: calc-size(fit-content, size * 0.5);
+  }
+
+  to {
+    width: fit-content;
+  }
+}
+
+.narrower {
+  animation: narrower 1s ease forwards;
+}
+
+.wider {
+  animation: wider 1s ease forwards;
+}
+
+#texts > p {
+  font-size: clamp(18px, 2vw, 22px);
+}

@@ -211,7 +211,8 @@
 
 #### 7. `:nth-of-type()`
 
-- Similar to `:nth-child()`, but it only counts elements of a specific type (tag name).
+- `:nth-of-type()` works similar as `:nth-child()`, but it helps to select elements based on their tag name (type) among its siblings.
+- `.card p:nth-of-type(2)` will select the second `<p>` element inside `.card`, regardless of other sibling elements.
 
   - Example:
 
@@ -219,13 +220,22 @@
     p:nth-of-type(2) {
       color: blue;
     }
+
+    .card p:nth-of-type(2) {
+      color: blue;
+    }
+
+    .container div:nth-of-type(3) {
+      background-color: lightgray;
+    }
     ```
 
   - This will select the second `<p>` element among its sibling `<p>` elements.
 
 #### 7. `:nth-last-of-type()`
 
-- Similar to `:nth-of-type()`, but it counts elements from the end of the list.
+- `:nth-last-of-type()` works similar as `:nth-of-type()`, but it helps to select elements based on their tag name (type) among its siblings, counting from the end.
+- `.card p:nth-last-of-type(1)` will select the last `<p>` element inside `.card`, regardless of other sibling elements.
 
   - Example:
 
@@ -379,11 +389,16 @@
     article:has(p.highlight) {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
+    div:has(input:invalid) {
+      border-color: red;
+    }
     ```
 
   - First example: Adds a blue border to any `<div>` containing an `<img>`.
   - Second example: Sets a light yellow background for `<section>` elements containing any heading.
   - Third example: Applies a box shadow to `<article>` elements that contain a paragraph with the `highlight` class.
+  - Fourth example: Changes the border color to red for `<div>` elements that contain an invalid input field.
 
 ### Input Pseudo-classes
 

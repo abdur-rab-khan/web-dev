@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pseudo Elements</title>
+    <link rel="stylesheet" href="transform.css" />
+    <link rel="stylesheet" href="math-functions.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-black text-white p-4">
+    <!-- Transform functions -->
+    <div class="hidden">
+      <!-- TRANSLATE FUNCTIONS -->
+      <div class="flex opacity-0 flex-col gap-20">
+        <div class="gap-20 flex">
+          <div
+            id="translate"
+            class="h-40 w-40 text-2xl bg-blue-500 rounded-lg flex justify-center items-center"
+          >
+            Translate
+          </div>
+
+          <div
+            id="translate-x"
+            class="h-40 w-40 text-2xl bg-blue-500 rounded-lg flex justify-center items-center"
+          >
+            Translate X
+          </div>
+
+          <div
+            id="translate-y"
+            class="h-40 w-40 text-2xl bg-blue-500 rounded-lg flex justify-center items-center"
+          >
+            Translate Y
+          </div>
+
+          <div
+            id="translate-z"
+            class="h-40 w-40 text-2xl bg-blue-500 rounded-lg flex justify-center items-center"
+          >
+            Translate Z
+          </div>
+        </div>
+      </div>
+
+      <!-- ROTATION FUNCTIONS -->
+      <div class="mt-20 opacity-0 flex flex-col gap-20">
+        <div class="gap-20 flex flex-wrap">
+          <div
+            id="rotate"
+            class="h-40 w-40 text-2xl bg-green-500 rounded-lg flex justify-center items-center"
+          >
+            Rotate
+          </div>
+
+          <div
+            id="rotate-x"
+            class="h-40 w-40 text-2xl bg-green-500 rounded-lg flex justify-center items-center"
+          >
+            Rotate X
+          </div>
+
+          <div
+            id="rotate-y"
+            class="h-40 w-40 text-2xl bg-green-500 rounded-lg flex justify-center items-center"
+          >
+            Rotate Y
+          </div>
+
+          <div
+            id="rotate-3d"
+            class="h-40 w-40 text-2xl bg-green-500 rounded-lg flex justify-center items-center"
+          >
+            Rotate 3D
+          </div>
+
+          <div
+            id="flip"
+            class="h-40 w-40 text-2xl bg-green-500 rounded-lg flex justify-center items-center"
+          >
+            Flip
+          </div>
+        </div>
+      </div>
+
+      <!-- SCALE FUNCTIONS -->
+      <div class="mt-20 opacity-0 flex flex-col gap-20">
+        <div class="gap-20 flex">
+          <div
+            id="scale"
+            class="h-40 w-40 text-2xl bg-red-500 rounded-lg flex justify-center items-center"
+          >
+            Scale
+          </div>
+
+          <div
+            id="scale-x"
+            class="h-40 w-40 text-2xl bg-red-500 rounded-lg flex justify-center items-center"
+          >
+            Scale X
+          </div>
+
+          <div
+            id="scale-y"
+            class="h-40 w-40 text-2xl bg-red-500 rounded-lg flex justify-center items-center"
+          >
+            Scale Y
+          </div>
+
+          <div
+            id="scale-z"
+            class="h-40 w-40 text-2xl bg-red-500 rounded-lg flex justify-center items-center"
+          >
+            Scale Z
+          </div>
+        </div>
+      </div>
+
+      <!-- SKEW FUNCTIONS -->
+      <div class="mt-20 opacity-0 flex flex-col gap-20">
+        <div class="gap-20 flex">
+          <div
+            id="skew"
+            class="h-40 w-40 text-2xl bg-yellow-500 rounded-lg flex justify-center items-center"
+          >
+            Skew
+          </div>
+
+          <div
+            id="skew-x"
+            class="h-40 w-40 text-2xl bg-yellow-500 rounded-lg flex justify-center items-center"
+          >
+            Skew X
+          </div>
+
+          <div
+            id="skew-y"
+            class="h-40 w-40 text-2xl bg-yellow-500 rounded-lg flex justify-center items-center"
+          >
+            Skew Y
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSPECTIVE FUNCTION -->
+      <div class="mt-20 flex opacity-0 flex-col gap-20">
+        <div class="gap-20 flex">
+          <div
+            id="perspective"
+            class="h-40 w-40 text-2xl bg-purple-500 rounded-lg flex justify-center items-center"
+          >
+            Perspective
+          </div>
+
+          <div
+            id="perspective-2"
+            class="h-40 w-40 text-2xl bg-purple-500 rounded-lg flex justify-center items-center"
+          ></div>
+
+          <div
+            id="perspective-3"
+            class="h-40 w-40 text-2xl bg-purple-500 rounded-lg flex justify-center items-center"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MATH FUNCTIONS -->
+    <div class="mt-6">
+      <!-- BASIC ARITHMETIC -->
+      <div class="calc">
+        <p>Basic Arithmetic: calc(100% - 30px)</p>
+
+        <div>
+          <div class="box box1">Box 1</div>
+          <div class="box box2">Box 2</div>
+        </div>
+      </div>
+
+      <div class="calc-size mt-6">
+        <section tabindex="0" class="example-1">
+          <header>
+            <h2>Chris Mills</h2>
+          </header>
+          <main>
+            <p>Chris is the silent phantom of MDN.</p>
+            <ul>
+              <li><strong>Height</strong>: 3.03m</li>
+              <li><strong>Weight</strong>: 160kg</li>
+              <li><strong>Tech Fu</strong>: 7</li>
+              <li><strong>Bad Jokes</strong>: 9</li>
+            </ul>
+          </main>
+        </section>
+
+        <section class="easy-reader mt-6">
+          <h2>Easy reader</h2>
+
+          <p>
+            Eius velit aperiam ipsa. Deleniti eum excepturi ut magni maxime
+            maxime beatae. Dicta aperiam est laudantium ut illum facere qui
+            officiis. Sunt deleniti quam id. Quis sunt voluptatem praesentium
+            minima dolorum autem consequatur velit.
+          </p>
+
+          <p>
+            Vitae ab incidunt velit aspernatur deleniti distinctio rerum. Et
+            natus sed et quos mollitia quia quod. Quae officia ex ea. Ducimus ut
+            voluptatem et et debitis. Quidem provident laboriosam exercitationem
+            similique deleniti. Temporibus vel veniam mollitia magni unde a
+            nostrum.
+          </p>
+
+          <button
+            class="width-adjust bg-orange-500 px-6 py-2 mt-8 rounded-lg text-white"
+          >
+            Narrower
+          </button>
+        </section>
+
+        <div id="texts" class="mt-5 text-center">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque,
+            aspernatur voluptates voluptatem quibusdam quidem aliquid rerum.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

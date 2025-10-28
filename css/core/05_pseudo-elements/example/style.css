@@ -55,76 +55,39 @@ select,
 }
 
 select {
-  background: #eeeeee;
-  padding: 10px;
-  color: black;
-  border: 2px solid #dddddd;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: 0.4s;
-}
-
-select:hover,
-select:focus {
-  background: #dddddd;
-}
-
-select::picker-icon {
-  color: #999999;
-  transition: 0.4s rotate;
-}
-
-select:open::picker-icon {
-  rotate: 180deg;
-}
-
-option {
-  display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-
-  border: 2px solid #dddddd;
-  background: #eeeeee;
-  padding: 10px;
-  transition: 0.4s;
-}
-
-option:first-of-type {
-  border-radius: 8px 8px 0 0;
-}
-
-option:last-of-type {
-  border-radius: 0 0 8px 8px;
-}
-
-option:not(option:last-of-type) {
-  border-bottom: none;
-}
-
-option:nth-of-type(odd) {
-  background: white;
-}
-
-option:hover,
-option:focus {
-  background: plum;
-}
-
-option:checked {
-  font-weight: bold;
-}
-
-option::checkmark {
-  order: 1;
-  margin-left: auto;
-  content: "☑️";
 }
 
 ::picker(select) {
   opacity: 0;
-  border: none;
   border-radius: 8px;
-  top: calc(anchor(bottom) + 4px);
+  top: calc(anchor(bottom) + 3px);
   transition: all 0.4s allow-discrete;
+}
+
+select option {
+  padding-inline: 10px;
+  padding-block: 12px;
+  transition: 0.4s;
+  border: 1px solid gainsboro;
+}
+
+option:nth-last-of-type(even) {
+  background-color: gainsboro;
+}
+
+::checkmark {
+  order: 1;
+  content: "☑️";
+}
+
+::picker-icon {
+  transition: rotate 0.4s ease-in-out;
+}
+
+select:open::picker-icon {
+  rotate: 180deg;
 }
 
 ::picker(select):popover-open {
