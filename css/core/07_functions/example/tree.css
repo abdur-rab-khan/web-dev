@@ -1,0 +1,29 @@
+#sibling-index {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+
+  & .box {
+    height: calc(200px / sibling-count());
+    width: calc(sibling-index() * 80px);
+    border-radius: 12px;
+    background-color: hsl(calc(sibling-index() * 40), 70%, 60%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    animation: fade 1s linear calc(0.5s * sibling-index()) backwards;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,73 @@
+:root {
+  --primary-text: blue;
+  --secondary-text: yellow;
+  --box-color: crimson;
+  --content-font-size: 22px;
+  --content-font-weight: 500;
+  --box-border-radius: 18px;
+  --nav-size: 50px;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+#var-function {
+  margin-top: calc(var(--nav-size) - 8px);
+}
+
+/* VAR FUNCTIONS */
+.var-box,
+.attr-box {
+  height: 130px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--box-border-radius, 18px);
+  font-size: calc(var(--content-font-size) - 2px);
+  font-weight: var(--content-font-weight);
+  background-color: var(--box-color);
+}
+
+/* ENV VARIABLE FUNCTION */
+
+/* ATTR VARIABLE FUNCTION */
+.attr-box::before {
+  content: attr(data-info) " Getting from attribute";
+  text-align: center;
+}
+
+#shuffle-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.shuffle-card {
+  height: 300px;
+  width: 180px;
+  border: 0.5px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(7px);
+  border-radius: var(--box-border-radius);
+  background-color: rgba(220, 20, 60, 0.342);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shuffle-card::before {
+  content: attr(data-order);
+  font-size: clamp(18px, 12vw, 38px);
+}
+
+/* URL VARIABLE FUNCTION */
+#box-container {
+  position: fixed;
+  left: env(titlebar-area-x, 0);
+  top: env(titlebar-area-y, 0);
+  width: env(titlebar-area-width, 100%);
+  height: env(titlebar-area-height, var(--nav-size));
+}

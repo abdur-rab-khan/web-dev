@@ -1,0 +1,86 @@
+/* 
+    IMPORT STYLE2 if support "display:flex" and screen width if greater than 400px
+*/
+@import url("style2.css") supports(display: flex) screen and (width <= 400px);
+@import url("https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap");
+
+/*
+    IMPORTING DARK/LIGHT COLOR BASED ON "COLOR-SCHEMA"
+*/
+@import url("./color-schema/dark.css") (prefers-color-scheme: dark);
+@import url("./color-schema/light.css") (prefers-color-scheme: light);
+
+@font-face {
+  font-family: "Bitstream Vera Serif Bold";
+  src: url("https://mdn.github.io/shared-assets/fonts/VeraSeBd.ttf");
+}
+
+html {
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.grid-container {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/*
+    Only apply these styles when printing the document
+*/
+@media only print {
+  body {
+    font-size: 50px;
+    font-size: black;
+    background-color: yellow;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .grid-container {
+    padding-inline: 4px;
+    padding-block: 8px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 301px) and (max-width: 500px) {
+  .grid-container {
+    padding-inline: 4px;
+    padding-block: 8px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 501px) and (max-width: 700px) {
+  .grid-container {
+    padding-inline: 4px;
+    padding-block: 8px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1000px) {
+  .grid-container {
+    padding-inline: 4px;
+    padding-block: 8px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* TRYING DIFFERENT FONTS */
+div.vera-serif {
+  font-family: "Bitstream Vera Serif Bold", serif;
+}
+
+.momo {
+  font-family: "Momo Signature", serif;
+  font-weight: 400;
+  font-style: normal;
+}

@@ -3,16 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pseudo Elements</title>
+    <title>CSS Functions</title>
     <link rel="stylesheet" href="transform.css" />
     <link rel="stylesheet" href="math-functions.css" />
+    <link rel="stylesheet" href="filter-gradient.css" />
+    <link rel="stylesheet" href="reference.css" />
+    <link rel="stylesheet" href="tree.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="bg-black text-white p-4">
     <!-- Transform functions -->
-    <div class="hidden">
+    <div>
       <!-- TRANSLATE FUNCTIONS -->
-      <div class="flex opacity-0 flex-col gap-20">
+      <div class="flex flex-col gap-20">
         <div class="gap-20 flex">
           <div
             id="translate"
@@ -45,7 +48,7 @@
       </div>
 
       <!-- ROTATION FUNCTIONS -->
-      <div class="mt-20 opacity-0 flex flex-col gap-20">
+      <div class="mt-20 flex flex-col gap-20">
         <div class="gap-20 flex flex-wrap">
           <div
             id="rotate"
@@ -85,7 +88,7 @@
       </div>
 
       <!-- SCALE FUNCTIONS -->
-      <div class="mt-20 opacity-0 flex flex-col gap-20">
+      <div class="mt-20 flex flex-col gap-20">
         <div class="gap-20 flex">
           <div
             id="scale"
@@ -118,7 +121,7 @@
       </div>
 
       <!-- SKEW FUNCTIONS -->
-      <div class="mt-20 opacity-0 flex flex-col gap-20">
+      <div class="mt-20 flex flex-col gap-20">
         <div class="gap-20 flex">
           <div
             id="skew"
@@ -144,7 +147,7 @@
       </div>
 
       <!-- PERSPECTIVE FUNCTION -->
-      <div class="mt-20 flex opacity-0 flex-col gap-20">
+      <div class="mt-20 flex flex-col gap-20">
         <div class="gap-20 flex">
           <div
             id="perspective"
@@ -225,6 +228,131 @@
             aspernatur voluptates voluptatem quibusdam quidem aliquid rerum.
           </p>
         </div>
+      </div>
+    </div>
+
+    <!-- FILTER FUNCTIONS -->
+    <div class="mt-6">
+      <div class="filter-example">
+        <div id="blur-effect">
+          Blur Effect
+          <div class="flex justify-between">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div id="drop-shadow" class="mt-8">
+          Drop Shadow Effect
+          <div class="flex justify-between mt-8">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRADIENT FUNCTIONS -->
+    <div class="mt-6">
+      <div class="gradient-example">
+        <div id="linear-gradient" class="mb-8">
+          Linear Gradient
+          <div class="flex gap-4 flex-col mt-4">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div id="radial-gradient" class="mb-8">
+          Radial Gradient
+          <div class="flex gap-4 flex-col mt-4">
+            <div></div>
+            <div>
+              <div class="gain" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFERENCE FUNCTIONS -->
+    <div class="mt-6">
+      <div id="var-function" class="mb-8">
+        CSS Variable Function
+        <div class="flex gap-4 flex-col mt-4">
+          <div class="var-box var-box1">Box 1</div>
+          <div class="var-box var-box2">Box 2</div>
+          <div class="var-box var-box3">Box 3</div>
+        </div>
+      </div>
+      <div id="env-function" class="mb-8">
+        Environment Variable Function
+        <div class="flex gap-4 flex-col mt-4">
+          <div class="env-box env-box1">Box 1</div>
+          <div class="env-box env-box2">Box 2</div>
+        </div>
+      </div>
+      <div id="attr-function" class="mb-8">
+        Attribute Function
+        <div class="flex gap-4 flex-col mt-4">
+          <div class="attr-box" data-info="Attribute Info 1"></div>
+
+          <div
+            class="w-full h-max bg-[url('https://images.unsplash.com/photo-1739999065032-c32c4bf27b56?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2h1ZmZsZWJvYXJkfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500')] bg-contain px-4 py-2 rounded-md border border-white"
+          >
+            <h2
+              class="text-center bg-blue-500 mb-2 py-2 rounded-full font-medium border border-white/50 shadow-xl"
+            >
+              Shuffle the cards
+            </h2>
+
+            <div
+              id="shuffle-container"
+              class="min-h-[300px] transition-all"
+            ></div>
+
+            <div class="mt-6 flex justify-center">
+              <button
+                id="shuffle-btn"
+                class="bg-blue-600 w-max px-6 py-2 rounded-lg font-medium border hover:bg-blue-700 border-gray-500/50"
+              >
+                Shuffle Cards
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="env-function" class="mb-8">
+        ENV Function
+        <div class="flex h-screen gap-4 flex-col mt-4">
+          <div
+            id="box-container"
+            class="w-full h-full flex justify-center items-center bg-blue-700"
+          >
+            BOX CONTENT
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TREE COUNT -->
+    <div class="mt-5">
+      <div id="sibling-index">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+
+      <div id="sibling-count" class="mt-4">
+        <ul>
+          <li>One</li>
+          <li>Two</li>
+          <li>Three</li>
+          <li>Four</li>
+          <li>Five</li>
+        </ul>
       </div>
     </div>
 

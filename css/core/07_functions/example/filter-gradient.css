@@ -1,0 +1,180 @@
+#blur-effect {
+  & > div {
+    margin-top: 42px;
+  }
+
+  & > div div:nth-of-type(1) {
+    height: 200px;
+    width: 400px;
+    background-color: crimson;
+    filter: blur(26px);
+  }
+
+  & > div div:nth-of-type(2) {
+    height: 200px;
+    width: 400px;
+    background: url("https://images.unsplash.com/photo-1761386017822-0d9d41fd5725?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8&auto=format&fit=crop&q=60&w=500");
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(4px);
+  }
+}
+
+#drop-shadow {
+  & > div div:nth-of-type(1) {
+    height: 200px;
+    width: 400px;
+    background-color: crimson;
+    filter: drop-shadow(6px 8px 0px yellow);
+  }
+
+  & > div div:nth-of-type(2) {
+    height: 200px;
+    width: 400px;
+    background: url("https://images.unsplash.com/photo-1761386017822-0d9d41fd5725?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8&auto=format&fit=crop&q=60&w=500");
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: drop-shadow(6px 8px 0px orange);
+
+    box-shadow: 6px 8px 42px blue;
+  }
+}
+
+/* GRADIENT FUNCTIONS */
+#linear-gradient {
+  & > div div {
+    height: 200px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: crimson;
+  }
+
+  & > div div:nth-of-type(1) {
+    background: linear-gradient(
+      to top,
+      rgb(255, 0, 0) 40%,
+      rgba(0, 0, 255, 0.582) 100%
+    );
+  }
+
+  & > div div:nth-of-type(2) {
+    background: linear-gradient(
+      to right top,
+      rgb(255, 0, 0) 38%,
+      0%,
+      orange 61%,
+      0%,
+      rgba(0, 0, 255, 0.582) 100%
+    );
+  }
+
+  & > div div:nth-of-type(3) {
+    background: linear-gradient(to right, rgb(2, 116, 2), yellow);
+  }
+
+  & > div div:nth-of-type(4) {
+    background: linear-gradient(190deg, rgb(0, 255, 255), rgb(38, 0, 255) 80%);
+  }
+}
+
+#radial-gradient {
+  & > div div {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    border-radius: 12px;
+    background-color: crimson;
+  }
+
+  & > div div:nth-of-type(1) {
+    display: none;
+    background: radial-gradient(circle at top, red 40%, green 100%);
+  }
+
+  & > div div:nth-of-type(2) {
+    overflow: hidden;
+    background: linear-gradient(to top, #1b024a, blue);
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      right: 50%;
+      top: calc(150% - calc(150% + 90%));
+      border-radius: 99999px;
+      filter: blur(58px);
+      opacity: 0.5;
+      transform: translateX(50%);
+      background-color: #ed11fb;
+    }
+  }
+}
+
+.grain {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 300;
+  transform: translateZ(0);
+
+  &::before {
+    content: "";
+    top: -10rem;
+    left: -10rem;
+    width: calc(100% - 20rem);
+    height: calc(100% + 20rem);
+    z-index: 9999;
+    position: fixed;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+    opacity: 0.15;
+    pointer-events: none;
+    -webkit-animation: noise 1s steps(2) infinite;
+    animation: noise 1s steps(2) infinite;
+  }
+
+  @-webkit-keyframes noise {
+    to {
+      transform: translate3d(-7rem, 0, 0);
+    }
+  }
+
+  @keyframes noise {
+    0% {
+      transform: translate3d(0, 9rem, 0);
+    }
+    10% {
+      transform: translate3d(-1rem, -4rem, 0);
+    }
+    20% {
+      transform: translate3d(-8rem, 2rem, 0);
+    }
+    30% {
+      transform: translate3d(9rem, -9rem, 0);
+    }
+    40% {
+      transform: translate3d(-2rem, 7rem, 0);
+    }
+    50% {
+      transform: translate3d(-9rem, -4rem, 0);
+    }
+    60% {
+      transform: translate3d(2rem, 6rem, 0);
+    }
+    70% {
+      transform: translate3d(7rem, -8rem, 0);
+    }
+    80% {
+      transform: translate3d(-9rem, 1rem, 0);
+    }
+    90% {
+      transform: translate3d(6rem, -5rem, 0);
+    }
+    to {
+      transform: translate3d(-7rem, 0, 0);
+    }
+  }
+}

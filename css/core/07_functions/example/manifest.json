@@ -1,0 +1,6 @@
+{
+  "name": "Your App",
+  "display_override": ["window-controls-overlay"],
+  "display": "standalone",
+  "theme_color": "#ffffff"
+}
