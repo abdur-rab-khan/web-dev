@@ -112,6 +112,6 @@ describe("Exception matchers", () => {
   }
 
   test("toThrow matcher without error parameter", () => {
-    expect(throwError).toThrow(/test error/);
+    expect(() => throwError()).toThrow(/test error/);
   });
 });
