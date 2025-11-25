@@ -261,3 +261,19 @@
 ### Mock Functions
 
 - Mock functions, let's us to simulate the behavior of real functions in a controlled way. They are useful for isolating the code being tested and for tracking how functions are called.
+- [`jest.fn(implementation?)`](./examples/src/mock_function.test.js#L3) - Creates a new mock function. The optional `implementation` parameter allows us to provide a custom implementation for the mock function.
+
+  ```javascript
+  const myMock = jest.fn((x) => x + 1);
+
+  test("mock function example", () => {
+    expect(myMock(1)).toBe(2);
+    expect(myMock).toHaveBeenCalled(); // Check if the mock function was called
+    expect(myMock).toHaveBeenCalledWith(1); // Check if it was called with the argument 1
+    expect(myMock).toHaveBeenCalledTimes(1); // Check if it was called exactly once
+
+    expect(myMock.mock.calls[0][0]).toBe(1); // Access the first call's first argument
+    expect(myMock.mock.results[0].value).toBe(2); // Access the first call's return value
+    expect(myMock.mock.calls.length).toBe(1); // Total number of calls
+  });
+  ```
