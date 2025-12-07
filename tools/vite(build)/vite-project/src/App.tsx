@@ -1,15 +1,15 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
 import "./App.css";
-
-// import image from "@/assets/random1.jpg";
 
 function App() {
   const [count, setCount] = useState(0);
 
   const fetchPlease = async () => {
-    const data = await fetch("/api", {
+    const data = await fetch("/api/data", {
       method: "get",
+      cache: "no-cache",
     });
 
     const res = await data.json();
@@ -21,7 +21,7 @@ function App() {
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
-          {/* <img src={viteLogo} className="logo" alt="Vite logo" /> */}
+          <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
@@ -32,6 +32,9 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={fetchPlease} style={{ marginLeft: "4px" }}>
+          Fetch
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -39,13 +42,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <div>
-        <img
-          src={"/images/icons/random.jpg"}
-          style={{ height: "200px", width: "200px" }}
-        />
-        <button onClick={fetchPlease}>Fetch</button>
-      </div>
     </>
   );
 }

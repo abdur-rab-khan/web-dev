@@ -1,5 +1,5 @@
 import App from "../App";
-import { render, renderHook } from "vitest-browser-react"
+import { render } from "vitest-browser-react"
 import { it, expect } from "vitest"
 
 it('Render App.txt', async () => {
