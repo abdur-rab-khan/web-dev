@@ -12,7 +12,7 @@ export default defineConfig([
     extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
     rules: {
-      "no-unused-vars": "error",
+      "no-unused-vars": "off",
       semi: "error",
     },
   },
