@@ -12,6 +12,9 @@
     - [Run the CLI](#run-the-cli)
     - [Popular ESLint Rules](#popular-eslint-rules)
   - [Extend ESLint](#extend-eslint)
+    - [Custom Rules](#custom-rules)
+    - [Methods return by `create()` function](#methods-return-by-create-function)
+    - [Context Reporting `context.report()`](#context-reporting-contextreport)
 
 ## Core Concepts
 
@@ -231,3 +234,136 @@
 
 - **_ESLint_** allows us to plug third-party plugins and shareable configurations to extend its functionality, it also allows us to create our own custom rules and plugins to enforce specific coding standards for our projects.
 - **_Plugins_** let's us to add new rules or configure existing rules to fit our project's needs, there are some situations where we might want to use third-party plugins (`eslint-plugin-react`, `eslint-plugin-node`, etc.) to enforce best practices for specific frameworks or libraries.
+
+### Custom Rules
+
+- **_ESLint_** allows us to create our own custom rules to make our own coding standards.
+- **Schema:** A custom rule file defines a rule as a module that exports an object with the following properties:
+
+  - **`meta`**: An object that contains metadata about the rules, such as its type, documentation, and schema for options.
+
+    - **`type`**: The type of rule (e.g., `problem`, `suggestion`, `layout`).
+    - **`code`**: An optional string (**`code`**, **`whitespace`**) that have to specify if we are using `fix` function to auto-fix the issues.
+    - **`messages`**: An object that contains message templates for reporting issues. Each key is a message ID which we use in `context.report()`. We can access data passed to the report method `data: {}` using placeholders in the message template `{{ key }}`.
+    - **`docs`**: An object that contains documentation of the rules, such as its `description`, `recommended` status.
+    - **`fixable`**: `"code"` or `"whitespace"` if the rule is fixable.
+    - **`hasSuggestions`**: `true` if the rule provides suggestions.
+
+  - **`create()`**: A function that takes a context and return an object with methods that calls to traverse the AST nodes (Abstract Syntax Tree) and define the logic of the rule.
+
+### Methods return by `create()` function
+
+- The `create()` function returns an object where each key is a method name corresponding to specific AST node types, and the value is a function that defines the behavior when that node type is encountered during traversal.
+- Here are some commonly used methods that can be returned by the `create()` function:
+
+  - **Identifier**
+    This method is called when an `Identifier` node is encountered in the AST. It can be used to analyze variable names, function names, etc.
+
+    ```javascript
+    create(context) {
+      return {
+        Identifier(node) {
+          if(node.name === "forbiddenName") {
+            context.report({
+              node,
+              message: "The identifier 'forbiddenName' is not allowed.",
+            });
+          }
+        },
+      };
+    }
+    ```
+
+  - **VariableDeclaration**
+
+    - This method is called when a `VariableDeclaration` node is encountered. It can be used to analyze variable declarations (e.g., `var`, `let`, `const`).
+
+      ```javascript
+      create(context) {
+        return {
+          VariableDeclaration(node) {
+            if(node.kind === "var") {
+              context.report({
+                node,
+                message: "Use 'let' or 'const' instead of 'var'.",
+              });
+            }
+          },
+        };
+      }
+      ```
+
+  - **FunctionDeclaration**
+
+    - This method is called when a `FunctionDeclaration` node is encountered. It can be used to analyze function declarations.
+
+      ```javascript
+      create(context) {
+        return {
+          "FunctionDeclaration[params.length>3]": function(node){
+            context.report({
+              node,
+              message: "Function has more than 3 parameters, consider refactoring.",
+            });
+          }
+        };
+      }
+      ```
+
+### Context Reporting `context.report()`
+
+- The `context.report()` method is used within custom ESLint rules to report issues found in the code being analyzed.
+
+- **Parameters:**
+
+  - **`node`**: The AST node where the issue was found.
+  - **`messages`**: A string that describes the issue. In messages
+  - **`data`**: An optional object that can be used to provide additional information for the message.
+  - **`fix`**: An optional function that can be used to provide automatic fixes for the reported issue.
+  - **`suggestions`**: An optional array of suggestion objects that provide alternative fixes when reporting an issue.
+  - **`messageId`**: An optional string that corresponds to a message defined in the `meta.messages` object of the rule. Both `message` and `messageId` cannot be used together.
+
+- **Example:**
+
+  ```javascript
+  module.export = {
+    meta: {
+      type: "problem",
+      docs: {
+        message: {
+          noEval: "The use of 'eval()' is not allowed.",
+        }
+        description: "Disallow the use of 'eval()'",
+        recommended: true,
+      },
+      fixable: "code",
+    },
+    create(context) {
+      return {
+        CallExpression(node) {
+          if (node.callee.name === "eval") {
+            context.report({
+              node,
+              message: "The use of 'eval()' is not allowed.",
+              messageId: "noEval",
+              data: {
+                name: "eval",
+              },
+              fix: function (fixer) {
+                return fixer.replaceText(node, "/* eval removed */");
+              },
+              suggestions: [
+                {
+                  desc: "Consider using safer alternatives to 'eval()'.",
+                  fix: function (fixer) {
+                    return fixer.replaceText(node, "/* safer alternative */");
+                  },
+                },
+              ],
+            });
+          }
+        },
+      };
+    },
+  };
+  ```
