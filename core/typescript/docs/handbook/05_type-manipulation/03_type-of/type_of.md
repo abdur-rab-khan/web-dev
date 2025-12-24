@@ -1,6 +1,6 @@
 # KeyOf Type Operator
 
-> As we know that `typeof` operator in JavaScript returns the type of a variable. Similarly, in TypeScript, `keyof` operator is used to get the keys of a type. `typeof` is used to get the type of a variable.
+> As we know that `typeof` operator in JavaScript returns the type of a variable. Similarly, in TypeScript, `keyof` operator is used to get the keys of a type. `typeof` is used to get the type of a variable, function, or property.
 
 ## Example
 

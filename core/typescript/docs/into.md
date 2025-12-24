@@ -9,16 +9,17 @@
     - [1. `compilerOptions`](#1-compileroptions)
       - [a. `target`](#a-target)
       - [b. `module`](#b-module)
-      - [c. `outDir`](#c-outdir)
-      - [d. `rootDir`](#d-rootdir)
-      - [e. `lib`](#e-lib)
-      - [f. `moduleResolution`](#f-moduleresolution)
+      - [c. `moduleResolution`](#c-moduleresolution)
+      - [d. `outDir`](#d-outdir)
+      - [e. `rootDir`](#e-rootdir)
+      - [f. `lib`](#f-lib)
       - [g. `strict`](#g-strict)
       - [h. `code - quality / error detection`](#h-code---quality--error-detection)
-      - [i. \***\*`esModuleInterop`**](#i-esmoduleinterop)
+      - [i. **`esModuleInterop`**](#i-esmoduleinterop)
       - [j. `allowJs`](#j-allowjs)
       - [k. `checkJs`](#k-checkjs)
       - [l. `incremental`](#l-incremental)
+      - [m. `paths`](#m-paths)
     - [2. `watchOptions`](#2-watchoptions)
     - [3. `compileOnSave`](#3-compileonsave)
     - [4. `include/exclude`](#4-includeexclude)
@@ -90,7 +91,23 @@
 
 #### a. `target`
 
-- Specifies the target JavaScript version for the compiled output. Common values include `ES5`, `ES6`/`ES2015`, `ES2016`, `ES2017`, `ES2018`, `ES2019`, `ES2020`, `ES2021`, `ES2022`, and `ESNext`.
+- It specifies the the version of **`JavaScript`** that the **`Typescript`** code will be converted to during compilation.
+- All options comes with different features and compatibility levels, like older versions may not support newer features like `async/await`, `modules`, etc.
+- Common values includes:
+
+  1. `ES6/ES2015`: Introduced **classes**, **modules**, **arrow functions**, **template literals**, and more.
+  2. `ES7/ES2016`: Introduced the **exponentiation operator** (`**`) and **Array.prototype.includes**.
+  3. `ES8/ES2017`: Introduced **async/await**, **Object.values()**, **Object.entries()**, and more.
+  4. `ES9/ES2018`: Introduced **asynchronous iteration**, **Promise.finally()**, and more.
+  5. `ES10/ES2019`: Introduced **Array.prototype.flat()**, **Object.fromEntries()**, and more.
+  6. `ES11/ES2020`: Introduced **optional chaining** (`?.`), **nullish coalescing** (`??`), and more.
+  7. `ES12/ES2021`: Introduced **String.prototype.replaceAll()**, **Promise.any()**, and more.
+  8. `ES13/ES2022`: Introduced **class static blocks**, **top-level await**, and more.
+  9. `ES14/ES2023`: Introduced **Array findLast/findLastIndex**, **Hashbang grammar**, and more.
+  10. `ESNext`: Refers to the latest features that are still in proposal stage or not yet finalized.
+
+- Based on your project requirements and the environment where your code will run, you can choose the appropriate target version.
+
 - Example:
 
   ```json
@@ -105,9 +122,15 @@
 
 #### b. `module`
 
-- Specifies the module system for the compiled output. Common values include `CommonJS`, `ES6`/`ES2015`, `AMD`, `System`, `UMD`, and `ESNext`.
-- It is responsible for determining how modules are handled in the compiled JavaScript code.
-- For example, if you are working on a Node.js project, you might want to set the module to `CommonJS`, while for a front-end project using modern JavaScript, you might choose `ES6` or `ESNext`.
+- It decides how **`import/export`** statements are handled in the compiled **`JavaScript`** code.
+- Common values includes:
+
+  1. `CommonJS`: When wants to use `require` and `module.exports` syntax, commonly used in Node.js applications.
+  2. `ES6/ES2015`: When wants to use native **`import/export`** syntax, commonly used in modern browsers and front-end frameworks.
+  3. `AMD`: When wants to use **Asynchronous Module Definition** format, commonly used in browser-based applications with module loaders like RequireJS.
+  4. `UMD`: When wants to create a module that works in both **`CommonJS`** and **`AMD`** environments.
+  5. `System`: When wants to use the **SystemJS** module loader.
+  6. `ESNext`: When wants to use the latest module features that are still in proposal stage or not yet finalized, such as there we can use `import/export` or other modern module features.
 
 - Example:
 
@@ -119,9 +142,19 @@
   }
   ```
 
-- This configuration will compile your **`Typescript`** code to use the **`CommonJS`** module system, which is commonly used in Node.js applications.
+- This configuration will compile your **`Typescript`** code to use the **`CommonJS`** module system, like when javascript is build it going to use `require` and `module.exports` syntax.
 
-#### c. `outDir`
+#### c. `moduleResolution`
+
+- It specifies how moudles are resolved with in the typescript files, based on the module system you are using.
+- Common values includes:
+
+  1. `node`: When using **`Node.js`** style module resolution, which looks for `node_modules` directories and follows the `package.json` "main" field.
+  2. `classic`: When using **`Typescript`**'s original resolution strategy, which is more straightforward and does not involve `node_modules`.
+  3. `bundler`: When using module resolution strategy optimized for bundlers like Webpack, Rollup, or Parcel.
+  4. `nodenext`: When using **`Node.js`** style module resolution with support for **`ES Modules`** and **`CommonJS`** interop.
+
+#### d. `outDir`
 
 - Specifies the output directory for the compiled JavaScript files. This is useful for keeping your source **`.ts`** files separate from the compiled **`.js`** files.
 
@@ -137,7 +170,7 @@
 
 - This configuration will compile your **`Typescript`** files and place the resulting **`.js`** files in the `dist` directory.
 
-#### d. `rootDir`
+#### e. `rootDir`
 
 - Specifies the root directory of your **`Typescript`** source files. This helps to maintain the directory structure in the output directory.
 
@@ -153,12 +186,14 @@
 
 - This configuration indicates that the root directory for your **`Typescript`** source files is `src`. When you compile your project, the output will maintain the same directory structure within the specified `outDir`.
 
-#### e. `lib`
+#### f. `lib`
 
-- **`lib`** is an array of library that includes build-in Typescript declaration files that provide type information for various JavaScript features and APIs.
-- For example, if you are targeting to build a web application and if you try to use **`DOM`** APIs like `document` or `window`, you need to include the `DOM` library in your **`lib`** array.
+- **Lib** option is a array of library files to be included in the compilation. These library files provide type definitions for various JavaScript features and APIs.
+- Suppose we are working on a web application that needs to interact with the DOM and use modern JavaScript features. In this case, we might want to include the following libraries:
 
-  - If you not include the `DOM` library, the **`Typescript`** compiler will throw an error saying that `document` or `window` is not defined.
+  1. `ES6/ES2015`: Provides type definitions for modern JavaScript features like Promises, arrow functions, classes, etc.
+  2. `DOM`: Provides type definitions for the Document Object Model (DOM) APIs, allowing interaction with HTML elements, events, etc.
+  3. `ESNext`: Provides type definitions for the latest JavaScript features that are still in proposal stage or not yet finalized.
 
 - Example:
 
@@ -166,25 +201,6 @@
   {
     "compilerOptions": {
       "lib": ["ES6", "DOM"]
-    }
-  }
-  ```
-
-#### f. `moduleResolution`
-
-- Specifies how modules are resolved. Common values include `node` (for Node.js-style resolution) and `classic` (for TypeScript's original resolution strategy).
-
-- For `node` module resolution mimics the way Node.js resolves modules, looking for `node_modules` directories and following the `package.json` "main" field.
-- For front-end projects, you might use `classic` resolution, which is more straightforward and does not involve `node_modules`.
-
-  - But today front-end projects also use `node` module resolution because of the popularity of bundlers like Webpack, Rollup, and Parcel that support Node.js-style module resolution.
-
-- Example:
-
-  ```json
-  {
-    "compilerOptions": {
-      "moduleResolution": "node"
     }
   }
   ```
@@ -218,33 +234,15 @@
 
 #### h. `code - quality / error detection`
 
-- **noUsedLocals**: Reports errors on unused local variables.
-- **noUnusedParameters**: Reports errors on unused function parameters.
-- **noImplicitReturns**: Reports errors when not all code paths in a function return a value.
-- **noFallthroughCasesInSwitch**: Reports errors for fallthrough cases in switch statements.
-- **noUncheckedIndexedAccess**: Adds `undefined` to the type of indexed access when accessing an array or object with an index that might be out of bounds.
-- **noPropertyAccessFromIndexSignature**: Disallows accessing properties using an index signature when the property does not exist on the type.
-- **exactOptionalPropertyTypes**: Treats optional properties as being exactly the type specified, rather than including `undefined`.
-- **useUnknownInCatchVariables**: Uses `unknown` instead of `any` for catch clause variables.
--
-- Example:
+| Option Name                  | Description                                                                   | Example                                                                     |
+| ---------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `noImplicitAny`              | Raises an error on expressions and declarations with an implied `any` type.   | `let x:any; // Error if noImplicitAny is true`                              |
+| `noUnusedLocals`             | Raises an error when a local variable is declared but not used.               | `let x = 10; // Error if noUnusedLocals is true`                            |
+| `noUnusedParameters`         | Raises an error when a function parameter is declared but not used.           | `function foo(x) {} // Error if noUnusedParameters is true`                 |
+| `noFallthroughCasesInSwitch` | Raises an error when a switch statement falls through a case without a break. | `switch(x) { case 1: // Error if noFallthroughCasesInSwitch is true }`      |
+| `noImplicitReturns`          | Raises an error when not all code paths in a function return a value.         | `function foo() { if (x) return 1; } // Error if noImplicitReturns is true` |
 
-  ```json
-  {
-    "compilerOptions": {
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "noImplicitReturns": true,
-      "noFallthroughCasesInSwitch": true,
-      "noUncheckedIndexedAccess": true,
-      "noPropertyAccessFromIndexSignature": true,
-      "exactOptionalPropertyTypes": true,
-      "useUnknownInCatchVariables": true
-    }
-  }
-  ```
-
-#### i. \***\*`esModuleInterop`**
+#### i. **`esModuleInterop`**
 
 - Enables interoperability between CommonJS and ES Modules. This allows you to use `import` statements with CommonJS modules that use `module.exports`.
 - For example, if you are using a CommonJS module like `lodash`, you can import it using the following syntax when `esModuleInterop` is enabled:
@@ -300,6 +298,24 @@
   {
     "compilerOptions": {
       "incremental": true
+    }
+  }
+  ```
+
+#### m. `paths`
+
+- The `paths` option in `tsconfig.json` is used to define module path aliases which helps in simplifying import statements and managing module resolution in a more organized way.
+- It allows you to create custom paths for your modules, making it easier to reference them without needing to use long relative paths.
+- Example:
+
+  ```json
+  {
+    "compilerOptions": {
+      "baseUrl": "./src",
+      "paths": {
+        "@components/*": ["components/*"],
+        "@utils/*": ["utils/*"]
+      }
     }
   }
   ```

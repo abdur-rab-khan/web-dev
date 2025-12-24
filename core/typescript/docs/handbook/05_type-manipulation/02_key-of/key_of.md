@@ -36,3 +36,17 @@ const value2 = dict[1]; // valid, because 1 is coerced to "1"
 ```
 
 - Therefore, `keyof Dictionary` results in `string | number`.
+
+## Using keyof with Mapped Types
+
+```typescript
+interface Car {
+  make: string;
+  model: string;
+  year: number;
+}
+
+type CarProperties = {
+  [K in keyof Car]: Car[K];
+};
+```
