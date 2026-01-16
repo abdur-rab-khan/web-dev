@@ -36,17 +36,53 @@
 |                    >> In this phase, the garbage collector goes through the heap memory and              |
 |                       collects all unmarked objects, freeing up memory.                                  |
 |                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
-|                                                                                                          |
++----------------------------------------------+ WHAT IS ROOT +--------------------------------------------+
+|                                                                                                          |      
+| 🟡 The term "root" in the context of garbage collection refers to the starting point from which the      |         
+| garbage collector begins its traversal of the object graph to identify reachable objects. In JavaScript, |      
+| the root typically includes:                                                                             | 
+|                                                                                                          |                                        
+    1️⃣. Global Execution Context:                                                                          |
+|                       >> The global object (e.g., "window" in browsers, "global" in Node.js) and all     |
+|                          variables and functions defined in the global scope.                            |
+|   2️⃣. Local Execution Contexts:                                                                          |
+|                       >> The local variables and parameters of currently executing functions.            |
+|                                                                                                          |                                 
+| These roots serve as entry points for the garbage collector to determine which objects are still in use  |                     
+|  and which can be safely deallocated.                                                                    |                             
+|                                                                                                          |   
 +------------------------------------------------+ THE END +-----------------------------------------------+
+*/
+
+/*
++--------------------------------------+ FUNCTION BEHAVIOR IN JAVASCRIPT +---------------------------------+
+|                                                                                                          |
+| 🟡 In Javascript, There are two types of functions with different behavior.                              |   
+|                                                                                                          | 
+| 1️⃣. "Arrow Function":                                                                                    |                     
+|                       >> Arrow function is similar to regular function, but the difference is in "this"  |
+|                       binding.                                                                           |
+|                       >> Arrow function do have their own "this", they borrow from where they are        |
+|                           defined. It arrow function is defined inside a function they                   |
+|                           borrow this from him.                                                          |
+| 2️⃣. "Regular Function":                                                                                  |
+|                       >> Regular function is a function, this looks left (obj.func_name()), it will      |
+|                       look at from obj, but if it created direct in the code, it will get                |
+|                       from "global/window" this is default behavior.                                     |
+|                       >> But Javascript provide some function to change default behavior.                |
+|                           1. ".call({...value})" It will directly call the function                      |
+|                                   with args as a "this" binding                                          |
+|                           2. ".apply({...value})" It will directly call the function                     |
+|                                   with args as a "this" binding                                          |
+|                           3. ".bind({...value})" It will return a new function with "this" binding       |
+|                                    as provided value.                                                    |
+|                                                                                                          |                                                
++------------------------------------------+ "use strict" MODE +-------------------------------------------+
+|                                                                                                          |
+| 🟡 "use strict" is a way to change the behavior of "this" binding in functions, It makes "this"          |
+|     undefined in functions instead of "global/window".                                                   |
+|                                                                                                          |
++---------------------------------------------------+ END +------------------------------------------------+
 */
 
 /*
@@ -70,8 +106,6 @@
 |    foo();                                                                                                |                 
 |                                                                                                          |                    
 |⭐ How Call Stack and Heap Memory Look Like During Execution:                                             |                                    
-|                                                                                                          |                                
-|                                                                                                          |                      
 |                                                                                                          |                             
 +-----------------------------------------------+ CALL STACK +---------------------------------------------+
 |                                                                                                          |   
@@ -107,43 +141,11 @@
 | +------------------------------------------------------------------------------------------------------+ |
 |                                                                                                          |
 +-----------------------------------------------+ HEAP MEMORY +--------------------------------------------+
-|                                                                                                          |
 |  +------------------+    +------------------------------------------+    +---------------------------+   |
 |  |  foo (function)  |    |  arr = [1, 2, 3, 4, 5]                   |    |  obj = {                  |   |
 |  |  [[Code]]        |    |  Array stored in heap                    |    |    name: 'JavaScript',    |   |
 |  |  [[Scope]]       |    +------------------------------------------+    |    type: 'Programming...' |   |
 |  +------------------+                                                    |  }                        |   |
 |                                                                          +---------------------------+   |
-|                                                                                                          |
 +-----------------------------------------------------+ THE END +------------------------------------------+
-*/
-
-/*
-+--------------------------------------+ FUNCTION BEHAVIOR IN JAVASCRIPT +---------------------------------+
-|                                                                                                          |
-| 🟡 In Javascript, There are two types of functions with different behavior.                              |   
-| 1️⃣. "Arrow Function":                                                                                    |                     
-|                       >> Arrow function is similar to regular function, but the difference is in "this"  |
-|                       binding.                                                                           |
-|                       >> Arrow function do have their own "this", they borrow from where they are        |
-|                           defined. It arrow function is defined inside a function they                   |
-|                           borrow this from him.                                                          |
-| 2️⃣. "Regular Function":                                                                                  |
-|                       >> Regular function is a function, this looks left (obj.func_name()), it will      |
-|                       look at from obj, but if it created direct in the code, it will get                |
-|                       from "global/window" this is default behavior.                                     |
-|                       >> But Javascript provide some function to change default behavior.                |
-|                           1. ".call({...value})" It will directly call the function                      |
-|                                   with args as a "this" binding                                          |
-|                           2. ".apply({...value})" It will directly call the function                     |
-|                                   with args as a "this" binding                                          |
-|                           3. ".bind({...value})" It will return a new function with "this" binding       |
-|                                    as provided value.                                                    |
-|                                                                                                          |                                                
-+------------------------------------------+ "use strict" MODE +-------------------------------------------+
-|                                                                                                          |
-| 🟡 "use strict" is a way to change the behavior of "this" binding in functions, It makes "this"          |
-|     undefined in functions instead of "global/window".                                                   |
-|                                                                                                          |
-+---------------------------------------------------+ END +------------------------------------------------+
 */
