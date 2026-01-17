@@ -55,7 +55,7 @@
 */
 
 /*
-+--------------------------------------+ FUNCTION BEHAVIOR IN JAVASCRIPT +---------------------------------+
++------------------------------------+ FUNCTION BEHAVIOR IN JAVASCRIPT +-----------------------------------+
 |                                                                                                          |
 | 🟡 In Javascript, There are two types of functions with different behavior.                              |   
 |                                                                                                          | 
