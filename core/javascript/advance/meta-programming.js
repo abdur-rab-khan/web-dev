@@ -7,12 +7,12 @@
 |                                                                                                                                          |
 | 🟡 A Proxy in JavaScript is an object that wraps another object (target) that can intercept (or "trap") operations performed on the      |
 | target object, followings are some common traps provided by Proxy:                                                                       |                 
-|   - get: Intercepts property access.                                                                                                     |
-|   - set: Intercepts property assignment.                                                                                                 |
-|   - has: Intercepts the in operator.                                                                                                     |
-|   - deleteProperty: Intercepts property deletion.                                                                                        |
-|   - apply: Intercepts function calls.                                                                                                    |
-|   - construct: Intercepts object instantiation using the new keyword.                                                                    |
+|   - get(target, propertyKey, receiver): Intercepts property access.                                                                      |
+|   - set(target, propertyKey, value, receiver): Intercepts property assignment.                                                           |
+|   - has(target, propertyKey): Intercepts the in operator.                                                                                |
+|   - deleteProperty(target, propertyKey): Intercepts property deletion.                                                                   |
+|   - apply(target, thisArgument, argumentList): Intercepts function calls.                                                                |
+|   - construct(target, argumentList, newTarget): Intercepts object instantiation using the new keyword.                                   |
 | 🟡 It is kind of reverse proxy in the world of servers.                                                                                  |               
 | 🟡 Proxies are useful for various purposes, such as logging, validation, access control, and creating reactive data structures.          |
 | 🟡 Proxy target can be any type of "object", "arrays", "functions", "classes", "etc.                                                     |
