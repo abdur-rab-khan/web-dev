@@ -153,10 +153,40 @@
 |                                                                          Coercion                                                                         |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                           |
+| 🟡 In Javascript, coercion is a process of converting a value from one data type to another. Coercion can be implicit (automatic) or explicit (manual).   |
+| 🟡 Javascript does not perform coercion randomly, it follows specific rules to determine when and how to coerce values based on the context of the        | 
+|     operation.                                                                                                                                            |
 |                                                                                                                                                           |
++-------------------------------------------------------------------+ RULES FOR COERCION +------------------------------------------------------------------+
 |                                                                                                                                                           |
+| 🟡 Coercion is total depends on operands type and operator used in the expression.                                                                        | 
 |                                                                                                                                                           |
+| 🔵 With "+" operator:                                                                                                                                     |
 |                                                                                                                                                           |
+|    1️⃣. If one of the operand is string, it performs concatenation.                                                                                        | 
+|    2️⃣. If left and right operands are number, it performs addition.                                                                                       |
+|                                                                                                                                                           |
+| 🔵 With other Math operators (-, *, /, %, <, >, <=, >=)                                                                                                   |
+|                                                                                                                                                           |
+|    1️⃣. It converts both operands to number type and performs the operation.                                                                               |
+|    2️⃣. If not possible to convert, it results in NaN.                                                                                                     |
+|                                                                                                                                                           |
+| 🔵 With Comparison operators (==, !=):                                                                                                                    | 
+|                                                                                                                                                           |
+|   1️⃣. It converts both operands to same type and then performs the comparison.                                                                            |
+|   2️⃣. If one operand is boolean, other operand is converted to number (true -> 1, false -> 0) before comparison.                                          | 
+|                                                                                                                                                           |
+| 🔵 With Logical operators (&&, ||, !) or (if, while, for):                                                                                                |
+|                                                                                                                                                           |
+|   1️⃣. It converts operands to boolean type and then performs the operation.                                                                               |
+|                                                                                                                                                           |
+| 🔵 With === and !== operators:                                                                                                                            |
+|                                                                                                                                                           |
+|  1️⃣. No coercion is performed, it checks both value and type for equality/inequality.                                                                     |
+|                                                                                                                                                           |
+| ⭐ Note: Checking in Javascript is always run from left to right, so the first operand type is considered for coercion rules.                             |
+| ⭐ Note: Objects are compared by reference, not by value. Two different objects with identical properties are considered unequal.                         |
+| ⭐ Note: Always use === and !== or if NaN check is required use Object.is() method to avoid unexpected coercion results.                                  |
 |                                                                                                                                                           |
 +--------------------------------------------------------------------------+ END +--------------------------------------------------------------------------+
 */
