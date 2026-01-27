@@ -1,4 +1,4 @@
-/*
+/* 
 +-----------------------------------------------------------------------------+ MOTION +------------------------------------------------------------------------------+
 |                                                                                                                                                                     |
 | 🟡 Animation in motion is created by "motion" components, almost every "html & svg" elements can defined with "motion" component. it's similar to normal elem but   |
@@ -38,14 +38,79 @@
 |                                                                                                                                                                     |
 |    🔸 When an element removed from the dom, it instantly removed, So we can use "AnimatePresence" this make element say "until exit animation complete" before      |
 |      removed from the dom.                                                                                                                                          |
-|    ⭐ Key is really important for exit animation, because it help motion to identify which element is removed from the dom.                                         |
+|                                                                                                                                                                     |
+|    ⭐ Important: Element with exit animation must have a unique "key" props, and it must be direct child of "AnimatePresence" component.                            | 
+|                                                                                                                                                                     |
++-----------------------------------------------------------------------------+ KEYFRAME +----------------------------------------------------------------------------+
+|                                                                                                                                                                     |
+| 🟡 In motion, we can create animation with series of values in an array, this is called "keyframe animation", where each value in the array represent a keyframe.   | 
+|                                                                                                                                                                     |
+| 🟡 Motion will automatically distribute the timing of each keyframe evenly across the duration of the animation, but we can customize it with "times" array in      |
+|    transition props.                                                                                                                                                |
+|                                                                                                                                                                     |
+| 🟡 Instead of defining "initial" for initial state, we can directly define using keyframe by setting first value in the array as initial state.                     |
+|                                                                                                                                                                     |
+| 🔵 Wildcard frames                                                                                                                                                  | 
+|                                                                                                                                                                     |
+|         🔵 Wildcard frames is used for holding the animation value at current state, without defining repeating values.                                             |
+|                                                                                                                                                                     |
+| 🔵 Keyframe timing                                                                                                                                                  |
+|                                                                                                                                                                     |
+|        🔵 By default, keyframes are evenly distributed across the animation duration.                                                                               |
+|        🔵 We can customize the timing of each keyframe using the "times" array in the transition prop, where each value ranges from 0 to 1, representing the        |
+|          progress of the animation.                                                                                                                                 |
+|                                                                                                                                                                     |
+| ♦️️ animate={{ scale: [0, 1.2, 0, 1]}, transition: { duration: 3, times: [0, 0.2, 0.5, 1] }}                                                                         |
+|                                                                                                                                                                     |
++-----------------------------------------------------------------------------+ VARIANTS +----------------------------------------------------------------------------+
+|                                                                                                                                                                     |
 |                                                                                                                                                                     |
 |                                                                                                                                                                     |
 |                                                                                                                                                                     |
 +-------------------------------------------------------------------------------+ END +-------------------------------------------------------------------------------+
 */
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { AnimatePresence, motion, stagger } from "motion/react";
+import { useEffect, useState } from "react";
+
+const variant = {
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5 },
+  },
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const list = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      delayChildren: stagger(0.3), // Stagger children by .3 seconds
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: "afterChildren",
+    },
+  },
+};
+
+const item = {
+  hidden: {
+    y: -100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 function Overview() {
   const [isVisible, setIsVisible] = useState(true);
@@ -102,6 +167,64 @@ function Overview() {
             </button>
           </AnimatePresence>
         </div>
+      </div>
+
+      {/* KEY FRAME */}
+      <div className="flex gap-x-4 mt-8">
+        <motion.div
+          animate={{
+            scale: [0, 1.2, 0, 1],
+            borderRadius: [0, 100, 0, 0],
+            rotate: [0, 90, 0, 360],
+          }}
+          className="h-20 w-20 rounded-lg bg-blue-400"
+        />
+
+        <motion.circle
+          height={80}
+          width={80}
+          cx={500}
+          animate={{
+            cx: [null, 100, 200],
+            transition: { duration: 3, times: [0, 0.2, 1] },
+          }}
+          className={"text-blue bg-blue-500"}
+        />
+      </div>
+
+      {/* VARIANTS */}
+      <div className="mt-8 flex gap-x-2">
+        {/*  VARIANTS ARE USEFUL FOR REUSABILITY  */}
+        <motion.div
+          variants={variant}
+          initial="hidden"
+          animate="visible"
+          className="h-20 w-20 bg-green-500 rounded-lg"
+        />
+        <motion.div
+          variants={variant}
+          initial="hidden"
+          animate="visible"
+          className="h-20 w-20 bg-yellow-500 rounded-lg"
+        />
+
+        {/* VARIANTS ARE ALSO USEFUL FOR PROPAGATION FROM PARENT TO CHILDREN */}
+        <motion.ul
+          variants={list}
+          initial="hidden"
+          whileInView={"visible"}
+          className="ml-3"
+        >
+          {Array(4)
+            .fill(0)
+            .map((_, idx) => (
+              <motion.li
+                key={idx}
+                variants={item}
+                className="h-10 w-52 bg-red-500 not-first:mt-2 rounded-md"
+              />
+            ))}
+        </motion.ul>
       </div>
     </div>
   );
