@@ -64,13 +64,76 @@
 |                                                                                                                                                                     |
 +-----------------------------------------------------------------------------+ VARIANTS +----------------------------------------------------------------------------+
 |                                                                                                                                                                     |
+| 🟡 In motion, As we know that for animating single element we can use "animate" props, but in motion it's possible to orchestrate animation (multiple elements)     |
+|    together by propagating through DOM tree or reusing same animation. This is done by using "variants", where we can define multiple animation states              |
 |                                                                                                                                                                     |
+| 🟡 Variants is simply an object that contains named sets of animations states, each state is also an object defining the target properties for that state, So we    |
+|     when animation applied to parent, it will automatically propagate to children elements that also defined with same variant names.                               |
+|                                                                                                                                                                     |
+| 🟡 This is useful for reusability, where we can define variants once and use it across multiple components.                                                         |
+|                                                                                                                                                                     |
+| 🟡 This is also useful for orchestrating complex animations involving multiple elements, where we can control the animation flow from a single parent component.    |
+|                                                                                                                                                                     |
+| 🟡 Variants provides much more control over the animation flow like "delayChildren", "staggerChildren", "when" etc. to define how and when the children's animation | 
+|  should occur relative to the parent's animation, using transition, By default, children's animation start simultaneously with parent's animation.                  |
+|                                                                                                                                                                     |
+| ⭐ The key point is that both parent and child must defined the same variant names to enable propagation.                                                           |
+|                                                                                                                                                                     |
+| ➡️ Dynamic Variants                                                                                                                                                 |
+|                                                                                                                                                                     |
+| 🔵 Variants can also be defined as function that return an object and passing single argument through "custom" props, this is useful for creating dynamic variants  |
+|     based on different conditions.                                                                                                                                  |
+|                                                                                                                                                                     |
+| 🔶 Example:                                                                                                                                                         |
+|                                                                                                                                                                     |
+|  const boxVariant = {                                                                                                                                               |
+|    visible: (customValue) => ({                                                                                                                                     |
+|      opacity: 1,                                                                                                                                                    |
+|      scale: customValue,                                                                                                                                            |
+|      transition: { duration: 0.5 },                                                                                                                                 |
+|    }),                                                                                                                                                              |
+|    hidden: {                                                                                                                                                        |
+|      opacity: 0,                                                                                                                                                    |
+|      scale: 0,                                                                                                                                                      |
+|      transition: { duration: 0.5 },                                                                                                                                 |
+|    },                                                                                                                                                               |
+|  };                                                                                                                                                                 |
+|                                                                                                                                                                     |
+|  <motion.div                                                                                                                                                        |
+|    variants={boxVariant}                                                                                                                                            |
+|    custom={1.5} // Pass custom value to variant function                                                                                                            |
+|    initial="hidden"                                                                                                                                                 |
+|    animate="visible"                                                                                                                                                |
+|    className="box"                                                                                                                                                  |
+|  />                                                                                                                                                                 |
+|                                                                                                                                                                     |
++------------------------------------------------------------------------+ ANIMATION CONTROLS +-----------------------------------------------------------------------+
+|                                                                                                                                                                     |
+| 🟡 90% of the time, using "animate" props is sufficient for animating elements in motion, but in some cases we may need more control over the animation flow, such  |
+|    as starting, stopping, or sequencing animations based on user interactions or other events. In such cases, we can use "animation controls" provided by motion.   |
+|                                                                                                                                                                     |
+| 🟡 Animation controls allow us to programmatically start, stop, and sequence animations on motion components, giving us more flexibility and control over the       |
+|    animation behavior.                                                                                                                                              |
+|                                                                                                                                                                     |
+| 🟡 We can create animation controls using the "useAnimation" hook, which returns an animation controls object that we can use to start and stop animations.         |
+|                                                                                                                                                                     |
+| 🟡 We can also use the "animate" function from "motion" library to create more complex animations outside of React components, this is useful for animating         |
+|    elements based on non-React events or conditions.                                                                                                                |
 |                                                                                                                                                                     |
 |                                                                                                                                                                     |
 +-------------------------------------------------------------------------------+ END +-------------------------------------------------------------------------------+
 */
-import { AnimatePresence, motion, stagger } from "motion/react";
+import {
+  animate as motionAnimate,
+  AnimatePresence,
+  motion,
+  stagger,
+  useAnimate,
+  useMotionValue,
+  useTransform,
+} from "motion/react";
 import { useEffect, useState } from "react";
+import Container from "../layout/Container";
 
 const variant = {
   visible: {
@@ -97,6 +160,7 @@ const list = {
     opacity: 0,
     transition: {
       when: "afterChildren",
+      delayChildren: stagger(0.1),
     },
   },
 };
@@ -115,8 +179,22 @@ const item = {
 function Overview() {
   const [isVisible, setIsVisible] = useState(true);
 
+  const count = useMotionValue(0);
+  const round = useTransform(() => Math.round(count.get()));
+  const [scope, animate] = useAnimate();
+
+  useEffect(() => {
+    const controls = motionAnimate(count, 100, {
+      duration: 2,
+    });
+
+    controls.speed = 2; // Double the speed
+
+    return () => controls.stop();
+  }, [count]);
+
   return (
-    <div className="flex flex-col gap-y-3">
+    <Container title="Overview">
       <motion.section
         initial={{
           filter: "blur(10px)",
@@ -179,17 +257,6 @@ function Overview() {
           }}
           className="h-20 w-20 rounded-lg bg-blue-400"
         />
-
-        <motion.circle
-          height={80}
-          width={80}
-          cx={500}
-          animate={{
-            cx: [null, 100, 200],
-            transition: { duration: 3, times: [0, 0.2, 1] },
-          }}
-          className={"text-blue bg-blue-500"}
-        />
       </div>
 
       {/* VARIANTS */}
@@ -209,24 +276,49 @@ function Overview() {
         />
 
         {/* VARIANTS ARE ALSO USEFUL FOR PROPAGATION FROM PARENT TO CHILDREN */}
-        <motion.ul
-          variants={list}
-          initial="hidden"
-          whileInView={"visible"}
-          className="ml-3"
-        >
-          {Array(4)
-            .fill(0)
-            .map((_, idx) => (
-              <motion.li
-                key={idx}
-                variants={item}
-                className="h-10 w-52 bg-red-500 not-first:mt-2 rounded-md"
-              />
-            ))}
-        </motion.ul>
+        <AnimatePresence>
+          {isVisible && (
+            <motion.ul
+              variants={list}
+              initial="hidden"
+              whileInView={"visible"}
+              exit={"hidden"}
+              className="ml-3 p-2"
+            >
+              {Array(4)
+                .fill(0)
+                .map((_, idx) => (
+                  <motion.li
+                    key={idx}
+                    variants={item}
+                    className="h-10 w-52 bg-red-500 not-first:mt-2 rounded-md"
+                  />
+                ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+
+      <ul ref={scope} className="mt-8 flex flex-col gap-y-2">
+        {Array(3)
+          .fill(0)
+          .map((_, idx) => (
+            <li
+              key={idx}
+              className="h-10 w-52 bg-purple-500 rounded-md"
+              onClick={() => {
+                animate(
+                  `li:nth-child(${idx + 1})`,
+                  { scale: [1, 1.5, 1], rotate: [0, 360] },
+                  { duration: 1 },
+                );
+              }}
+            />
+          ))}
+      </ul>
+
+      <motion.pre className="mt-8">{round}</motion.pre>
+    </Container>
   );
 }
 
