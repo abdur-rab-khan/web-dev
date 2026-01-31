@@ -29,14 +29,5 @@
 | 9️⃣. Reflect.ownKeys(obj): This method returns an array of all own property keys (including non-enumerable and symbol properties) of         |
 |                            the object.                                                                                                      |
 |                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
 +-------------------------------------------------------------------+ END +-------------------------------------------------------------------+
 */
