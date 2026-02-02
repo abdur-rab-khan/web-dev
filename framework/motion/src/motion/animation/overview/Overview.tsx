@@ -133,7 +133,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useEffect, useState } from "react";
-import Container from "../layout/Container";
+import Container from "../../../components/layout/Container";
 
 const variant = {
   visible: {
