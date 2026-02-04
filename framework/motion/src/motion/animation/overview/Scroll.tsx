@@ -3,20 +3,23 @@
 |                                                                                                                                                                  |
 | 🟡 There are two main types of scroll animations:                                                                                                                |
 |                                                                                                                                                                  |
-|    1. Scroll Triggered Animations: In these animations, elements animate when they enter or exit the viewport as the user scrolls.                               |
-|                                    Common props used: `whileInView`, `viewport`, `initial`.                                                                      |
-|                                    Example: Often used to build fade-in effects, lazy loading content, or parallax scrolling effects.                            |  
+|    1. Scroll Triggered Animations: In these animations, elements animate when they enter or exit from the viewport as the user scrolls.                          |
+|                                                                                                                                                                  |
+|       🔷 Common props used: `whileInView`, `viewport`, `initial`.                                                                                                |
+|       🔷 Example: Often used to build fade-in effects, lazy loading content, or parallax scrolling effects.                                                      |
 |                                                                                                                                                                  |
 |    2. Scroll-Linked Animations: In these animations, we directly link any element scroll position to animate elements on the page.                               |
-|                                 Common hooks used: `useScroll`, `useTransform`.                                                                                  |
-|                                 Example: Creating scroll progress bars, parallax effects, or animating elements based on scroll position.                        |
+|                                                                                                                                                                  |
+|       🔷 Common hooks used: `useScroll`, `useTransform`.                                                                                                         |
+|       🔷 Example: Creating scroll progress bars, parallax effects, or animating elements based on scroll position.                                               |
 |                                                                                                                                                                  |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                             SCROLL TRIGGERED ANIMATIONS PROPS                                                                    |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                                  |
 | 1. whileInView: Defines the animation state when the element is in the viewport.                                                                                 |
-| 2. viewport: Configures how the element's visibility is determined.                                                                                              | 
+|                                                                                                                                                                  |
+| 2. viewport: Configures how the element's visibility is determined.                                                                                              |
 |              1. amount: Specifies how much of the element should be visible to trigger the animation (e.g., 0.5 for 50%).                                        |
 |              2. root: By default whileInView triggers based on the viewport. But by passing a ref to root, you can set a different scrollable container.         |
 |                                                                                                                                                                  |
@@ -24,21 +27,74 @@
 |                                                                SCROLL LINKED ANIMATIONS PROPS                                                                    |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                                  |
-| - In scroll-linked animations, we won't animate using props like whileInView. Instead, we use hooks to track scroll position and link it to animations.          |
+| - In scroll-linked animations, We use hooks (useScroll) to track scroll position an element (default is viewport) based on the position we animate things.       |
+|   Motion provides different hooks to transform those values. Such as converting scroll position into CSS Style ("useTransform") or adding smooth transition      |
+|   using ("useSpring").                                                                                                                                           |
+|                                                                                                                                                                  |
 | - Let's see the common hooks used to achieve scroll-linked animations:                                                                                           |
 |                                                                                                                                                                  |
 |   1. useScroll: A hook that provides motion values representing the scroll position. It can track scroll on the entire page or within a specific container.      |
 |                                                                                                                                                                  |
-|               ⭐ Return values:                                                                                                                                  |
-|                             1. scrollY / scrollX: Motion values representing the vertical/horizontal scroll position in pixels.                                  |
-|                             2. scrollYProgress / scrollXProgress: Motion values representing the scroll progress as a value between 0 and 1.                     |
+|      ⭕ Return values:                                                                                                                                           |
+|         1. scrollY / scrollX: Motion values representing the vertical/horizontal scroll position in pixels.                                                      |
+|         2. scrollYProgress / scrollXProgress: Motion values representing the scroll progress as a value between 0 and 1.                                         |
 |                                                                                                                                                                  |
-|               ⭐ Arguments (in an object):                                                                                                                       |
-|                             1. 
+|      ⭕ Arguments (in an object):                                                                                                                                |
+|                                                                                                                                                                  |
+|         1. container --> ref: By default motion tracks scroll progress based on browsers viewport scroll, But by passing ref of an element we can update this    |
+|                               to track scroll based on passed ref element scroll progress.                                                                       |
+|                                                                                                                                                                  |
+|         2. target --> ref: Container is about scroll, But when actually start tracking the progress here "target" came by passing element ref it will start      |
+|                            tracking when target element enters in the view port. By default tracks to containers.                                                |
+|                                                                                                                                                                  |
+|         3. axis  --> "x" | "y":                                                                                                                                  |
+|         4. offset -> Array: "Offset": Tells the position where "target", "container" meet to start tracking the scroll progress.                                 |
+|                                       It accepts two arguments within the array, "First" tell about when to start tracking the scroll progress, And second tells |
+|                                       when progress should end.                                                                                                  |
+|                                                                                                                                                                  |
+|           🟨 ["start center", "end end"] --> Start the animation when "target" top meets to the center of the "container", and stop when "target" bottom         | 
+|                                              meets to end of the "container".                                                                                    |
+|                                                                                                                                                                  |
+|           🔷 It accepts "number (0 -> start, 1 -> end, in between also)", "name -> [start, center, end]", "percentage (0%-100%)", "vh, vw", "pixels"             |
+|                                                                                                                                                                  |
+|   2. useTransform: A hook that transform motion value into "mapped value", "CSS style" by combining one or more than one motion values. Can can't directly do    |
+|                    that because it doesn't trigger any re-rendering.                                                                                             |
+|                                                                                                                                                                  |
+|        ⭐ It can be used with two ways.                                                                                                                          |
+|                                                                                                                                                                  |
+|           1. Transform function: useTransform(() => motionValue.get() * 2) // Any Changes on Motion Value --> Every time transform value re-calculate and return | 
+|                                                                                                                                                                  |
+|           2. Value mapping: useTransform(motionValue, [start_range, end_range], ["0%", "100%"]) // Means it will transform value with range and mapped with      |
+|                                                                                                 // 0%-100%                                                       |
+|              🟡 Single motion value can be transformed into multiple one, It can transform into "CSS Style", "number", "color", or other string.                 |
+|                                                                                                                                                                  |
+|                 const { opacity, scale, filter } = useTransform(                                                                                                 |
+|                                                           offset,                                                                                                |
+|                                                           [100, 600],                                                                                            |
+|                                                           {                                                                                                      |
+|                                                             opacity: [1, 0.4],                                                                                   |
+|                                                             scale: [1, 0.6],                                                                                     |
+|                                                              filter: ["blur(0px)", "blur(10px)"],                                                                |
+|                                                           }                                                                                                      |
+|                                                     )                                                                                                            |
+|                                                                                                                                                                  |
+|             ⭐ By passing "clamp: false" --> It can map (calculate) also after reaching then input range.                                                        |
+|             ⭐ "ease: ["ease_str", "ease function"] --> Doing easing for smoothness                                                                              |
 |                                                                                                                                                                  |
 |                                                                                                                                                                  |
+|  3. useMotionValueEvent: By default changes on motion value don't trigger any react re-rendering to update any state based on motion value we have to two        | 
+|                          approach:                                                                                                                               |
 |                                                                                                                                                                  |
+|            1. "motionValue.on(["change", "animationStart", "animationCancel", "animationComplete"], handlerFunction)"                                            |
+|            2. "useMotionValueEvent(motionValue ,["change", "animationStart", "animationCancel", "animationComplete"], handlerFunction)"                          |
 |                                                                                                                                                                  |
+|            const { scrollY } = useScroll()                                                                                                                       | 
+|            const [scrollDirection, setScrollDirection] = useState("down")                                                                                        | 
+|                                                                                                                                                                  | 
+|            useMotionValueEvent(scrollY, "change", (current) => {                                                                                                 | 
+|               const diff = current - scrollY.getPrevious()                                                                                                       | 
+|               setScrollDirection(diff > 0 ? "down" : "up")                                                                                                       | 
+|            })                                                                                                                                                    |
 |                                                                                                                                                                  |
 +------------------------------------------------------------------------------+ END +-----------------------------------------------------------------------------+
 */
@@ -284,29 +340,38 @@ const HorizontalScrollExample = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start center", "end end"],
   });
 
-  const x = useTransform(
+  const scrollProgress = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", `-${(data.length - 1) * 400}px`],
+    ["0px", `-${(data.length - 2) * 384}px`],
   );
+  const smoothPrograss = useSpring(scrollProgress);
 
   return (
     <div ref={containerRef} style={{ height: "300vh" }}>
       <div
         style={{
           position: "sticky",
-          top: 0,
+          top: 100,
           height: "100vh",
+          backgroundColor: "yellow",
           overflow: "hidden",
         }}
       >
-        <motion.div style={{ x, display: "flex", gap: 20 }}>
+        <motion.div style={{ x: smoothPrograss, display: "flex", gap: 20 }}>
           {data.map((item) => (
-            <div key={item.title} style={{ flexShrink: 0, width: 400 }}>
-              {item.title}
+            <div
+              key={item.title}
+              style={{ flexShrink: 0, width: 384, height: 461 }}
+              className="relative rounded-lg overflow-hidden"
+            >
+              <img src={item.src} className="size-full object-fit" />
+              <span className="absolute bottom-6 left-12 text-4xl font-semibold">
+                {item.title}
+              </span>
             </div>
           ))}
         </motion.div>
