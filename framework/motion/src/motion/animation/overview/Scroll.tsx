@@ -48,6 +48,7 @@
 |                            tracking when target element enters in the view port. By default tracks to containers.                                                |
 |                                                                                                                                                                  |
 |         3. axis  --> "x" | "y":                                                                                                                                  |
+|                                                                                                                                                                  |
 |         4. offset -> Array: "Offset": Tells the position where "target", "container" meet to start tracking the scroll progress.                                 |
 |                                       It accepts two arguments within the array, "First" tell about when to start tracking the scroll progress, And second tells |
 |                                       when progress should end.                                                                                                  |
