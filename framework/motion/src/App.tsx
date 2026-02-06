@@ -1,9 +1,11 @@
-import Animation from "./motion/animation";
+import Animation from "./motion/overview";
+import UseAnimate from "./motion/motion-hooks/UseAnimate";
 
 function App() {
   return (
     <main>
-      <Animation />
+      {/* <Animation /> */}
+      <UseAnimate />
     </main>
   );
 }

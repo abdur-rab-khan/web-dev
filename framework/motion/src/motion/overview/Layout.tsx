@@ -41,7 +41,7 @@
 */
 
 import { motion, AnimatePresence } from "motion/react";
-import Container from "../../../components/layout/Container";
+import Container from "../../components/Container";
 import { useEffect, useState } from "react";
 
 const initial = ["#ff0088", "#dd00ee", "#9911ff", "#0d63f8"];

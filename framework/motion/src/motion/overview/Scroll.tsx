@@ -108,13 +108,13 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import Container from "../../../components/layout/Container";
-import image1 from "../../../assets/image1.jpg";
-import image2 from "../../../assets/image2.jpg";
-import image3 from "../../../assets/image3.jpg";
-import image4 from "../../../assets/image4.jpg";
-import image5 from "../../../assets/image5.jpg";
-import image6 from "../../../assets/image6.jpg";
+import Container from "../../components/Container";
+import image1 from "../../assets/image1.jpg";
+import image2 from "../../assets/image2.jpg";
+import image3 from "../../assets/image3.jpg";
+import image4 from "../../assets/image4.jpg";
+import image5 from "../../assets/image5.jpg";
+import image6 from "../../assets/image6.jpg";
 
 // SCROLL TRIGGER EAMPLE - 1
 const ScrollTriggerExample = () => {

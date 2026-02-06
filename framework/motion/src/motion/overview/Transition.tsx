@@ -42,17 +42,47 @@
 |                                                                                                                                                                  |
 +------------------------------------------------------------------------------+ END +-----------------------------------------------------------------------------+
 */
-import React, { useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion, stagger } from "motion/react";
-import Container from "../../../components/layout/Container";
+import Container from "../../components/Container";
 
-const text =
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+const TextBlurEffect = () => {
+  const text =
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
+  return (
+    <div className="w-full min-h-80 flex justify-center items-center">
+      <motion.p
+        initial="initial"
+        whileInView="animate"
+        transition={{ delayChildren: stagger(0.035) }}
+        className="text-center text-2xl"
+      >
+        {text.split(" ").map((t, idx) => (
+          <motion.span key={idx} custom={idx} variants={textVariant}>
+            {t} &nbsp;
+          </motion.span>
+        ))}
+      </motion.p>
+    </div>
+  );
+};
+
+const textVariant = {
+  initial: {
+    opacity: 0,
+    filter: "blur(12px)",
+  },
+  animate: (idx: number) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+  }),
+};
+
+// TRANSITION
 function Transition() {
   const [isOpen1, setIsOpen1] = useState<boolean>(true);
   const [isOpen2, setIsOpen2] = useState<boolean>(true);
-  const [isClicked, setIsClicked] = useState(false);
 
   return (
     <Container title="Transition animation">
@@ -111,42 +141,12 @@ function Transition() {
             {isOpen2 ? "Show" : "Hide"}
           </button>
         </div>
-
-        <div className="shrink-0 h-48 w-48 flex justify-center items-center flex-col gap-y-3 p-2">
-          <motion.button className="w-full rounded-md py-2.5 bg-blue-500">
-            Pay
-          </motion.button>
-        </div>
       </div>
 
-      {/* SEQUENCE ANIMATION */}
-      <div className="w-full min-h-80 flex justify-center items-center">
-        <motion.p
-          initial="initial"
-          animate="animate"
-          transition={{ delayChildren: stagger(0.035) }}
-          className="text-center text-2xl"
-        >
-          {text.split(" ").map((t, idx) => (
-            <motion.span custom={idx} variants={textVarient}>
-              {t} &nbsp;
-            </motion.span>
-          ))}
-        </motion.p>
-      </div>
+      {/* PRACTICAL EXAMPLES */}
+      <TextBlurEffect />
     </Container>
   );
 }
-
-const textVarient = {
-  initial: {
-    opacity: 0,
-    filter: "blur(12px)",
-  },
-  animate: (idx: number) => ({
-    opacity: 1,
-    filter: "blur(0px)",
-  }),
-};
 
 export default Transition;
