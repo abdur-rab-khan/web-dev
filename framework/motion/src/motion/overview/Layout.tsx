@@ -11,7 +11,7 @@
 |                                                                                                                                                                       |
 |   - To make animation between two different layout states we need to add "layout" props to the element we want to animate.                                            | 
 |   - We can customize the animation using "transition" props.                                                                                                          |
-|   - Layout changes can be triggred by changing following properties of the element:                                                                                   |
+|   - Layout changes can be trigged by changing following properties of the element:                                                                                   |
 |        1. size (width, height)                                                                                                                                        |
 |        2. position (x, y)                                                                                                                                             |
 |        3. number of grid columns/rows (if using grid layout)                                                                                                          |
@@ -19,7 +19,6 @@
 |   - To make layout animation work properly, animation should be done using "className" or "style" props. Not by "animate", "initial" or "whileXXX" props.             |
 |                                                                                                                                                                       |
 | 🔴 LayoutId props:                                                                                                                                                    |
-|                                                                                                                                                                       |
 |  - By using same "layoutId" value on two different elements, Motion will automatically animate new element out from the old element's position and when the new       |
 |    element is removed from the DOM, it will animate back to the old element's position.                                                                               |
 |  - We can use "AnimatePresence" component to animate the entry and exit of the element with "layoutId".                                                               |

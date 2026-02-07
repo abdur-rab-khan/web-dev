@@ -53,7 +53,7 @@
 | 🔵 Wildcard frames                                                                                                                                                  | 
 |                                                                                                                                                                     |
 |         🔵 Wildcard frames is used for holding the animation value at current state, without defining repeating values.                                             |
-|         🔵 Example: animate={{ scale: [0, 1.2, null, 0] }} // It's equivelent to animate={{ scale: [0, 1.2, 1.2, 0] }}
+|         🔵 Example: animate={{ scale: [0, 1.2, null, 0] }} // It's equivalent to animate={{ scale: [0, 1.2, 1.2, 0] }}
 |                                                                                                                                                                     |
 | 🔵 Keyframe timing                                                                                                                                                  |
 |                                                                                                                                                                     |
