@@ -66,7 +66,7 @@
 */
 
 import { useState } from "react";
-import { motion, useAnimate, animate } from "motion/react";
+import { motion, useAnimate } from "motion/react";
 import type { Variants } from "motion/react";
 
 // PAY BUTTON
