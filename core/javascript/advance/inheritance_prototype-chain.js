@@ -143,6 +143,7 @@
 |    4️⃣. instanceof operator: Tests whether an object is an instance of a specific constructor or class by checking its prototype chain.       |
 |    5️⃣. isPrototypeOf(): Checks if an object exists in another object's prototype chain.                                                      |
 |    6️⃣. hasOwnProperty(): Checks if an object has a specific property as its own (not inherited) property.                                    |
+|    7️⃣. Object.getOwnPropertyNames(obj): Returns an array of all properties (enumerable or not) found directly on the given object.           |
 |                                                                                                                                              |
 +-------------------------------------------------------------------+ END +--------------------------------------------------------------------+
 */
