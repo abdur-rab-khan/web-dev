@@ -4,10 +4,12 @@
 | 🟡 In Javascript inheritance is only achieved by using prototype chain, it's bit confusing but we have to know unlike other                  |
 |    programming languages in Javascript classes are not means as blueprint, it's just a "syntax sugar" for creating object with               |
 |    prototype chaining behind the scene.                                                                                                      |
+|                                                                                                                                              |
 | 🟡 Every object in Javascript has "[[Prototype]]" and that "[[Prototype]]" has there own, and this chain continue until we reach             |
 |    to "null". This is called "Prototype Chain".                                                                                              |
 |                                                                                                                                              |
 | ⭐ When we try to access a property of an object, Javascript follow the following steps:                                                     |
+|                                                                                                                                              |
 |    1️⃣. It first look for that property in the object itself                                                                                  |
 |    2️⃣. If it doesn't find it there, it look for that property in the object's [[Prototype]]                                                  |
 |    3️⃣. If it doesn't find it there, it look for that property in the [[Prototype]] of the object's [[Prototype]]                             |
@@ -27,7 +29,9 @@
 +----------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                              |
 | 🟡 In Javascript event object has their own "prototype", and this chain goes until we reach to "null".                                       |
+|                                                                                                                                              |
 | 🔵 Let's see the prototype chain of an event object:                                                                                         |
+|                                                                                                                                              |
 |    const btn = document.querySelector('button');                                                                                             |
 |    console.log(btn.__proto__); // HTMLButtonElement.prototype                                                                                |
 |    console.log(btn.__proto__.__proto__); // HTMLElement.prototype                                                                            |
@@ -39,19 +43,22 @@
 |                                                                                                                                              |
 | ⭐ One of the most interesting thing about prototype chain is that, unlike other programming languages, where if any new object is created,  |
 |    it create new copy of the methods and properties of the class, for all new objects.                                                       |
+|                                                                                                                                              |
 | ⭐ But in Javascript, when a new object is created, it creates a new object but the method and properties are not copied, instead the new    |
 |    object get linked to the prototype of the same existing object in the memory. So all the new objects share the same methods and           |
 |    properties in the memory, this is called "prototypal inheritance".                                                                        |
+|                                                                                                                                              |
 | ⭐ In web environment this is very useful, because all the DOM elements can share the same methods and properties without creating new copy  |
 |    for each and every element, this saves a lot of memory.                                                                                   |
-|                                                                                                                                              |
 |                                                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                      HOW CLASSES ARE WORK IN JAVASCRIPT                                                      |
 +----------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                              |
 | 🟡 As I mentioned earlier, classes in Javascript are just "syntax sugar" for creating objects with prototype chaining behind the scene.      |
+|                                                                                                                                              |
 | 🔵 Javascript engine perform 4 things under the hood when "new" keyword is used with a class or constructor function:                        |
+|                                                                                                                                              |
 |    1️⃣. Blank Object Creation: A blank object is created first, In this step always new copy of the object is created in the memory.          |
 |    2️⃣. Prototype Linking: Javascript engine looks for the constructor function's prototype '.prototype' property and that memory address is  |
 |        linked to the newly created object's [[Prototype]], See there is no copying of methods or properties, just linking.                   |
@@ -61,6 +68,7 @@
 |                                                                                                                                              |
 | 🟡 In Javascript class, function behave differently based on typeof them like (arrow function behave differently than normal function)       |
 |    similarly constructor function also behave differently when called with "new" keyword than without "new" keyword.                         |
+|                                                                                                                                              |
 |    1️⃣. With arrow function: Arrow function as class method will not sit in the prototype, instead it will be created in the object itself.   |
 |        So each object will have it's own copy of that method which is memory inefficient.                                                    |
 |    2️⃣. Without "new" keyword: If constructor function is called without "new" keyword, it will behave like normal function and 'this'        |
@@ -88,14 +96,17 @@
 |                                                                                                                                              |
 | 🟡 As we know if we want to access any property of an object, Javascript first look for that property in the object itself, and if doesn't   |
 |    find it there, it look for that prototype chain until it reach to null. This look up in the prototype chain take some time.               |
+|                                                                                                                                              |
 | 🟡 Which can negatively impact the performance this may be significant in performance critical code or in scenarios involving deep prototype |
 |    chains.                                                                                                                                   |
+|                                                                                                                                              |
 | 🟡 To mitigate the performance impact of prototype chain lookups, consider the following best practices:                                     |
 |    1️⃣. hasOwnProperty("key") Check: Use the hasOwnProperty method to check if a property exists directly on the object before accessing it.  |
 |    2️⃣. hasOwn(obj, "key") Check: Use Object.hasOwn(obj, "key") to check if a property exists directly on the object before accessing it.     |
 |    3️⃣. Avoid Deep Prototype Chains: Minimize the depth of prototype chains to reduce the number of lookups required to access properties.    |
 |    4️⃣. Caching Frequently Accessed Properties: Cache frequently accessed properties in local variables to avoid repeated lookups in the      |
 |        prototype chain.                                                                                                                      |
+|                                                                                                                                              |
 |        -- Example:                                                                                                                           |
 |        function getProperty(obj, key) {                                                                                                      |
 |          if (Object.hasOwn(obj, key)) {                                                                                                      |
@@ -111,6 +122,7 @@
 |            return undefined;                                                                                                                 |
 |          }                                                                                                                                   |
 |        }                                                                                                                                     |
+|                                                                                                                                              |
 |    5️⃣. Use Modern JavaScript Features: Utilize modern JavaScript features like classes and modules that can help manage inheritance and      |
 |        prototype chains more effectively.                                                                                                    |
 |        -- Example:                                                                                                                           |
@@ -137,6 +149,7 @@
 +----------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                              |
 | 🟡 Some of the built-in methods related to prototype chain and inheritance in Javascript are:                                                |
+|                                                                                                                                              |
 |    1️⃣. Object.getPrototypeOf(obj): Returns the prototype of the specified object.                                                            |
 |    2️⃣. Object.setPrototypeOf(obj, prototype): Sets the prototype of the specified object to another object or null.                          |
 |    3️⃣. Object.create(prototype, propertiesObject): Creates a new object with the specified prototype and properties.                         |
