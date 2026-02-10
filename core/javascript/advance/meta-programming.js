@@ -1,8 +1,6 @@
 /*
-+-----------------------------------------------------------+ META PROGRAMMING +-----------------------------------------------------------+
-|                                                                                                                                          |
 +------------------------------------------------------------------------------------------------------------------------------------------+
-+----------------------------------------------------------+ PROXY IN JAVASCRIPT +---------------------------------------------------------+
+|                                                             PROXY IN JAVASCRIPT                                                          |
 +------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                          |
 | 🟡 A Proxy in JavaScript is an object that wraps another object (target) that can intercept (or "trap") operations performed on the      |
@@ -17,7 +15,6 @@
 | 🟡 Proxies are useful for various purposes, such as logging, validation, access control, and creating reactive data structures.          |
 | 🟡 Proxy target can be any type of "object", "arrays", "functions", "classes", "etc.                                                     |
 |                                                                                                                                          |   
-|                                                                                                                                          |                               
 |                                                                                                                                          |
 | 🔵 Syntax:                                                                                                                               |                   
 |                                                                                                                                          |
@@ -28,8 +25,8 @@
 |            // Receiver: The proxy or an object that inherits from the proxy.                                                             |                    
 |                                                                                                                                          |               
 |            if(property === "name"){                                                                                                      |
-|                return "Hello, " + Reflect.get(...arguments); // Custom behavior for "name" property                                      |                                            
-|            }                                                                                                                             |       
+|                return "Hello, " + Reflect.get(...arguments); // Custom behavior for "name" property                                      |
+|            }                                                                                                                             | 
 |                                                                                                                                          |
 |            return Reflect.get(...arguments); // Default behavior                                                                         |        
 |        }                                                                                                                                 |       
@@ -38,7 +35,7 @@
 |    const targetObject = {                                                                                                                |             
 |        name: "John",                                                                                                                     |         
 |        age: 30                                                                                                                           |     
-|    };                                                                                                                                    |                                             
+|    };                                                                                                                                    |
 |                                                                                                                                          |
 |    const proxyObject = new Proxy(targetObject, handler);                                                                                 |
 |                                                                                                                                          |
@@ -49,7 +46,7 @@
 |                                                                                                                                          |   
 |                                                                                                                                          |
 +------------------------------------------------------------------------------------------------------------------------------------------+
-+---------------------------------------------------------+ REFLECT IN JAVASCRIPT +--------------------------------------------------------+
+|                                                           REFLECT IN JAVASCRIPT                                                          |
 +------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                          |
 | 🟡 Reflect provides some static methods that correspond to the traps available in Proxy, followings are some common Reflect methods:     |

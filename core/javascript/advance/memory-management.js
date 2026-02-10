@@ -3,7 +3,9 @@
 |                                                                                                          |
 | 🟡 Unlike low level programming languages like "c/c++" where memory management done by                   |
 |       developer it self.                                                                                 |
+|                                                                                                          |
 | 🟡 In Javascript memory management is done by "Garbage Collector" which is part of Javascript.           |
+|                                                                                                          |
 | 🟡 Garbage Collector automatically allocates memory when objects are created and delete when             |
 |       they are no longer used.                                                                           |
 |                                                                                                          |
@@ -22,6 +24,7 @@
 +----------------------------------------+ HOW JAVASCRIPT GC WORKS +---------------------------------------+
 |                                                                                                          |
 |  1️⃣. Memory allocate when variable defined.                                                              |
+|                                                                                                          |
 |  2️⃣. Release with allocated memory no longer needed                                                      |
 |                                                                                                          |
 | ⭐ GARBAGE COLLECTOR WORKS                                                                               |
@@ -42,9 +45,10 @@
 | garbage collector begins its traversal of the object graph to identify reachable objects. In JavaScript, |      
 | the root typically includes:                                                                             | 
 |                                                                                                          |                                        
-    1️⃣. Global Execution Context:                                                                          |
+|   1️⃣. Global Execution Context:                                                                          |
 |                       >> The global object (e.g., "window" in browsers, "global" in Node.js) and all     |
 |                          variables and functions defined in the global scope.                            |
+|                                                                                                          |
 |   2️⃣. Local Execution Contexts:                                                                          |
 |                       >> The local variables and parameters of currently executing functions.            |
 |                                                                                                          |                                 
@@ -65,6 +69,7 @@
 |                       >> Arrow function do have their own "this", they borrow from where they are        |
 |                           defined. It arrow function is defined inside a function they                   |
 |                           borrow this from him.                                                          |
+|                                                                                                          |
 | 2️⃣. "Regular Function":                                                                                  |
 |                       >> Regular function is a function, this looks left (obj.func_name()), it will      |
 |                       look at from obj, but if it created direct in the code, it will get                |
@@ -87,26 +92,26 @@
 
 /*
 +----------------------------------------+ HOW MEMORY LOOKS LIKE +-----------------------------------------+
-|                                                                                                          |                           
-|⭐ CODE EXAMPLE:                                                                                          |                           
+|                                                                                                          |             
+|⭐ CODE EXAMPLE:                                                                                          |
 |    var a = 10;                                                                                           |
-|    const name = "Javascript"                                                                             |                             
-|                                                                                                          |                                             
-|    function foo() {                                                                                      |                                     
-|        const b = 20;                                                                                     |                                                          
+|    const name = "Javascript"                                                                             |
+|                                                                                                          |
+|    function foo() {                                                                                      |
+|        const b = 20;                                                                                     |
 |        const arr = [1, 2, 3, 4, 5];                                                                      |
 |        const obj = {                                                                                     |
-|            name: 'JavaScript',                                                                           |                           
+|            name: 'JavaScript',                                                                           |
 |            type: 'Programming Language'                                                                  |
 |        };                                                                                                |
 |                                                                                                          |
 |        console.log(a, b, arr, obj);                                                                      | 
-|    }                                                                                                     |                     
-|                                                                                                          |    
-|    foo();                                                                                                |                 
-|                                                                                                          |                    
-|⭐ How Call Stack and Heap Memory Look Like During Execution:                                             |                                    
-|                                                                                                          |                             
+|    }                                                                                                     |
+|                                                                                                          |
+|    foo();                                                                                                |
+|                                                                                                          |
+|⭐ How Call Stack and Heap Memory Look Like During Execution:                                             |
+|                                                                                                          |
 +-----------------------------------------------+ CALL STACK +---------------------------------------------+
 |                                                                                                          |   
 | +------------------------------------------------------------------------------------------------------+ |

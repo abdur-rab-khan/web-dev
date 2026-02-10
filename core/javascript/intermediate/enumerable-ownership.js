@@ -3,8 +3,11 @@
 |                                                                                                                                             |
 | 🟡 In JavaScript Object, an enumerable property is a property that tells whether it can be iterated over in loops like for...in,            |
 |  Object.keys(), ...(spread operator) or other methods provided by the object. By default enumerable flag is set to true.                    |
+|                                                                                                                                             |
 | 🟡 We can update the enumerable flag using Object.defineProperty() method.                                                                  |
+|                                                                                                                                             |
 | 🟡 Ownership of a property refers to whether the property is directly present on the object itself or inherited from its prototype chain.   |
+|                                                                                                                                             |
 | 🟡 Javascript provides methods to check whether a property is owned by the object or inherited.                                             |
 |                                                                                                                                             |
 +-----------------------------------------------+ Methods to check enumerability and ownership +----------------------------------------------+
@@ -28,15 +31,6 @@
 |                                                                                                                                             |
 | 9️⃣. Reflect.ownKeys(obj): This method returns an array of all own property keys (including non-enumerable and symbol properties) of         |
 |                            the object.                                                                                                      |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
-|                                                                                                                                             |
 |                                                                                                                                             |
 +-------------------------------------------------------------------+ END +-------------------------------------------------------------------+
 */

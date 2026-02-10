@@ -75,6 +75,7 @@
 |+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                           |
 | 🟡 Objects are collections of key-value pairs, where keys are strings (or Symbols) and values can be of any data type.                                    |
+|                                                                                                                                                           |
 | 🟡 Javascript objects are configurable, meaning we can customize their properties and methods behaviors.                                                  |
 |                                                                                                                                                           |
 | 🔶 There are two types of properties in an object:                                                                                                        |
@@ -113,10 +114,10 @@
 |                                                                                                                                                           |
 | 🟡 Array is a special type of object used to store ordered collections of values. Arrays in JavaScript are dynamic, meaning they can grow and shrink      |
 |    in size.                                                                                                                                               | 
+|                                                                                                                                                           |
 | 🟡 In Javascript, Array can store multiple data types including primitive and non-primitive types.                                                        |
+|                                                                                                                                                           |
 | 🟡 Javascript also provide typed arrays to store specific data types like Int8Array, Float32Array, etc.                                                   |
-|                                                                                                                                                           |
-|                                                                                                                                                           |
 |                                                                                                                                                           |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                               Maps, Sets, WeakMaps, WeakSets                                                              |
@@ -124,16 +125,19 @@
 |                                                                                                                                                           |
 | 🟡 Map is a collection of key-value pairs where keys can be of any data type. It maintains the order of insertion and allows for efficient retrieval of   |
 |    values based on their keys.                                                                                                                            |
+|                                                                                                                                                           |
 | 🟡 Set is a collection of unique values, meaning it does not allow duplicate entries. It is useful for storing distinct items and performing set          |
 |    operations like union, intersection, and difference.                                                                                                   |
+|                                                                                                                                                           |
 | 🟡 WeakMap is similar to Map but with weakly held keys, meaning that if there are no other references to a key object, it can be garbage collected.       |
+|                                                                                                                                                           |
 | 🟡 WeakSet is similar to Set but with weakly held objects, meaning that if there are no other references to an object in the WeakSet, it can be garbage   |
 |    collected. weakmap, weakset are commonly used in dom manipulation to prevent memory leaks.                                                             |
 |                                                                                                                                                           |
 | Example:                                                                                                                                                  |
 |                                                                                                                                                           |
-|       const btn = document.getElementById("buyBtn");                                                                                                      |                               
-|      // private + auto cleanup                                                                                                                            |                         
+|       const btn = document.getElementById("buyBtn");                                                                                                      |
+|      // private + auto cleanup                                                                                                                            |
 |      const buttonData = new WeakMap();                                                                                                                    |
 |                                                                                                                                                           | 
 |      // bind private data                                                                                                                                 |
@@ -154,6 +158,7 @@
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                           |
 | 🟡 In Javascript, coercion is a process of converting a value from one data type to another. Coercion can be implicit (automatic) or explicit (manual).   |
+|                                                                                                                                                           |
 | 🟡 Javascript does not perform coercion randomly, it follows specific rules to determine when and how to coerce values based on the context of the        | 
 |     operation.                                                                                                                                            |
 |                                                                                                                                                           |
