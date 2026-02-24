@@ -7,9 +7,9 @@ interface IContainerProps {
 
 function Container({ title, children }: IContainerProps) {
   return (
-    <div>
+    <div className="size-full">
       <h2 className="text-2xl font-bold mb-4">{title}</h2>
-      <div className="flex flex-col gap-y-3">{children}</div>
+      <div className="flex flex-1 size-full flex-col gap-y-3">{children}</div>
     </div>
   );
 }

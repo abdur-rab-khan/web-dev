@@ -53,6 +53,7 @@
 | 🔵 Wildcard frames                                                                                                                                                  | 
 |                                                                                                                                                                     |
 |         🔵 Wildcard frames is used for holding the animation value at current state, without defining repeating values.                                             |
+|         🔵 Example: animate={{ scale: [0, 1.2, null, 0] }} // It's equivalent to animate={{ scale: [0, 1.2, 1.2, 0] }}
 |                                                                                                                                                                     |
 | 🔵 Keyframe timing                                                                                                                                                  |
 |                                                                                                                                                                     |
@@ -68,7 +69,7 @@
 |    together by propagating through DOM tree or reusing same animation. This is done by using "variants", where we can define multiple animation states              |
 |                                                                                                                                                                     |
 | 🟡 Variants is simply an object that contains named sets of animations states, each state is also an object defining the target properties for that state, So we    |
-|     when animation applied to parent, it will automatically propagate to children elements that also defined with same variant names.                               |
+|     when animation applied to parent, it will automatically propagate to children elements that also defined with "same variant names".                               |
 |                                                                                                                                                                     |
 | 🟡 This is useful for reusability, where we can define variants once and use it across multiple components.                                                         |
 |                                                                                                                                                                     |
@@ -133,7 +134,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useEffect, useState } from "react";
-import Container from "../layout/Container";
+import Container from "../../components/Container";
 
 const variant = {
   visible: {
