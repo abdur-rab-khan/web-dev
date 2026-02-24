@@ -31,7 +31,7 @@
 |          1. To make any "Server Components" a "Dynamic Rendering" we can use following techniques:                                                        |
 |                                                                                                                                                           |
 |             a. "force-dynamic": Route begin Rerendered for each request, and the HTML is not cached.                                                      |
-|                                 It's equivalent to fetch("url", { "cache": "no-store" }), "revalidate: 0", "dynamic: 'force-dynamic'".                    |
+|                              It's equivalent to fetch("url", { "cache": "no-store" }), "revalidate: 0" (can be pass in fetch), "dynamic: 'force-dynamic'".|
 |                                                                                                                                                           |
 |             b. "revalidate: 0": Route begin Rerendered for each request, and the HTML is not cached, or if use "revalidate: 3600" it will invalidate      |
 |                                the cache after 3600 seconds and fetch fresh data from the server.                                                         |
