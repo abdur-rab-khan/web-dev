@@ -8,7 +8,7 @@
 |    1. proxy.ts: Similar to proxy server before every request the block of code run written in proxy.ts|js, It returns two things "proxy function",        |
 |                 "config [optional]" (accept regex or list of paths). SEE MORE FROM HERE https://nextjs.org/docs/app/api-reference/file-conventions/proxy  |
 |                                                                                                                                                           |
-|    2. next.config.js: For Configuring next js app.                                                                                                        |
+|    2. next.config.js: For Configuring next js app. --> SEE FROM HERE: https://nextjs.org/docs/app/api-reference/config/next-config-js                     |
 |                                                                                                                                                           |
 | 🔷 SEE MORE FROM HERE: https://nextjs.org/docs/app/getting-started/project-structure#top-level-files                                                      |
 |                                                                                                                                                           |
