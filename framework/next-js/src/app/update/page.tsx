@@ -29,10 +29,17 @@ function UpdatePage() {
     "use server";
     // Here we can perform any server-side logic, like updating the like count in the database, or calling an external API to update the like count, etc.
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
         console.log("Like count updated for post with ID:", postId);
-        resolve();
+
+        const randomNumber = Math.random();
+
+        if (randomNumber < 0.5) {
+          reject(new Error("Failed to update like count"));
+        } else {
+          resolve();
+        }
       }, 2000);
     });
   };

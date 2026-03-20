@@ -38,6 +38,10 @@
 |                                                                                                                                                                                     |
 |              3. "Built-in features": On both server actions and API routes we can use built-in features like "revalidatePath", "revalidateTag", "cookies", "headers", etc.          |
 |                                                                                                                                                                                     |
+|    ⭐ In react html we can directly call "use server" using "action" directly that's by default needed "useActionState" that uses "transition".                                     |
+|                                                                                                                                                                                     |
+|   🚧 NOTE: We can create "server function" on ("inside server component", "on dedicated") file using "use server" directive -- AND also we can pass them from "server component"    |
+|          to client directly.                                                                                                                                                        |
 |                                                                                                                                                                                     |
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 */

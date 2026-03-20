@@ -70,6 +70,7 @@
 |       🔷 Props:                                                                                                                                           |
 |                1. "request": NextRequest => It gives the request object of the route, it has all the properties of web "Request" object with some         |
 |                                             extra properties.                                                                                             |
+|                                                                                                                                                           |
 |                2. "context": RouteContext<"/path"> => It gives the context of the route such as "params" and it return in the form of promise.            |
 |                                                                                                                                                           |
 |       🔶 We can also get the access of "headers", "cookies" SEE MORE FROM HERE: https://nextjs.org/docs/app/api-reference/file-conventions/route          |

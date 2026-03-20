@@ -32,13 +32,11 @@
 |                                                                                                                                                                       |
 |     1. "revalidate('path', 'page' | 'layout):" It's revalidates the entire page or layout, it will revalidate the data and serve the fresh data to the users.         |
 |                                                                                                                                                                       |
-|     2. "revalidateTag('tag'):" It's revalidates the cached data that is associated with the provided tag, So next time when we request the data, it will serve the    |
-|                                 fresh data to the users.                                                                                                              |
+|     2. "revalidateTag('tag'):" It's revalidates the cached data that is associated with the provided tag "immediately in the background".                             |
 |                                                                                                                                                                       |
-|     3. "updateTag("data"): It's similar to "revalidateTag", but instead of "revalidating" it immediately expires the cache.                                           |
+|     3. "updateTag("data"): It's similar to "revalidateTag", but instead of "revalidating" it "immediately expires the cache".                                         |
 |                                                                                                                                                                       |
-|     4. "revalidatePath('path'):" It's revalidates the cached data that is associated with the provided path, So next time when we request the data, it will serve     |
-|                                   the fresh data to the users.                                                                                                        |
+|     4. "revalidatePath('path'):" It's revalidates "all cached data related to that path".                                                                             |
 |                                                                                                                                                                       |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 */

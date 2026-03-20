@@ -14,8 +14,6 @@
 |     2. "Dynamic Metadata": This is the more advanced way to define metadata. We can define a function called "generateMetadata" and export it from the page.          |
 |                             This function will be called by Next.js to generate the metadata for the page.                                                            | 
 |                                                                                                                                                                       |
-|                                                                                                                                                                       |
-|                                                                                                                                                                       |
 |     1. "title": This is the title of the page. It will be displayed in the browser tab and in search engine results.                                                  | 
 |     2. "description": This is the description of the page. It will be displayed in search engine results and in social media sharing.                                 |
 |     3. "keywords": This is an array of keywords for the page. It will be used by search engines to understand the content of the page.                                |

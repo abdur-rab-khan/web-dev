@@ -9,12 +9,15 @@ function LikeButton({
   postId: number;
   toggleLikeCount: (postId: number) => Promise<void>;
 }) {
-  "use client";
   const [isPending, startTransition] = useTransition();
 
   const handleLike = () => {
     startTransition(async () => {
-      await toggleLikeCount(postId);
+      try {
+        await toggleLikeCount(postId);
+      } catch (error) {
+        alert(`Error updating like count: ${error}`);
+      }
     });
   };
 
