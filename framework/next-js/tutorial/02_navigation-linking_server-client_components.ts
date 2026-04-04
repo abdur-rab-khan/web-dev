@@ -4,7 +4,7 @@
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                           |
 | 🟡 Let's understand "Server Components", So Server Components are re-render on the server by default every components are "Server Components".            |
-|     Every time requesting a page, the server will render the page and send the HTML to the client.                                                        |
+|     Every time requesting a page, the server will render the page and send the HTML to the client. Using "file directives" we can update it.              |
 |                                                                                                                                                           |
 | 🟡 It's used to "fetch data", "Using API KEY, token without exposing", reducing amount of Javascript.                                                     |
 |                                                                                                                                                           |

@@ -96,7 +96,7 @@
 | 🟡 PRIVATE FOLDER: It's also special director that does'nt include in the route path, Which helps to organize our files. by using "_" before folder name. |
 |                                                                                                                                                           |
 |                 Example: We have some components which are only used in one route, we can create "app/users/_components/UserCard.js" instead of creating  |
-|                          "app/users/UserCard.js", It will help to keep our project clean and organized.                                                   |
+|                          "app/users/UserCard.js" (VERY BAD 👎), It will help to keep our project clean and organized.                                     |
 |                                                                                                                                                           |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 */

@@ -17,7 +17,7 @@
 |                                                                                                                                                                       |
 | 🟡 NEXT.JS provides a build-in font optimization feature that automatically optimizes our fonts and reduces external network requests.                                |
 |                                                                                                                                                                       |
-| 🟡 Fonts are scoped with-in the component, To make the font available globally, we should have to include them into main "layout.tsx" file.                          |
+| 🟡 Fonts are scoped with-in the component, To make the font available globally, we should have to include them into main "layout.tsx" file.                           |
 |                                                                                                                                                                       |
 | 🟡 There are two ways to use fonts in Next.js:                                                                                                                        |
 |                                                                                                                                                                       |
