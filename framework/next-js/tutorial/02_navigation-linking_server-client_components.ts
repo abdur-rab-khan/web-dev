@@ -60,6 +60,9 @@
 |     return the cached data, otherwise it will execute the function and cache the result for future use. It's useful for expensive computations            |
 |     or data fetching.                                                                                                                                     |
 |                                                                                                                                                           |
+| 🟡 React Server component does'nt support "React Context", To use context, we have to create "Client Component" that accepts "children" then import it    |
+|    into server component, You import and add into "layout" instead of adding entire html into "context" add as close as possible.                         |
+|                                                                                                                                                           |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                   CLIENT SIDE COMPONENTS                                                                  |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -71,6 +74,42 @@
 |     "client side component". We can imagine as a tree on a tree if top "node" become "client" all it's "children" also become "client".                   |
 |                                                                                                                                                           |
 | 🟡 Using "client component" on "server component" doesn't impact on "server component".                                                                   |
+|                                                                                                                                                           |
+| 🟡 We can pass "props" from server component to client component easily, Alternativly we can stream data from "client component" to "server component"   |
+|     passed props needs to "serializable" by react.                                                                                                        |
+|                                                                                                                                                           |
+| // Server Component                                                                                                                                       |
+|                                                                                                                                                           |
+|  export default function Page() {                                                                                                                         |
+|  // Don't await the data fetching function                                                                                                                |
+|  const posts = getPosts()                                                                                                                                 |
+|                                                                                                                                                           |
+|  return (                                                                                                                                                 |
+|    <Suspense fallback={<div>Loading...</div>}>                                                                                                            |
+|      <Posts posts={posts} />                                                                                                                              |
+|    </Suspense>                                                                                                                                            |
+|  )                                                                                                                                                        |
+| }                                                                                                                                                         |
+|                                                                                                                                                           |
+| // Client Component                                                                                                                                       |
+|                                                                                                                                                           |
+|  export default function Posts({                                                                                                                          |
+|    posts,                                                                                                                                                 |
+|  }: {                                                                                                                                                     |
+|    posts: Promise<{ id: string; title: string }[]>                                                                                                        |
+|  }) {                                                                                                                                                     |
+|    const allPosts = use(posts)                                                                                                                            |
+|                                                                                                                                                           |
+|    return (                                                                                                                                               |
+|      <ul>                                                                                                                                                 |
+|        {allPosts.map((post) => (                                                                                                                          |
+|          <li key={post.id}>{post.title}</li>                                                                                                              |
+|        ))}                                                                                                                                                |
+|      </ul>                                                                                                                                                |
+|    )                                                                                                                                                      |
+|  }                                                                                                                                                        |
+|                                                                                                                                                           |
+| TODO: Learn How data "streaming" works and also How "serializable works".                                                                                 |
 |                                                                                                                                                           |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                          LINKING                                                                          |
