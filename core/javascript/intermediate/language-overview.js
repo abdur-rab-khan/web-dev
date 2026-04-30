@@ -55,6 +55,36 @@
 |    |                                         |                                                                                                            |
 |    +-----------------------------------------+                                                                                                            |
 |                                                                                                                                                           |
+| 🔶 Temporal dead zone is a time between variable creation and initialization, during execution of the code.                                               | 
+|                                                                                                                                                           |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                           HOISTING                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                                           |
+| 🟡 "Hoisting" is a behavior in JavaScript where declaration of "functions" and "variables" are moved to the top of their scope during creation phase.     | 
+|                                                                                                                                                           |
+| 🟡 When a JavaScript Code Run follow two steps for running the code.                                                                                      |
+|    1️⃣. Creation Phase:                                                                                                                                    |
+|                      * Memory allocation for variables and functions.                                                                                     |
+|                      * It behave differently for var, let and const.                                                                                      |
+|                         1. Variable with var is initialized with undefined, while let and const are not initialized.                                      |
+|                         2. Function declarations are hoisted to the top of their scope and can be called before they are defined, while function          |
+|                            expressions are not hoisted.                                                                                                   |
+|                                                                                                                                                           |
+|                      * Variable declarations are hoisted to the top of their scope it happen for global and function scope but not for block scope.       |
+|                                                                                                                                                           |
+|    2️⃣. Execution Phase:                                                                                                                                   |
+|                      * The code is executed line by line, and variables and functions are accessed based on their scope and hoisting behavior.            |
+|                                                                                                                                                           |
+| 🟡 Key Points:                                                                                                                                            |
+|                                                                                                                                                           |
+|   1️⃣. Variables declared with var are hoisted and initialized with undefined, while variables declared with let and const are hoisted but not initialized.|
+|   2️⃣. Function declarations are hoisted to the top of their scope and can be called before they are defined, while function expressions are not hoisted.  | 
+|                                                                                                                                                           |
+| 🟡 More Key Points:                                                                                                                                       |
+|                                                                                                                                                           |
+|   1️⃣. During the creation phase, Suppose we declare a variable with "var", and a function with the same name, the function will be hoisted instead of     |
+|       the variable, because function has higher priority than variable.                                                                                   |
 |                                                                                                                                                           |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                       OPERATORS                                                                           |
@@ -93,7 +123,6 @@
 |   });                                                                                                                                                     |
 |                                                                                                                                                           |
 |  Object.getOwnPropertyDescriptor(obj, 'propertyName'); // Returns the property descriptor for 'propertyName'                                              |
-|                                                                                                                                                           |
 |                                                                                                                                                           |
 |  🔶 Example (Accessor Properties):                                                                                                                        |
 |                                                                                                                                                           | 
