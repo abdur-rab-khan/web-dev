@@ -16,15 +16,23 @@
 |                                                                        LEXICAL SCOPE                                                                     | 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                                                                                                          | 
-| 🟡 A Lexical environment is a data structure that holds identifier-variable mapping In other words, it is a mapping of variable names to their values.  | 
-|    environment has a reference to its outer environment.                                                                                                 | 
+| 🟡 A Lexical environment is a data structure (object) that holds identifier-variable, function and reference of parent's lexical environment.            | 
+|    It is a mapping of variable names to their values, environment has a reference to its outer environment.                                              | 
 |                                                                                                                                                          | 
-| 🟡 Every time "new lexical environment" is created when:                                                                                                |
+|   Lexical Environment = {                                                                                                                                |
+|        environmentRecord: { ... },   // all variables/functions in THIS scope                                                                            |
+|        outerLexicalEnvironment: ref  // pointer to PARENT's lexical environment                                                                          |
+|    }                                                                                                                                                     | 
+|                                                                                                                                                          | 
+| 🟡 Every time "new lexical environment" is created when:                                                                                                 |
 |     1. A function is invoked.                                                                                                                            | 
 |     2. A block is executed (for, if, while).                                                                                                             | 
 |                                                                                                                                                          | 
 | 🟡 When a variable is created by using "let" or "const" inside a block, it is stored in the lexical environment of that block, but that's not the case   | 
 |     with "var" because "var" is function scoped, so if "var" is used inside a block, it is stored in the lexical environment of the nearest function.    | 
+|                                                                                                                                                          | 
+| 🟡 Every-time when we ask for a variable in a function, it first looks in its own lexical environment if it doesn't find it, it looks at the outer       | 
+|    lexical environment (parent) and so on until it reaches the global scope, it called as "scope chaining".                                              |
 |                                                                                                                                                          | 
 | 🟡 Because of this behavior the classic "for loop" with "var" creates many issues when used with asynchronous functions like  setTimeout.                |
 |                                                                                                                                                          | 
@@ -36,7 +44,7 @@
 |         }, i * 1000);                                                                                                                                    |
 |     }                                                                                                                                                    | 
 |                                                                                                                                                          | 
-| 🟡 So in the above what happens is when the setTimeout callback function is executed after 1 second, it will look for the value of "i" in its lexical    | 
+| 🔵 So in the above what happens is when the setTimeout callback function is executed after 1 second, it will look for the value of "i" in its lexical    | 
 |    environment, but we know that "var" is function scoped so the value of "i" at that time will be 6 (after the loop ends). Hence it prints 6 five times.| 
 |                                                                                                                                                          | 
 | 🔵 To fix this issue we can use "let" instead of "var" because "let" is block scoped so every iteration of the loop will create a new lexical environment| 

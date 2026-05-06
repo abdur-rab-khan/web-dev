@@ -7,25 +7,26 @@
 			"com.tldraw.asset": 1,
 			"com.tldraw.camera": 1,
 			"com.tldraw.document": 2,
-			"com.tldraw.instance": 25,
+			"com.tldraw.instance": 26,
 			"com.tldraw.instance_page_state": 5,
 			"com.tldraw.page": 1,
 			"com.tldraw.instance_presence": 6,
 			"com.tldraw.pointer": 1,
 			"com.tldraw.shape": 4,
-			"com.tldraw.asset.bookmark": 2,
-			"com.tldraw.asset.image": 5,
+			"com.tldraw.user": 1,
+			"com.tldraw.asset.image": 6,
 			"com.tldraw.asset.video": 5,
+			"com.tldraw.asset.bookmark": 2,
 			"com.tldraw.shape.group": 0,
 			"com.tldraw.shape.text": 4,
 			"com.tldraw.shape.bookmark": 2,
-			"com.tldraw.shape.draw": 3,
+			"com.tldraw.shape.draw": 4,
 			"com.tldraw.shape.geo": 11,
-			"com.tldraw.shape.note": 10,
+			"com.tldraw.shape.note": 12,
 			"com.tldraw.shape.line": 5,
 			"com.tldraw.shape.frame": 1,
 			"com.tldraw.shape.arrow": 8,
-			"com.tldraw.shape.highlight": 2,
+			"com.tldraw.shape.highlight": 3,
 			"com.tldraw.shape.embed": 4,
 			"com.tldraw.shape.image": 5,
 			"com.tldraw.shape.video": 4,
@@ -363,6 +364,14 @@
 			"typeName": "shape"
 		},
 		{
+			"name": "",
+			"color": "#F2555A",
+			"imageUrl": "",
+			"meta": {},
+			"id": "user:3MMg1FuCS_M9qYyOT7IPj",
+			"typeName": "user"
+		},
+		{
 			"x": 866.984429052267,
 			"y": 335.5508820007844,
 			"rotation": 0,
@@ -417,9 +426,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 996.239711951693,
-			"y": 941.0742765556515,
-			"z": 0.6433424668369798,
+			"x": 947.8420522421901,
+			"y": 970.3998004182082,
+			"z": 0.6460100928224821,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -691,19 +700,102 @@
 			"typeName": "binding"
 		},
 		{
-			"editingShapeId": "shape:CwkIKq-Cr4g-ckMKp2Tbl",
+			"editingShapeId": "shape:RHAMAlTaJ1H5hQh0EV4p0",
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:CwkIKq-Cr4g-ckMKp2Tbl"
+				"shape:RHAMAlTaJ1H5hQh0EV4p0"
 			],
-			"hoveredShapeId": "shape:CwkIKq-Cr4g-ckMKp2Tbl",
+			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
-			"focusedGroupId": "shape:moS_9Nu0RbqETXBTBj4_C",
+			"focusedGroupId": null,
 			"meta": {},
 			"id": "instance_page_state:page:page",
 			"pageId": "page:page",
 			"typeName": "instance_page_state"
+		},
+		{
+			"x": -270,
+			"y": -230,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:RHAMAlTaJ1H5hQh0EV4p0",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 1192.796875,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"attrs": {
+						"dir": "auto"
+					},
+					"content": [
+						{
+							"type": "bulletList",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "listItem",
+									"attrs": {
+										"dir": "auto"
+									},
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "For these cases it's important to check "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "highlight"
+														},
+														{
+															"type": "code"
+														}
+													],
+													"text": "hasOwnProperty"
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "highlight"
+														}
+													],
+													"text": " "
+												},
+												{
+													"type": "text",
+													"text": "prevent looking deeper in the tree."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aAtZgoRV",
+			"typeName": "shape"
 		},
 		{
 			"meta": {},
@@ -1294,14 +1386,14 @@
 				"type": "default",
 				"rotation": 0
 			},
-			"isFocusMode": true,
+			"isFocusMode": false,
 			"exportBackground": true,
 			"isDebugMode": false,
 			"isToolLocked": false,
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1575,
+				"w": 1581,
 				"h": 964
 			},
 			"insets": [
@@ -1311,7 +1403,7 @@
 				false
 			],
 			"zoomBrush": null,
-			"isGridMode": false,
+			"isGridMode": true,
 			"isPenMode": false,
 			"chatMessage": "",
 			"isChatting": false,
@@ -1319,12 +1411,13 @@
 			"isFocused": true,
 			"devicePixelRatio": 1,
 			"isCoarsePointer": false,
-			"isHoveringCanvas": true,
+			"isHoveringCanvas": false,
 			"openMenus": [],
 			"isChangingStyle": false,
 			"isReadonly": false,
 			"meta": {},
 			"duplicateProps": null,
+			"cameraState": "idle",
 			"id": "instance:instance",
 			"currentPageId": "page:page",
 			"typeName": "instance"
