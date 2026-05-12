@@ -1,6 +1,6 @@
 interface ITodo {
   id: string;
-  name: string;
+  title: string;
   status: "completed" | "pending";
 }
 
