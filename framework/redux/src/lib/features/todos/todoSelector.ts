@@ -6,12 +6,12 @@ import type { ITodo } from "./todoType";
 // In "createSelector", "State" automatically got memoize So when re-render trigger it gives from memoize data instead of filtering again-again unless any changes happened.
 
 const completedTodos = createAppSelector(
-  (state) => state.todos,
+  (state) => state.todos.todos,
   (todos: ITodo[]) => todos.filter((v) => v.status !== "completed"),
 );
 
 const pendingTodos = createAppSelector(
-  (state) => state.todos,
+  (state) => state.todos.todos,
   (todos: ITodo[]) => todos.filter((t) => t.status !== "pending"),
 );
 

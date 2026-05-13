@@ -9,9 +9,9 @@ export const store = configureStore({
     todos: todoSlice,
   },
   // Option state what provided to "createStore" but we don't have to specify it because we already do it in "createSlice".
-  preloadedState: {
-    todos: [],
-  },
+  // preloadedState: {
+  //   todos: [],
+  // },
 });
 
 // Infer the "RootState" and "AppDispatch" directly from the "store".

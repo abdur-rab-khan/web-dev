@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../lib/features/todos/todoSlice";
+import { addTodo, todoAction } from "../lib/features/todos/todoSlice";
 
 function TodoInput() {
   const dispatch = useDispatch();
@@ -14,7 +14,10 @@ function TodoInput() {
       title: inputValue,
       status: "pending" as const,
     };
-    dispatch(addTodo(todoData));
+    // const reducerRes = addTodo(todoData);
+    dispatch(todoAction(todoData));
+
+    // console.log("Reducer Result: ", reducerRes);
 
     setInputValue("");
   };
