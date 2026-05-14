@@ -51,7 +51,18 @@
     "fallbackPolling": "dynamicPriority",
     "synchronousWatchDirectory": true
   },
-  "include": ["docs/**/*"],
+  "include": [
+    "docs/**/*",
+    "src/01_introduction.ts",
+    "src/02_narrowing.ts",
+    "src/03_function.ts",
+    "src/04_object.ts",
+    "src/05_type_manipulation.ts",
+    "src/06_class.ts",
+    "src/practice/advances/02.ts",
+    "src/practice/intermediate/02.ts",
+    "src/practice/beginner/02.ts"
+  ],
   "exclude": ["node_modules", "dist"],
   "compileOnSave": true
 }

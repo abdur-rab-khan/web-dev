@@ -1,7 +1,7 @@
 /*
 +-----------------------------------+ MEMORY MANAGEMENT IN JAVASCRIPT +------------------------------------+
 |                                                                                                          |
-| 🟡 Unlike low level programming languages like "c/c++" where memory management done by                   |
+| 🟡 Unlike low level programming languages like "C/C++" where memory management done by                   |
 |       developer it self.                                                                                 |
 |                                                                                                          |
 | 🟡 In Javascript memory management is done by "Garbage Collector" which is part of Javascript.           |
@@ -94,6 +94,7 @@
 +----------------------------------------+ HOW MEMORY LOOKS LIKE +-----------------------------------------+
 |                                                                                                          |             
 |⭐ CODE EXAMPLE:                                                                                          |
+|                                                                                                          |             
 |    var a = 10;                                                                                           |
 |    const name = "Javascript"                                                                             |
 |                                                                                                          |
