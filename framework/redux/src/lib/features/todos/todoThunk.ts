@@ -5,7 +5,7 @@ const dummyPromise = <T>(a: T): Promise<T> =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve(a);
-    });
+    }, 1000);
   });
 
 /*

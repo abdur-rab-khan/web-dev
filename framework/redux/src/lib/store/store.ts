@@ -3,6 +3,7 @@ import todoSlice from "../features/todos/todoSlice";
 
 // "configureStore" is used to combine all "slices" at single place, it does everything automatically setup with default settings, otherwise we have to do manually in core-redux.
 export const store = configureStore({
+  // <==========================> Reducer <==========================>
   // Take two type of value "Single Slice Function" (If we want single reducer), "Object of Slice function" (If we want multiple reducers).
   // It behind the sense call core-redux "combineReducers()" function to combine all reducer for creating store by using "createStore".
   reducer: {
@@ -11,6 +12,10 @@ export const store = configureStore({
   // Option state what provided to "createStore" but we don't have to specify it because we already do it in "createSlice".
   // preloadedState: {
   //   todos: [],
+  // },
+  // <==========================> Middleware  <==========================>
+  // middleware(getDefaultMiddleware) {
+  //   return getDefaultMiddleware().concat(loggerMiddleware);
   // },
 });
 
