@@ -7,12 +7,12 @@ import type { ITodo } from "./todoType";
 
 const completedTodos = createAppSelector(
   (state) => state.todos.todos,
-  (todos: ITodo[]) => todos.filter((v) => v.status !== "completed"),
+  (todos: ITodo[]) => todos.filter((v) => v.status !== "pending"),
 );
 
 const pendingTodos = createAppSelector(
   (state) => state.todos.todos,
-  (todos: ITodo[]) => todos.filter((t) => t.status !== "pending"),
+  (todos: ITodo[]) => todos.filter((t) => t.status !== "completed"),
 );
 
 export { completedTodos, pendingTodos };
