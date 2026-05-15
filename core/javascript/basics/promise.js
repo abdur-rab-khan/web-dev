@@ -73,8 +73,7 @@
 |                                     iterable have settled (either resolved or rejected). The returned Promise resolves with an array of objects that   | 
 |                                     describe the outcome of each promise in the iterable.                                                              | 
 |                                                                                                                                                        |
-|    3. Promise.race(iterable): It runs the promises in Parallel and returns a single Promise that resolves or rejects as soon as one of the promises    |
-|                               in the iterable resolves or rejects, with the value or reason from that promise.                                         | 
+|    3. Promise.race(iterable): It runs the promises in Parallel and returns a single Promise that resolves or rejects first.                            |
 |                                                                                                                                                        |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                         EVENT LOOP                                                                     |
